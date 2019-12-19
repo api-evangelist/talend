@@ -1,0 +1,106 @@
+{
+    "name": "Talend",
+    "description": "Talend open source integration software offers real-time solutions for all types of data integration. Learn more about the benefits of Hadoop and Spark.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/114-talend.jpg",
+    "tags": [
+        "automation",
+        "have api",
+        "interoperability",
+        "ipaas"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/talend\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Talend",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/114-talend.jpg",
+            "humanURL": "https:\/\/www.talend.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/talend-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog",
+            "url": "http:\/\/www.talend.com\/blog"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/feeds.feedburner.com\/Talend"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/talend"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/talend"
+        },
+        {
+            "type": "Email",
+            "url": "unsubscribe@talend.com"
+        },
+        {
+            "type": "Email",
+            "url": "partners@talend.com"
+        },
+        {
+            "type": "Email",
+            "url": "press@talend.com"
+        },
+        {
+            "type": "Email",
+            "url": "customercare@talend.com"
+        },
+        {
+            "type": "Email",
+            "url": "sales.fr@talend.com"
+        },
+        {
+            "type": "Email",
+            "url": "sales.uk@talend.com"
+        },
+        {
+            "type": "Email",
+            "url": "sales.de@talend.com"
+        },
+        {
+            "type": "Email",
+            "url": "sales.sp@talend.com"
+        },
+        {
+            "type": "Email",
+            "url": "sales.it@talend.com"
+        },
+        {
+            "type": "Email",
+            "url": "sales.au@talend.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/Talend"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/talend"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.talend.com"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.talend.com"
+        }
+    ]
+}
