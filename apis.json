@@ -8,8 +8,8 @@
         "interoperability",
         "ipaas"
     ],
-    "created": "2019-12-19",
-    "modified": "2019-12-19",
+    "created": "2019-12-21",
+    "modified": "2019-12-21",
     "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/talend\/master\/apis.json",
     "specificationVersion": "0.14",
     "apis": [
@@ -23,13 +23,17 @@
             "properties": [
                 {
                     "type": "x-openapi",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/talend-openapi.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/talend\/master\/talend-openapi.json"
                 }
             ]
         }
     ],
     "include": [],
     "x-common": [
+        {
+            "type": "APIs.json",
+            "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/apis.json"
+        },
         {
             "type": "Blog",
             "url": "http:\/\/www.talend.com\/blog"
