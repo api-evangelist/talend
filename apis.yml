@@ -1,0 +1,44 @@
+aid: talend
+name: Talend
+description: >-
+  Talend (now part of Qlik) provides data integration, quality, and API
+  management capabilities through cloud-native APIs for ETL, data pipelines,
+  and application integration.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Data Integration
+  - ETL
+  - API Management
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/apis.yml
+created: '2026-03-16'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: talend:talend-api
+    name: Talend API
+    description: >-
+      APIs for interacting with Talend Cloud products programmatically,
+      including data integration, API services, and management console
+      capabilities.
+    humanURL: https://talend.qlik.dev/
+    tags:
+      - Data Integration
+      - ETL
+      - Cloud
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/
+      - type: Getting Started
+        url: https://talend.qlik.dev/getting-started/
+common:
+  - type: Portal
+    url: https://talend.qlik.dev/
+  - type: Documentation
+    url: https://talend.qlik.dev/
+  - type: Website
+    url: https://www.talend.com/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
