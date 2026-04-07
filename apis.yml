@@ -7,9 +7,9 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - API Management
   - Data Integration
   - ETL
-  - API Management
 url: >-
   https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -24,9 +24,9 @@ apis:
       capabilities.
     humanURL: https://talend.qlik.dev/
     tags:
+      - Cloud
       - Data Integration
       - ETL
-      - Cloud
     properties:
       - type: Documentation
         url: https://talend.qlik.dev/
