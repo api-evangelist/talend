@@ -1,0 +1,189 @@
+name: Talend Cloud Vocabulary
+description: >-
+  Domain vocabulary for Qlik Talend Cloud APIs covering data integration,
+  pipeline orchestration, execution management, remote engines, and cloud
+  infrastructure concepts.
+created: '2026-05-03'
+modified: '2026-05-03'
+tags:
+  - Data Integration
+  - ETL
+  - Orchestration
+  - Talend
+terms:
+  - term: Task
+    definition: >-
+      The fundamental unit of execution in Talend Cloud — a data integration
+      pipeline job (e.g., a Talend Studio job or API Designer task) that reads
+      from one or more sources, transforms data, and writes to a target.
+    synonyms:
+      - Job
+      - Pipeline
+    relatedTerms:
+      - Plan
+      - Execution
+      - Artifact
+
+  - term: Plan
+    definition: >-
+      An ordered sequence of tasks that execute in a defined workflow. Plans
+      support conditional logic, error handling, and can be re-run from a
+      failed step.
+    synonyms:
+      - Workflow
+      - Execution Plan
+    relatedTerms:
+      - Task
+      - Schedule
+      - PlanExecution
+
+  - term: Workspace
+    definition: >-
+      A logical container for grouping related tasks, plans, connections,
+      and resources in Talend Cloud. Used to organize work by team, project,
+      or data domain.
+    relatedTerms:
+      - Environment
+      - Project
+
+  - term: Environment
+    definition: >-
+      A deployment target in Talend Cloud (e.g., Development, Staging,
+      Production) that determines which connections, parameters, and engines
+      are used when a task or plan executes.
+    relatedTerms:
+      - Workspace
+      - RemoteEngine
+      - Promotion
+
+  - term: Artifact
+    definition: >-
+      A deployable package containing compiled Talend job code (typically a ZIP
+      or JAR file). Artifacts are versioned and associated with tasks for
+      deployment across environments.
+    relatedTerms:
+      - Task
+      - Environment
+
+  - term: Remote Engine
+    definition: >-
+      A self-hosted Talend execution engine installed on-premises or in a private
+      cloud. Remote engines process data locally and report execution results
+      to Talend Cloud for monitoring.
+    synonyms:
+      - Runtime Engine
+      - RE
+    relatedTerms:
+      - RemoteEngineCluster
+      - RunProfile
+      - Processing
+
+  - term: Remote Engine Cluster
+    definition: >-
+      A group of remote engines configured to share workloads for high
+      availability and load balancing.
+    relatedTerms:
+      - RemoteEngine
+      - RunProfile
+
+  - term: Run Profile
+    definition: >-
+      A named configuration for task execution on a specific remote engine,
+      defining parallelism, memory settings, and execution parameters.
+    relatedTerms:
+      - RemoteEngine
+      - Task
+
+  - term: Connection
+    definition: >-
+      A configured, reusable data source or destination definition including
+      host, credentials, and protocol (e.g., JDBC, S3, Snowflake, REST API).
+      Connections can be shared across tasks and environments.
+    relatedTerms:
+      - Workspace
+      - Task
+
+  - term: Execution
+    definition: >-
+      A single run of a task or plan, tracked with a unique execution ID,
+      start/end timestamps, status, and log URL.
+    synonyms:
+      - Run
+      - Job Run
+    relatedTerms:
+      - Task
+      - Plan
+      - RemoteEngine
+
+  - term: Execution Status
+    definition: >-
+      The current or final state of a task or plan execution.
+    values:
+      - RUNNING
+      - SUCCESS
+      - FAILURE
+      - CANCELLED
+      - PARTIAL_SUCCESS
+    relatedTerms:
+      - Execution
+
+  - term: Schedule
+    definition: >-
+      A time-based trigger for automatic task or plan execution, defined by
+      a cron expression and timezone. Schedules can also be triggered by
+      external events.
+    relatedTerms:
+      - Task
+      - Plan
+
+  - term: Promotion
+    definition: >-
+      The process of migrating tasks, plans, and configurations from one
+      environment to another (e.g., Development to Production) using Talend
+      Cloud's built-in change management workflow.
+    relatedTerms:
+      - Environment
+      - Workspace
+
+  - term: Personal Access Token
+    definition: >-
+      A user-generated token used to authenticate API requests to Talend Cloud.
+      Generated through the Talend Cloud management console and included in the
+      Authorization header as a Bearer token.
+    synonyms:
+      - PAT
+      - Access Token
+    relatedTerms:
+      - Service Account Token
+      - BearerAuth
+
+  - term: Service Account Token
+    definition: >-
+      A machine-to-machine authentication token generated via the Talend Service
+      Accounts API using the OAuth 2.0 Client Credentials flow. Used for automated
+      integrations and CI/CD pipelines.
+    relatedTerms:
+      - Personal Access Token
+      - OAuth
+
+  - term: ETL
+    definition: >-
+      Extract, Transform, Load — the data integration pattern implemented by
+      Talend tasks that read data from source systems, apply transformations,
+      and load results to target systems.
+    synonyms:
+      - ELT
+      - Data Integration
+      - Data Pipeline
+    relatedTerms:
+      - Task
+      - Connection
+
+  - term: SCIM v2
+    definition: >-
+      System for Cross-domain Identity Management version 2 — standard protocol
+      for automated user and group provisioning in Talend Cloud from enterprise
+      identity providers like Okta or Microsoft Entra ID.
+    relatedTerms:
+      - SSO Role Mapping
+      - Identities Management

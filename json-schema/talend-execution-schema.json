@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://talend.qlik.dev/schemas/execution",
+  "title": "Task Execution",
+  "description": "A task or plan execution instance in Qlik Talend Cloud",
+  "type": "object",
+  "properties": {
+    "executionId": {
+      "type": "string",
+      "description": "Unique execution identifier"
+    },
+    "taskId": {
+      "type": "string",
+      "description": "The task that was executed"
+    },
+    "planId": {
+      "type": "string",
+      "description": "The plan that was executed (if applicable)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["RUNNING", "SUCCESS", "FAILURE", "CANCELLED", "PARTIAL_SUCCESS"],
+      "description": "Current execution status"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Execution start timestamp"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Execution end timestamp"
+    },
+    "duration": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Execution duration in milliseconds"
+    },
+    "engineId": {
+      "type": "string",
+      "description": "Remote engine that ran the execution"
+    },
+    "logUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to access execution logs"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message if execution failed"
+    },
+    "rowsProcessed": {
+      "type": "integer",
+      "description": "Number of data rows processed"
+    },
+    "steps": {
+      "type": "array",
+      "description": "Step executions within a plan execution",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stepId": { "type": "string" },
+          "taskId": { "type": "string" },
+          "status": { "type": "string" },
+          "startTime": { "type": "string", "format": "date-time" },
+          "endTime": { "type": "string", "format": "date-time" },
+          "duration": { "type": "integer" },
+          "errorMessage": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["executionId", "status", "startTime"]
+}

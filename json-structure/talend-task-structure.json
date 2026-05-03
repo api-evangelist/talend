@@ -1,0 +1,23 @@
+{
+  "name": "Task",
+  "description": "A data integration task in Qlik Talend Cloud Orchestration API",
+  "fields": [
+    { "name": "id", "type": "String", "required": true, "description": "Unique task identifier" },
+    { "name": "name", "type": "String", "required": true, "description": "Task display name" },
+    { "name": "description", "type": "String", "description": "Task description" },
+    { "name": "workspaceId", "type": "String", "required": true, "description": "Parent workspace ID" },
+    { "name": "environmentId", "type": "String", "description": "Execution environment ID" },
+    { "name": "status", "type": "Enum (ACTIVE|INACTIVE|DRAFT)", "description": "Task lifecycle status" },
+    { "name": "artifactId", "type": "String", "description": "Deployment artifact ID" },
+    { "name": "artifactVersion", "type": "String", "description": "Artifact version" },
+    { "name": "runConfig", "type": "Object", "description": "Schedule configuration (cron, trigger, manual)" },
+    { "name": "created", "type": "String (ISO 8601)", "description": "Creation timestamp" },
+    { "name": "updated", "type": "String (ISO 8601)", "description": "Last update timestamp" },
+    { "name": "owner", "type": "String", "description": "Owner user or service account ID" }
+  ],
+  "relationships": [
+    { "field": "workspaceId", "relatesTo": "Workspace", "cardinality": "many-to-one" },
+    { "field": "environmentId", "relatesTo": "Environment", "cardinality": "many-to-one" },
+    { "field": "artifactId", "relatesTo": "Artifact", "cardinality": "many-to-one" }
+  ]
+}

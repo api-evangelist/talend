@@ -1,0 +1,285 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Talend Data Pipeline Management"
+  description: >-
+    Workflow capability for data engineers and platform teams to manage,
+    execute, and monitor data integration pipelines in Qlik Talend Cloud.
+    Combines orchestration (task and plan management) with processing
+    (execution and monitoring) for end-to-end pipeline lifecycle management.
+  tags:
+    - Data Engineering
+    - Data Integration
+    - ETL
+    - Pipeline Management
+    - Talend
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TALEND_ACCESS_TOKEN: TALEND_ACCESS_TOKEN
+      TALEND_REGION: TALEND_REGION
+
+capability:
+  consumes:
+    - import: talend-orchestration
+      location: ./shared/talend-orchestration.yaml
+    - import: talend-processing
+      location: ./shared/talend-processing.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: talend-pipeline-api
+      description: "Unified REST API for Talend data pipeline management."
+      resources:
+        - path: /v1/workspaces
+          name: workspaces
+          description: "Manage Talend Cloud workspaces"
+          operations:
+            - method: GET
+              name: list-workspaces
+              description: "List all workspaces in the account"
+              call: "talend-orchestration.list-workspaces"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tasks
+          name: tasks
+          description: "Manage data integration tasks"
+          operations:
+            - method: GET
+              name: list-tasks
+              description: "List tasks, optionally filtered by workspace"
+              call: "talend-orchestration.list-tasks"
+              with:
+                workspaceId: "rest.workspaceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/plans
+          name: plans
+          description: "Manage execution plans"
+          operations:
+            - method: GET
+              name: list-plans
+              description: "List all plans"
+              call: "talend-orchestration.list-plans"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/environments
+          name: environments
+          description: "Manage deployment environments"
+          operations:
+            - method: GET
+              name: list-environments
+              description: "List all environments"
+              call: "talend-orchestration.list-environments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/executions
+          name: executions
+          description: "Trigger and monitor task executions"
+          operations:
+            - method: POST
+              name: execute-task
+              description: "Run a data integration task"
+              call: "talend-processing.execute-task"
+              with:
+                task_id: "rest.taskId"
+                environment_id: "rest.environmentId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+            - method: GET
+              name: list-task-executions
+              description: "List task execution history"
+              call: "talend-processing.list-task-executions"
+              with:
+                taskId: "rest.taskId"
+                status: "rest.status"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/executions/{executionId}
+          name: execution-detail
+          description: "Get execution status and details"
+          operations:
+            - method: GET
+              name: get-execution-status
+              description: "Check execution status"
+              call: "talend-processing.get-task-execution-status"
+              with:
+                executionId: "rest.executionId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/plan-executions
+          name: plan-executions
+          description: "Trigger and monitor plan executions"
+          operations:
+            - method: POST
+              name: execute-plan
+              description: "Run a data integration plan"
+              call: "talend-processing.execute-plan"
+              with:
+                plan_id: "rest.planId"
+                environment_id: "rest.environmentId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/remote-engines
+          name: remote-engines
+          description: "View remote engine status"
+          operations:
+            - method: GET
+              name: list-remote-engines
+              description: "List available remote engines"
+              call: "talend-processing.list-remote-engines"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/connections
+          name: connections
+          description: "Manage data source connections"
+          operations:
+            - method: GET
+              name: list-connections
+              description: "List all connections"
+              call: "talend-orchestration.list-connections"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: talend-pipeline-mcp
+      transport: http
+      description: "MCP server for AI-assisted Talend data pipeline management."
+      tools:
+        - name: list-workspaces
+          description: "List all Talend Cloud workspaces available in the account"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "talend-orchestration.list-workspaces"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-tasks
+          description: "List data integration tasks, optionally filtered by workspace ID"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "talend-orchestration.list-tasks"
+          with:
+            workspaceId: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-plans
+          description: "List execution plans composed of multiple data integration tasks"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "talend-orchestration.list-plans"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-environments
+          description: "List deployment environments (development, staging, production)"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "talend-orchestration.list-environments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-connections
+          description: "List data source and destination connections configured in Talend"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "talend-orchestration.list-connections"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: execute-task
+          description: "Trigger execution of a Talend data integration task in a specified environment"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "talend-processing.execute-task"
+          with:
+            task_id: "tools.task_id"
+            environment_id: "tools.environment_id"
+            log_level: "tools.log_level"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-execution-status
+          description: "Check the current status of a task or plan execution"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "talend-processing.get-task-execution-status"
+          with:
+            executionId: "tools.execution_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-task-executions
+          description: "List task execution history filtered by task ID, status, or time range"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "talend-processing.list-task-executions"
+          with:
+            taskId: "tools.task_id"
+            status: "tools.status"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: execute-plan
+          description: "Run a multi-step data integration plan from start or resume from a failed step"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "talend-processing.execute-plan"
+          with:
+            plan_id: "tools.plan_id"
+            environment_id: "tools.environment_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-remote-engines
+          description: "List remote Talend execution engines with their status and capabilities"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "talend-processing.list-remote-engines"
+          outputParameters:
+            - type: object
+              mapping: "$."

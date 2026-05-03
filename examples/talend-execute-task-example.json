@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.eu.cloud.talend.com/processing/executions",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "taskId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "environmentId": "prod-env-001",
+      "logLevel": "INFO"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "executionId": "exec-f1e2d3c4-b5a6-7890-fedc-ba9876543210",
+      "taskId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "status": "RUNNING",
+      "startTime": "2026-05-03T14:30:00.000Z",
+      "endTime": null,
+      "duration": null,
+      "engineId": "remote-engine-prod-01",
+      "logUrl": "https://api.eu.cloud.talend.com/processing/executions/exec-f1e2d3c4-b5a6-7890-fedc-ba9876543210/logs"
+    }
+  }
+}

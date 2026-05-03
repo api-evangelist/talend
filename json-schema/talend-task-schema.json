@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://talend.qlik.dev/schemas/task",
+  "title": "Talend Task",
+  "description": "A data integration task in Qlik Talend Cloud",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique task identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Task display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Task description"
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "Parent workspace identifier"
+    },
+    "environmentId": {
+      "type": "string",
+      "description": "Target execution environment identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ACTIVE", "INACTIVE", "DRAFT"],
+      "description": "Task lifecycle status"
+    },
+    "artifactId": {
+      "type": "string",
+      "description": "Associated deployment artifact identifier"
+    },
+    "artifactVersion": {
+      "type": "string",
+      "description": "Version of the deployed artifact"
+    },
+    "runConfig": {
+      "type": "object",
+      "description": "Execution schedule configuration",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["CRON", "TRIGGER", "MANUAL"],
+          "description": "Schedule type"
+        },
+        "cronExpression": {
+          "type": "string",
+          "description": "Cron expression for scheduled runs"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "IANA timezone name"
+        }
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Owner user or service account ID"
+    }
+  },
+  "required": ["id", "name", "workspaceId"]
+}

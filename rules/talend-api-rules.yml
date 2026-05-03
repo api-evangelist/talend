@@ -1,0 +1,86 @@
+extends: spectral:oas
+rules:
+  talend-operations-have-operation-ids:
+    description: All Talend API operations must have operationIds
+    message: "Operation at '{{path}}' is missing an operationId"
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  talend-operations-have-summaries:
+    description: All operations must have summaries
+    message: "Operation '{{property}}' is missing a summary"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  talend-operations-have-tags:
+    description: All operations must have at least one tag
+    message: "Operation should have at least one tag for grouping"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  talend-bearer-auth-required:
+    description: API must use Bearer authentication (not API key)
+    message: "Talend APIs use Bearer token authentication"
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      field: BearerAuth
+      function: truthy
+
+  talend-path-params-have-descriptions:
+    description: Path parameters must have descriptions
+    message: "Path parameter '{{value}}' is missing a description"
+    severity: warn
+    given: "$.paths[*][*].parameters[?(@.in == 'path')]"
+    then:
+      field: description
+      function: truthy
+
+  talend-ids-are-strings:
+    description: ID fields in schemas must be type string
+    message: "ID field should be type: string"
+    severity: error
+    given: "$.components.schemas[*].properties.id"
+    then:
+      field: type
+      function: pattern
+      functionOptions:
+        match: "^string$"
+
+  talend-timestamps-use-date-time:
+    description: Timestamp fields should use format date-time
+    message: "Timestamp field '{{property}}' should use format: date-time"
+    severity: warn
+    given: "$.components.schemas[*].properties[created,updated,startTime,endTime]"
+    then:
+      field: format
+      function: pattern
+      functionOptions:
+        match: "^date-time$"
+
+  talend-delete-returns-204:
+    description: DELETE operations should return 204 No Content
+    message: "DELETE operations should include a 204 response"
+    severity: info
+    given: "$.paths[*].delete.responses"
+    then:
+      field: "204"
+      function: truthy
+
+  talend-status-fields-have-enums:
+    description: Status fields should have enum values defined
+    message: "Status field should define allowed enum values"
+    severity: info
+    given: "$.components.schemas[*].properties.status"
+    then:
+      field: enum
+      function: truthy
