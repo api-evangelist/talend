@@ -148,6 +148,15 @@ common:
   - type: Vocabulary
     url: >-
       https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/vocabulary/talend-vocabulary.yml
+  - type: Integrations
+    url: https://www.talend.com/partners
+integrations:
+  - name: Snowflake
+  - name: AWS
+  - name: Azure
+  - name: Databricks
+  - name: Google
+  - name: Cloudera
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
