@@ -44,7 +44,7 @@ apis:
     properties:
       - type: Documentation
         url: https://talend.qlik.dev/apis/orchestration/2021-03/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://talend.qlik.dev/getting-started/
       - type: OpenAPI
         url: >-
@@ -132,7 +132,7 @@ common:
     url: https://talend.qlik.dev/
   - type: APIs
     url: https://talend.qlik.dev/apis/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://talend.qlik.dev/getting-started/
   - type: Website
     url: https://www.talend.com/
