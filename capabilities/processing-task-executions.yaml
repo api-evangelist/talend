@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Talend Cloud Processing API — Task Executions
+  description: 'Talend Cloud Processing API — Task Executions. 5 operations. Lead operation: List Task Executions. Self-contained
+    Naftiko capability covering one Talend business surface.'
+  tags:
+  - Talend
+  - Task Executions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TALEND_API_KEY: TALEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: processing-task-executions
+    baseUri: https://api.{region}.cloud.talend.com
+    description: Talend Cloud Processing API — Task Executions business capability. Self-contained, no shared references.
+    resources:
+    - name: processing-executables-tasks-executions
+      path: /processing/executables/tasks/executions
+      operations:
+      - name: listtaskexecutions
+        method: GET
+        description: List Task Executions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskId
+          in: query
+          type: string
+          description: Filter by task ID
+        - name: status
+          in: query
+          type: string
+          description: Filter by execution status
+        - name: limit
+          in: query
+          type: integer
+      - name: searchtaskexecutions
+        method: POST
+        description: Search Task Executions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: processing-executions
+      path: /processing/executions
+      operations:
+      - name: executetask
+        method: POST
+        description: Execute Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: processing-executions-executionId
+      path: /processing/executions/{executionId}
+      operations:
+      - name: gettaskexecutionstatus
+        method: GET
+        description: Get Task Execution Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: terminatetaskexecution
+        method: DELETE
+        description: Terminate Task Execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.TALEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: processing-task-executions-rest
+    port: 8080
+    description: REST adapter for Talend Cloud Processing API — Task Executions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/processing/executables/tasks/executions
+      name: processing-executables-tasks-executions
+      description: REST surface for processing-executables-tasks-executions.
+      operations:
+      - method: GET
+        name: listtaskexecutions
+        description: List Task Executions
+        call: processing-task-executions.listtaskexecutions
+        with:
+          taskId: rest.taskId
+          status: rest.status
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: searchtaskexecutions
+        description: Search Task Executions
+        call: processing-task-executions.searchtaskexecutions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/processing/executions
+      name: processing-executions
+      description: REST surface for processing-executions.
+      operations:
+      - method: POST
+        name: executetask
+        description: Execute Task
+        call: processing-task-executions.executetask
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/processing/executions/{executionid}
+      name: processing-executions-executionid
+      description: REST surface for processing-executions-executionId.
+      operations:
+      - method: GET
+        name: gettaskexecutionstatus
+        description: Get Task Execution Status
+        call: processing-task-executions.gettaskexecutionstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: terminatetaskexecution
+        description: Terminate Task Execution
+        call: processing-task-executions.terminatetaskexecution
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: processing-task-executions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Talend Cloud Processing API — Task Executions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-task-executions
+      description: List Task Executions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: processing-task-executions.listtaskexecutions
+      with:
+        taskId: tools.taskId
+        status: tools.status
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-task-executions
+      description: Search Task Executions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: processing-task-executions.searchtaskexecutions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-task
+      description: Execute Task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: processing-task-executions.executetask
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-task-execution-status
+      description: Get Task Execution Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: processing-task-executions.gettaskexecutionstatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: terminate-task-execution
+      description: Terminate Task Execution
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: processing-task-executions.terminatetaskexecution
+      outputParameters:
+      - type: object
+        mapping: $.

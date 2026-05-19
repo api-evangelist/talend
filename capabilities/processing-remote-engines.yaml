@@ -1,0 +1,162 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Talend Cloud Processing API — Remote Engines
+  description: 'Talend Cloud Processing API — Remote Engines. 4 operations. Lead operation: List Remote Engines. Self-contained
+    Naftiko capability covering one Talend business surface.'
+  tags:
+  - Talend
+  - Remote Engines
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TALEND_API_KEY: TALEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: processing-remote-engines
+    baseUri: https://api.{region}.cloud.talend.com
+    description: Talend Cloud Processing API — Remote Engines business capability. Self-contained, no shared references.
+    resources:
+    - name: processing-runtimes-remote-engines
+      path: /processing/runtimes/remote-engines
+      operations:
+      - name: listremoteengines
+        method: GET
+        description: List Remote Engines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createremoteengine
+        method: POST
+        description: Create Remote Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: processing-runtimes-remote-engines-id
+      path: /processing/runtimes/remote-engines/{id}
+      operations:
+      - name: getremoteengine
+        method: GET
+        description: Get Remote Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteremoteengine
+        method: DELETE
+        description: Delete Remote Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.TALEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: processing-remote-engines-rest
+    port: 8080
+    description: REST adapter for Talend Cloud Processing API — Remote Engines. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/processing/runtimes/remote-engines
+      name: processing-runtimes-remote-engines
+      description: REST surface for processing-runtimes-remote-engines.
+      operations:
+      - method: GET
+        name: listremoteengines
+        description: List Remote Engines
+        call: processing-remote-engines.listremoteengines
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createremoteengine
+        description: Create Remote Engine
+        call: processing-remote-engines.createremoteengine
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/processing/runtimes/remote-engines/{id}
+      name: processing-runtimes-remote-engines-id
+      description: REST surface for processing-runtimes-remote-engines-id.
+      operations:
+      - method: GET
+        name: getremoteengine
+        description: Get Remote Engine
+        call: processing-remote-engines.getremoteengine
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteremoteengine
+        description: Delete Remote Engine
+        call: processing-remote-engines.deleteremoteengine
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: processing-remote-engines-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Talend Cloud Processing API — Remote Engines. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-remote-engines
+      description: List Remote Engines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: processing-remote-engines.listremoteengines
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-remote-engine
+      description: Create Remote Engine
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: processing-remote-engines.createremoteengine
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-remote-engine
+      description: Get Remote Engine
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: processing-remote-engines.getremoteengine
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-remote-engine
+      description: Delete Remote Engine
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: processing-remote-engines.deleteremoteengine
+      outputParameters:
+      - type: object
+        mapping: $.

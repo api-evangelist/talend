@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Talend Cloud Processing API — Remote Engine Clusters
+  description: 'Talend Cloud Processing API — Remote Engine Clusters. 2 operations. Lead operation: List Remote Engine Clusters.
+    Self-contained Naftiko capability covering one Talend business surface.'
+  tags:
+  - Talend
+  - Remote Engine Clusters
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TALEND_API_KEY: TALEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: processing-remote-engine-clusters
+    baseUri: https://api.{region}.cloud.talend.com
+    description: Talend Cloud Processing API — Remote Engine Clusters business capability. Self-contained, no shared references.
+    resources:
+    - name: processing-runtimes-remote-engine-clusters
+      path: /processing/runtimes/remote-engine-clusters
+      operations:
+      - name: listremoteengineclusters
+        method: GET
+        description: List Remote Engine Clusters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createremoteenginecluster
+        method: POST
+        description: Create Remote Engine Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TALEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: processing-remote-engine-clusters-rest
+    port: 8080
+    description: REST adapter for Talend Cloud Processing API — Remote Engine Clusters. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/processing/runtimes/remote-engine-clusters
+      name: processing-runtimes-remote-engine-clusters
+      description: REST surface for processing-runtimes-remote-engine-clusters.
+      operations:
+      - method: GET
+        name: listremoteengineclusters
+        description: List Remote Engine Clusters
+        call: processing-remote-engine-clusters.listremoteengineclusters
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createremoteenginecluster
+        description: Create Remote Engine Cluster
+        call: processing-remote-engine-clusters.createremoteenginecluster
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: processing-remote-engine-clusters-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Talend Cloud Processing API — Remote Engine Clusters. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-remote-engine-clusters
+      description: List Remote Engine Clusters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: processing-remote-engine-clusters.listremoteengineclusters
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-remote-engine-cluster
+      description: Create Remote Engine Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: processing-remote-engine-clusters.createremoteenginecluster
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Talend Cloud Orchestration API — Artifacts
+  description: 'Talend Cloud Orchestration API — Artifacts. 1 operations. Lead operation: List Artifacts. Self-contained Naftiko
+    capability covering one Talend business surface.'
+  tags:
+  - Talend
+  - Artifacts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TALEND_API_KEY: TALEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: orchestration-artifacts
+    baseUri: https://api.{region}.cloud.talend.com
+    description: Talend Cloud Orchestration API — Artifacts business capability. Self-contained, no shared references.
+    resources:
+    - name: orchestration-artifacts
+      path: /orchestration/artifacts
+      operations:
+      - name: listartifacts
+        method: GET
+        description: List Artifacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.TALEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: orchestration-artifacts-rest
+    port: 8080
+    description: REST adapter for Talend Cloud Orchestration API — Artifacts. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/orchestration/artifacts
+      name: orchestration-artifacts
+      description: REST surface for orchestration-artifacts.
+      operations:
+      - method: GET
+        name: listartifacts
+        description: List Artifacts
+        call: orchestration-artifacts.listartifacts
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: orchestration-artifacts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Talend Cloud Orchestration API — Artifacts. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-artifacts
+      description: List Artifacts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: orchestration-artifacts.listartifacts
+      outputParameters:
+      - type: object
+        mapping: $.

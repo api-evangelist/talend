@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Talend Cloud Orchestration API — Promotions
+  description: 'Talend Cloud Orchestration API — Promotions. 2 operations. Lead operation: List Promotions. Self-contained
+    Naftiko capability covering one Talend business surface.'
+  tags:
+  - Talend
+  - Promotions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TALEND_API_KEY: TALEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: orchestration-promotions
+    baseUri: https://api.{region}.cloud.talend.com
+    description: Talend Cloud Orchestration API — Promotions business capability. Self-contained, no shared references.
+    resources:
+    - name: orchestration-executables-promotions
+      path: /orchestration/executables/promotions
+      operations:
+      - name: listpromotions
+        method: GET
+        description: List Promotions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpromotion
+        method: POST
+        description: Create Promotion
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TALEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: orchestration-promotions-rest
+    port: 8080
+    description: REST adapter for Talend Cloud Orchestration API — Promotions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/orchestration/executables/promotions
+      name: orchestration-executables-promotions
+      description: REST surface for orchestration-executables-promotions.
+      operations:
+      - method: GET
+        name: listpromotions
+        description: List Promotions
+        call: orchestration-promotions.listpromotions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpromotion
+        description: Create Promotion
+        call: orchestration-promotions.createpromotion
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: orchestration-promotions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Talend Cloud Orchestration API — Promotions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-promotions
+      description: List Promotions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: orchestration-promotions.listpromotions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-promotion
+      description: Create Promotion
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: orchestration-promotions.createpromotion
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
