@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Workspace",
+  "title": "Workspace",
+  "type": "object",
+  "description": "A logical grouping of tasks, plans, and connections in Talend Cloud",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique workspace identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Workspace display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Workspace description"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Owner user ID"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

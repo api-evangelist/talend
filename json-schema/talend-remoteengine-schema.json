@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RemoteEngine",
+  "title": "RemoteEngine",
+  "type": "object",
+  "description": "A self-hosted Talend remote engine instance",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PAIRED",
+        "UNPAIRED",
+        "OFFLINE",
+        "ONLINE"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "description": "Talend Runtime version"
+    },
+    "workspaceId": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

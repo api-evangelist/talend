@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectionCreate",
+  "title": "ConnectionCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "workspaceId",
+    "type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "workspaceId": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

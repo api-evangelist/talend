@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaskExecutionRequest",
+  "title": "TaskExecutionRequest",
+  "type": "object",
+  "required": [
+    "taskId"
+  ],
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "Task identifier to execute"
+    },
+    "environmentId": {
+      "type": "string",
+      "description": "Target execution environment"
+    },
+    "logLevel": {
+      "type": "string",
+      "enum": [
+        "INFO",
+        "DEBUG",
+        "TRACE"
+      ],
+      "description": "Log verbosity level"
+    }
+  }
+}

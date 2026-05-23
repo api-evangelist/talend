@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RunProfileCreate",
+  "title": "RunProfileCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "engineId"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "engineId": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "parallelExecutions": {
+      "type": "integer",
+      "description": "Maximum concurrent executions"
+    }
+  }
+}

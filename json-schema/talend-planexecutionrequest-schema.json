@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PlanExecutionRequest",
+  "title": "PlanExecutionRequest",
+  "type": "object",
+  "required": [
+    "planId"
+  ],
+  "properties": {
+    "planId": {
+      "type": "string",
+      "description": "Plan identifier to execute"
+    },
+    "environmentId": {
+      "type": "string"
+    },
+    "resumeFromStep": {
+      "type": "integer",
+      "description": "Step number to resume from (for re-runs after failure)"
+    }
+  }
+}

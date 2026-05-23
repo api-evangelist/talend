@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PlanExecution",
+  "title": "PlanExecution",
+  "type": "object",
+  "description": "A plan execution instance",
+  "properties": {
+    "executionId": {
+      "type": "string"
+    },
+    "planId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "RUNNING",
+        "SUCCESS",
+        "FAILURE",
+        "PARTIAL_SUCCESS",
+        "CANCELLED"
+      ]
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stepId": {
+            "type": "string"
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

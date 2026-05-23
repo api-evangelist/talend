@@ -1,0 +1,331 @@
+{
+  "provider": "Talend",
+  "providerId": "talend",
+  "kind": "json-structure",
+  "description": "Structural overview of the Talend API surface; extracted from openapi/.",
+  "schemaCount": 13,
+  "operationCount": 25,
+  "schemas": [
+    {
+      "name": "Workspace",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "WorkspaceCreate",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "Task",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "TaskCreate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "workspaceId"
+      ]
+    },
+    {
+      "name": "Plan",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "PlanCreate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "workspaceId"
+      ]
+    },
+    {
+      "name": "Schedule",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ScheduleCreate",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "Environment",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "EnvironmentCreate",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "Connection",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ConnectionCreate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "workspaceId",
+        "type"
+      ]
+    },
+    {
+      "name": "Artifact",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/orchestration/workspaces",
+      "operationId": "listWorkspaces",
+      "summary": "List Workspaces",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestration/workspaces",
+      "operationId": "createWorkspace",
+      "summary": "Create Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestration/workspaces/{id}",
+      "operationId": "getWorkspace",
+      "summary": "Get Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/orchestration/workspaces/{id}",
+      "operationId": "updateWorkspace",
+      "summary": "Update Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/orchestration/workspaces/{id}",
+      "operationId": "deleteWorkspace",
+      "summary": "Delete Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestration/executables/tasks",
+      "operationId": "listTasks",
+      "summary": "List Tasks",
+      "tags": [
+        "Tasks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestration/executables/tasks",
+      "operationId": "createTask",
+      "summary": "Create Task",
+      "tags": [
+        "Tasks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestration/executables/tasks/{taskId}",
+      "operationId": "getTask",
+      "summary": "Get Task",
+      "tags": [
+        "Tasks"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/orchestration/executables/tasks/{taskId}",
+      "operationId": "updateTask",
+      "summary": "Update Task",
+      "tags": [
+        "Tasks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/orchestration/executables/tasks/{taskId}",
+      "operationId": "deleteTask",
+      "summary": "Delete Task",
+      "tags": [
+        "Tasks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestration/executables/tasks/search",
+      "operationId": "searchTasks",
+      "summary": "Search Tasks",
+      "tags": [
+        "Tasks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestration/executables/plans",
+      "operationId": "listPlans",
+      "summary": "List Plans",
+      "tags": [
+        "Plans"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestration/executables/plans",
+      "operationId": "createPlan",
+      "summary": "Create Plan",
+      "tags": [
+        "Plans"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestration/executables/plans/{planId}",
+      "operationId": "getPlan",
+      "summary": "Get Plan",
+      "tags": [
+        "Plans"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/orchestration/executables/plans/{planId}",
+      "operationId": "updatePlan",
+      "summary": "Update Plan",
+      "tags": [
+        "Plans"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/orchestration/executables/plans/{planId}",
+      "operationId": "deletePlan",
+      "summary": "Delete Plan",
+      "tags": [
+        "Plans"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestration/schedules",
+      "operationId": "listSchedules",
+      "summary": "List Schedules",
+      "tags": [
+        "Schedules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestration/schedules",
+      "operationId": "createSchedule",
+      "summary": "Create Schedule",
+      "tags": [
+        "Schedules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestration/environments",
+      "operationId": "listEnvironments",
+      "summary": "List Environments",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestration/environments",
+      "operationId": "createEnvironment",
+      "summary": "Create Environment",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestration/connections",
+      "operationId": "listConnections",
+      "summary": "List Connections",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestration/connections",
+      "operationId": "createConnection",
+      "summary": "Create Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestration/artifacts",
+      "operationId": "listArtifacts",
+      "summary": "List Artifacts",
+      "tags": [
+        "Artifacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestration/executables/promotions",
+      "operationId": "listPromotions",
+      "summary": "List Promotions",
+      "tags": [
+        "Promotions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestration/executables/promotions",
+      "operationId": "createPromotion",
+      "summary": "Create Promotion",
+      "tags": [
+        "Promotions"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Connection",
+  "title": "Connection",
+  "type": "object",
+  "description": "A data source or destination connection configuration",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "workspaceId": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "description": "Connection type (e.g., JDBC, S3, Snowflake)"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

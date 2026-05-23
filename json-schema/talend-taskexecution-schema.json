@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaskExecution",
+  "title": "TaskExecution",
+  "type": "object",
+  "description": "A task execution instance",
+  "properties": {
+    "executionId": {
+      "type": "string",
+      "description": "Unique execution identifier"
+    },
+    "taskId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "RUNNING",
+        "SUCCESS",
+        "FAILURE",
+        "CANCELLED"
+      ]
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Execution duration in milliseconds"
+    },
+    "engineId": {
+      "type": "string",
+      "description": "Remote engine that ran the task"
+    },
+    "logUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to access execution logs"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RemoteEngineCreate",
+  "title": "RemoteEngineCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "workspaceId"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "workspaceId": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}
