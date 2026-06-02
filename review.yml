@@ -1,0 +1,160 @@
+aid: talend
+reviewed: '2026-05-30'
+reviewer: API Evangelist
+scope: Webhook and streaming surface assessment for Qlik Talend Cloud
+summary: >-
+  Qlik Talend Cloud (talend.qlik.dev) does not publish a dedicated
+  webhook, event, notification, or subscription API in its own
+  developer portal. The Talend Cloud APIs listed at
+  https://talend.qlik.dev/apis/ (Orchestration, Processing, Identities
+  Management, Audit Logs, Connections, Execution Logs, Dataset,
+  Sharing, SCIM v2, Crawler, OAuth, Dynamic Engine, Observability
+  Metrics, IP Allowlist, Workspace Permissions, SSO Role Mapping,
+  Service Accounts, Seats and Subscription, Execution History Search)
+  are synchronous REST control planes. None expose Server-Sent
+  Events, WebSocket, MQTT, AMQP, Kafka, or any other asynchronous
+  transport. Two distinct webhook concepts do exist around the
+  Talend product, but neither is a Talend-owned outbound event
+  subscription API documented on talend.qlik.dev.
+streaming:
+  hasPublicStreamingSurface: false
+  asyncApiModelable: false
+  reason: >-
+    talend.qlik.dev publishes no streaming, async, or pub/sub
+    contract. The two webhook-flavored capabilities that exist
+    (Talend Management Console inbound trigger URLs, and Qlik Cloud
+    outbound webhooks that include data integration task events)
+    are not owned by the Talend API catalog. The first is an
+    inbound trigger URL with no public management API; the second
+    is a Qlik Cloud platform API documented at qlik.dev, not at
+    talend.qlik.dev. Modeling either as a Talend-owned AsyncAPI or
+    OpenAPI artifact in this index would misattribute the surface.
+surfaces:
+  - name: Talend Cloud REST APIs (talend.qlik.dev)
+    transport: HTTPS REST
+    baseURL: https://api.{region}.cloud.talend.com
+    public: true
+    asyncApiBindingAvailable: false
+    notes: >-
+      Synchronous JSON over HTTPS with bearer-token authentication.
+      Covers orchestration (tasks, plans, schedules, workspaces,
+      environments, connections, artifacts, promotions),
+      processing (task and plan executions, remote engines,
+      remote engine clusters, run profiles), execution logs,
+      audit logs, identities, SCIM v2, and related resources.
+      All operations are request/response. No SSE, WebSocket,
+      long-poll, or push transport is documented.
+    references:
+      - https://talend.qlik.dev/
+      - https://talend.qlik.dev/apis/
+      - https://talend.qlik.dev/apis/orchestration/2021-03/
+      - https://talend.qlik.dev/apis/processing/2021-03/
+      - https://talend.qlik.dev/apis/execution-logs/2021-03/
+      - https://talend.qlik.dev/apis/audit-logs/2021-03/
+  - name: Talend Management Console webhook trigger URL
+    transport: HTTPS (inbound trigger only)
+    public: true
+    asyncApiBindingAvailable: false
+    notes: >-
+      Inbound webhook. An operator generates a per-plan or per-task
+      webhook URL in Talend Management Console; an external caller
+      POSTs a payload (JSON, XML, or plain text, up to 5 KB for
+      Big Data Jobs) to that URL to trigger execution. The Job
+      reads the body via a resource_webhook_payload context
+      parameter. Window threshold and window duration parameters
+      group successive calls. A successful invocation returns
+      HTTP 204 No Content. This is not an outbound event
+      subscription, not a streaming feed, and no documented public
+      API exists to create, list, rotate, or revoke these webhook
+      URLs programmatically - they are managed only through the
+      Management Console UI.
+    references:
+      - https://help.qlik.com/talend/en-US/management-console-user-guide/Cloud/webhooks-in-talend-cloud-management-console
+      - https://help.qlik.com/talend/en-US/management-console-user-guide/Cloud/generating-webhook-url
+      - https://help.qlik.com/talend/en-US/management-console-with-pipeline-designer/Cloud/triggering-plan-execution-through-webhook
+  - name: Qlik Cloud Webhooks REST API (out of catalog scope)
+    transport: HTTPS REST (CloudEvents over HTTPS for delivery)
+    baseURL: https://{tenant}.{region}.qlikcloud.com/api/v1/webhooks
+    public: true
+    asyncApiBindingAvailable: false
+    notes: >-
+      Tenant-level webhook management API operated by the Qlik
+      Cloud platform, not by the Talend API catalog at
+      talend.qlik.dev. It exposes endpoints to list, create,
+      retrieve, update, replace, and delete webhooks, to list
+      deliveries, to fetch a single delivery, to resend a delivery,
+      and to enumerate available event types. It emits Talend
+      pipeline / data integration task events as part of the
+      shared Qlik Cloud event taxonomy. Deliveries use the
+      CloudEvents envelope (hybrid legacy+CloudEvent payloads
+      since 2025-11-03, CloudEvent-only from 2026-10-06 per the
+      Qlik Developer Portal changelog). Signature verification is
+      via a Qlik-Signature HMAC SHA256 header. Documented at
+      qlik.dev and out of scope for the talend/ apis.yml index,
+      which catalogs only talend.qlik.dev APIs.
+    references:
+      - https://qlik.dev/apis/rest/webhooks/
+      - https://qlik.dev/specs/rest/webhooks.json
+      - https://qlik.dev/apis/event/
+      - https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-administer-webhooks.htm
+      - https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-administer-webhook-create.htm
+      - https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-administer-webhooks-supported-events.htm
+events:
+  documentedTalendPipelineEventTypes:
+    - id: com.qlik.v1.di-projects.di-tasks.started
+      description: Data integration project task started
+    - id: com.qlik.v1.di-projects.di-tasks.stopped
+      description: Data integration project task stopped
+    - id: com.qlik.v1.di-projects.di-tasks.completed
+      description: Data integration project task completed
+    - id: com.qlik.v1.di-projects.di-tasks.failed
+      description: Data integration project task failed
+  envelope: CloudEvents 1.0 (hybrid with legacy payload during transition)
+  signature: HMAC SHA256 in Qlik-Signature header
+  ownedBy: Qlik Cloud platform (qlik.dev), not Talend API catalog (talend.qlik.dev)
+  references:
+    - https://qlik.dev/changelog/161-di-projects-events/
+    - https://qlik.dev/changelog/170-qlik-automate-pipelines-webhooks/
+    - https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-administer-webhooks-supported-events.htm
+decisions:
+  - action: Do not add a Talend-owned webhooks OpenAPI specification under openapi/
+    rationale: >-
+      The only documented public webhook management API that emits
+      Talend pipeline events is the Qlik Cloud Webhooks REST API
+      hosted at qlik.dev with base path /api/v1/webhooks on the
+      tenant host. It is a Qlik Cloud platform API, not a Talend
+      Cloud API. The Talend API catalog at talend.qlik.dev lists
+      no Webhooks, Events, Notifications, or Subscriptions API.
+      Attributing the Qlik Cloud webhooks API to the talend/
+      apis.yml index would misrepresent ownership and duplicate
+      catalog coverage that belongs in a qlik/ index.
+  - action: Do not add an AsyncAPI specification
+    rationale: >-
+      No Talend-owned asynchronous transport (WebSocket, SSE,
+      Kafka, MQTT, AMQP) is documented. The outbound event surface
+      is a webhook delivery contract owned by the Qlik Cloud
+      platform and is already modelable as an OpenAPI document at
+      https://qlik.dev/specs/rest/webhooks.json in a Qlik index.
+  - action: Do not document the Talend Management Console inbound
+      webhook URL as a separate API entry
+    rationale: >-
+      It is a per-resource trigger URL configured through the
+      Management Console UI, with no documented public API for
+      programmatic management and no documented contract beyond
+      a free-form 5 KB body and a 204 response. It is already
+      reachable through the existing orchestration / processing
+      execution surfaces.
+  - action: Leave apis.yml unchanged
+    rationale: >-
+      No new specification was produced, so no apis.yml property
+      or modified-date update is warranted under the task rule
+      "Update apis.yml if spec created."
+notes: >-
+  Revisit if Qlik publishes a Talend-branded webhook or events API
+  under talend.qlik.dev/apis/, or if Talend Cloud exposes a
+  first-party streaming control surface (for example a documented
+  SSE feed for task execution state, a WebSocket for remote engine
+  telemetry, or a tenant-scoped event subscription endpoint under
+  api.{region}.cloud.talend.com). At that point a Talend-owned
+  OpenAPI or AsyncAPI artifact and an apis.yml entry would be in
+  scope.
