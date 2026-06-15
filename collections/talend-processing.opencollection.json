@@ -1,0 +1,372 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Processing API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger the execution of a data integration task"
+        },
+        {
+          "info": {
+            "name": "Get Task Execution Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/:executionId",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "Execution identifier"
+              }
+            ]
+          },
+          "docs": "Check the status and details of a running or completed task execution"
+        },
+        {
+          "info": {
+            "name": "Terminate Task Execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/:executionId",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "Execution identifier"
+              }
+            ]
+          },
+          "docs": "Stop a currently running task execution"
+        },
+        {
+          "info": {
+            "name": "List Task Executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/executables/tasks/executions",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by execution status"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve task execution history with optional filters"
+        },
+        {
+          "info": {
+            "name": "Search Task Executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/executables/tasks/executions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search task executions with advanced filters"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Plan Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger the execution of a data integration plan"
+        },
+        {
+          "info": {
+            "name": "Get Plan Execution Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/plans/:planExecutionId",
+            "params": [
+              {
+                "name": "planExecutionId",
+                "value": "",
+                "type": "path",
+                "description": "Plan execution identifier"
+              }
+            ]
+          },
+          "docs": "Get detailed status of a plan execution"
+        },
+        {
+          "info": {
+            "name": "Get Plan Execution Steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/plans/:planExecutionId/steps",
+            "params": [
+              {
+                "name": "planExecutionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the status of all step executions within a plan execution"
+        },
+        {
+          "info": {
+            "name": "List Plan Executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/executables/plans/executions",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve plan execution history"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Remote Engines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Remote Engines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engines"
+          },
+          "docs": "Get all available remote engines in the account"
+        },
+        {
+          "info": {
+            "name": "Create Remote Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new remote engine"
+        },
+        {
+          "info": {
+            "name": "Get Remote Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engines/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Remote engine identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific remote engine"
+        },
+        {
+          "info": {
+            "name": "Delete Remote Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engines/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Remote engine identifier"
+              }
+            ]
+          },
+          "docs": "Remove a remote engine from the account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Remote Engine Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Remote Engine Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engine-clusters"
+          },
+          "docs": "Get all remote engine clusters in the account"
+        },
+        {
+          "info": {
+            "name": "Create Remote Engine Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engine-clusters",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new remote engine cluster for load balancing"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Run Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Run Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/run-profiles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new run profile defining execution parameters"
+        },
+        {
+          "info": {
+            "name": "Search Run Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/run-profiles/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search run profiles with filters"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Promotion Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute Promotion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/promotions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a promotion from source environment to target environment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
