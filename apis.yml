@@ -129,11 +129,11 @@ common:
     url: https://www.talend.com/
   - type: Qlik Data Fabric
     url: https://www.qlik.com/us/products/talend-data-fabric
-  - type: GitHub Org
+  - type: GitHubOrg
     url: https://github.com/Talend
   - type: Help
     url: https://help.qlik.com/en-US/cloud-services/Content/Sense_Helpsites/Home-talend-cloud.htm
-  - type: JSON Schema
+  - type: JSONSchema
     url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/json-schema/talend-task-schema.json
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/vocabulary/talend-vocabulary.yml
