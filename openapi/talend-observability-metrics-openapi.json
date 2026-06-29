@@ -1,0 +1,777 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Observability Metrics",
+    "description": "Retrieve execution metrics",
+    "contact": {},
+    "version": "2021-03",
+    "license": {
+      "name": "Apache License Version 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.eu.cloud.talend.com",
+      "description": "URL for the AWS Europe region",
+      "x-talend": {
+        "isPublished": true
+      }
+    },
+    {
+      "url": "https://api.ap.cloud.talend.com",
+      "description": "URL for the AWS Asia Pacific region",
+      "x-talend": {
+        "isPublished": true
+      }
+    },
+    {
+      "url": "https://api.us.cloud.talend.com",
+      "description": "URL for the AWS United States East region",
+      "x-talend": {
+        "isPublished": true
+      }
+    },
+    {
+      "url": "https://api.au.cloud.talend.com",
+      "description": "URL for the AWS Australia region",
+      "x-talend": {
+        "isPublished": true
+      }
+    },
+    {
+      "url": "https://api.us-west.cloud.talend.com",
+      "description": "URL for the Azure United States West region",
+      "x-talend": {
+        "isPublished": true
+      }
+    }
+  ],
+  "security": [
+    {
+      "Public": []
+    }
+  ],
+  "paths": {
+    "/monitoring/observability/executions/{executionId}/component": {
+      "get": {
+        "summary": "Get component metrics of task runs",
+        "description": "This endpoint is used to get component metrics of a given task run.     \n\nTo retrieve your metrics data accurately, the process may vary in duration.\n\t \n",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The start position of the pagination of the entries, greater or equal to 0",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The start position of the pagination of the entries, greater or equal to 0",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of entries to return. The default value is 50 and the maximum value is 200",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Number of entries to return. The default value is 50 and the maximum value is 200",
+              "default": 50
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The field by which the returned entries are sorted. The default value is component_start_time_seconds",
+            "schema": {
+              "type": "string",
+              "description": "The field by which the returned entries are sorted. The default value is component_start_time_seconds",
+              "default": "component_start_time_seconds",
+              "enum": [
+                "pid",
+                "connector_type",
+                "connector_label",
+                "connector_id",
+                "target_connector_type",
+                "target_label",
+                "target_id",
+                "component_start_time_seconds",
+                "component_connection_rows_total",
+                "component_execution_duration_milliseconds"
+              ]
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "The way in which the returned logs are sorted, desc or asc  \n  \n\nWhether the order is ascending or descending, a null or an empty field is always placed at the end of the list to be returned in the response",
+            "schema": {
+              "type": "string",
+              "description": "The way in which the returned logs are sorted, desc or asc  \n  \n\nWhether the order is ascending or descending, a null or an empty field is always placed at the end of the list to be returned in the response",
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "$ref": "#/components/parameters/talend-version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutionComponentMetrics"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "security": [
+          {
+            "Public": []
+          }
+        ],
+        "operationId": "getObservabilityMetricsMonitoringObservabilityExecutionsExecutionidComponent"
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/executionId"
+        }
+      ]
+    },
+    "/monitoring/observability/metrics/component": {
+      "post": {
+        "summary": "Search raw component metrics",
+        "description": "Use this API endpoint to query raw component metrics. You can make up to 5 queries per minute.  \n\nTo retrieve your metrics data accurately, the process duration may vary.\n\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/talend-version"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComponentQueryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RawComponentMetricPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "operationId": "postObservabilityMetricsMonitoringObservabilityMetricsComponent"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ComponentQueryRequest": {
+        "type": "object",
+        "required": [
+          "endTime",
+          "environmentId",
+          "startTime"
+        ],
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "description": "Environment ID"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Start time of metrics generation and collection. This time corresponds approximately to when your Job task starts to work.  \n- Using ISO format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "End time of metrics generation and collection. This time corresponds approximately to when this component in your Job task finishes its work\n- Using ISO format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`\n- `endTime` must be greater than or equals to `startTime`"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Page size, `1~200`",
+            "default": 50
+          },
+          "offset": {
+            "type": "number",
+            "description": "Page offset, `>=0`",
+            "default": 0
+          },
+          "sortBy": {
+            "type": "string",
+            "description": "Sort by field",
+            "default": "component_start_time_seconds",
+            "enum": [
+              "engine_id",
+              "workspace_id",
+              "task_id",
+              "task_execution_id",
+              "process_id",
+              "job_name",
+              "pid",
+              "father_pid",
+              "root_pid",
+              "connector_type",
+              "connector_label",
+              "connector_id",
+              "target_connector_type",
+              "target_label",
+              "target_id",
+              "connection_type",
+              "connection_name",
+              "component_start_time_seconds",
+              "component_connection_rows_total",
+              "component_execution_duration_milliseconds",
+              "stracktrace"
+            ]
+          },
+          "sortOrder": {
+            "type": "string",
+            "description": "Sort order",
+            "default": "asc",
+            "enum": [
+              "asc",
+              "desc"
+            ]
+          },
+          "filters": {
+            "type": "array",
+            "description": "Field filters",
+            "items": {
+              "$ref": "#/components/schemas/ComponentFieldFilter"
+            }
+          }
+        }
+      },
+      "ComponentFieldFilter": {
+        "type": "object",
+        "required": [
+          "field",
+          "operator",
+          "value"
+        ],
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "Field filter name",
+            "enum": [
+              "engine_id",
+              "workspace_id",
+              "task_id",
+              "task_execution_id",
+              "job_name",
+              "connector_type",
+              "connector_label",
+              "connector_id",
+              "component_start_time_seconds",
+              "operator",
+              "operator_type"
+            ]
+          },
+          "operator": {
+            "type": "string",
+            "description": "Field filter operator\n- Field `component_start_time_seconds` supports `gt, gte, lt, lte`, others support `in`\n- Can't use more than `2` operators\n- Can't use any `2` same operators\n- Can't use `gt` together with `gte`\n- Can't use `lt`together with `lte`\n- When use `gt/gte` and `lt` together, value of `lt` must be greater than value of `gt/gte`\n- When use `gte` and `lt` together, value of `lt` must be greater than value of `gte`\n- When use `gte` and `lte` together, value of `lte` must be greater than or equals to value of `gte`",
+            "enum": [
+              "in",
+              "gt",
+              "gte",
+              "lt",
+              "lte"
+            ]
+          },
+          "value": {
+            "type": "object",
+            "description": "Field filter value\n\nFor operator `in` requires an array, like \n- `\"value\" : [\"value\"]`\n- `\"value\" : [\"value1\", \"value2\"]`\n\nFor operator `gt, gte, lt, lte` requres a number(or a string of number), like \n- `\"value\" : 1628266578`\n- `\"value\" : 1628266578.78`\n- `\"value\" : \"1628266578\"`\n-  `\"value\" : \"1628266578.78\"`"
+          }
+        }
+      },
+      "ExecutionComponentMetrics": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "artifact_version",
+          "engine_id",
+          "metrics",
+          "processes",
+          "start_time",
+          "task_execution_id",
+          "task_id",
+          "workspace_id"
+        ],
+        "properties": {
+          "engine_id": {
+            "type": "string",
+            "description": "Engine ID"
+          },
+          "workspace_id": {
+            "type": "string",
+            "description": "Workspace ID"
+          },
+          "task_id": {
+            "type": "string",
+            "description": "Task ID"
+          },
+          "task_execution_id": {
+            "type": "string",
+            "description": "Task execution ID"
+          },
+          "artifact_id": {
+            "type": "string",
+            "description": "Artifact ID"
+          },
+          "artifact_name": {
+            "type": "string",
+            "description": "Artifact name"
+          },
+          "artifact_version": {
+            "type": "string",
+            "description": "Artifact version"
+          },
+          "start_time": {
+            "type": "string",
+            "description": "Jon run start time"
+          },
+          "finish_time": {
+            "type": "string",
+            "description": "Job run finish time"
+          },
+          "rows_rejected": {
+            "type": "number",
+            "description": "Number of rows rejected"
+          },
+          "operator": {
+            "type": "string",
+            "description": "Operator"
+          },
+          "operator_type": {
+            "type": "string",
+            "description": "Operator type",
+            "enum": [
+              "HUMAN",
+              "SERVICE"
+            ]
+          },
+          "processes": {
+            "type": "array",
+            "description": "Job processes",
+            "items": {
+              "$ref": "#/components/schemas/ProcessMetric"
+            }
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/ComponentMetricPage"
+          }
+        }
+      },
+      "ProcessMetric": {
+        "type": "object",
+        "required": [
+          "father_pid",
+          "job_name",
+          "pid",
+          "process_id",
+          "root_pid"
+        ],
+        "properties": {
+          "process_id": {
+            "type": "string",
+            "description": "Process ID. This is JVM's UUID"
+          },
+          "job_name": {
+            "type": "string",
+            "description": "Job Name"
+          },
+          "pid": {
+            "type": "string",
+            "description": "PID. This is the unique Job identifier for the current run"
+          },
+          "father_pid": {
+            "type": "string",
+            "description": "ID of the first direct parent Job"
+          },
+          "root_pid": {
+            "type": "string",
+            "description": "ID of the first root Job if there are several Subjobs"
+          }
+        }
+      },
+      "ComponentMetricPage": {
+        "type": "object",
+        "required": [
+          "items",
+          "limit",
+          "offset",
+          "total"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "Array of metrics entries about the components in a Job",
+            "items": {
+              "$ref": "#/components/schemas/ComponentMetric"
+            }
+          },
+          "limit": {
+            "type": "number",
+            "description": "Maximum number of entries to be returned on a page in the response"
+          },
+          "offset": {
+            "type": "number",
+            "description": "The start position of the pagination of the entries, greater or equal to 0"
+          },
+          "total": {
+            "type": "number",
+            "description": "Total number of entries in the response"
+          }
+        }
+      },
+      "ComponentMetric": {
+        "type": "object",
+        "required": [
+          "component_start_time_seconds",
+          "connector_id",
+          "connector_label",
+          "connector_type",
+          "pid"
+        ],
+        "properties": {
+          "pid": {
+            "type": "string",
+            "description": "Unique Job identifier for the current run"
+          },
+          "connector_type": {
+            "type": "string",
+            "description": "Connector type"
+          },
+          "connector_label": {
+            "type": "string",
+            "description": "Connector label"
+          },
+          "connector_id": {
+            "type": "string",
+            "description": "Connector ID"
+          },
+          "target_connector_type": {
+            "type": "string",
+            "description": "Target connector type"
+          },
+          "target_label": {
+            "type": "string",
+            "description": "Target connector label"
+          },
+          "target_id": {
+            "type": "string",
+            "description": "Target connector ID"
+          },
+          "component_start_time_seconds": {
+            "type": "number",
+            "description": "Time stamp indicating the component start time (any component in the Job)"
+          },
+          "component_connection_rows_total": {
+            "type": "number",
+            "description": "Total number of rows treated by a component in the Job"
+          },
+          "component_execution_duration_milliseconds": {
+            "type": "number",
+            "description": "Amount of time it takes to execute a Job component (generated for components that are managing rows)"
+          },
+          "stacktrace": {
+            "type": "string",
+            "description": "Contains the component stacktrace  (only if an error occurs while executing the component)"
+          }
+        }
+      },
+      "RawComponentMetricPage": {
+        "type": "object",
+        "required": [
+          "items",
+          "limit",
+          "offset",
+          "total"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "Current page data",
+            "items": {
+              "$ref": "#/components/schemas/RawComponentMetric"
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Page size"
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Page offset"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Total number"
+          }
+        }
+      },
+      "RawComponentMetric": {
+        "type": "object",
+        "required": [
+          "component_start_time_seconds",
+          "connector_id",
+          "connector_label",
+          "connector_type",
+          "engine_id",
+          "father_pid",
+          "job_name",
+          "pid",
+          "process_id",
+          "root_pid",
+          "task_execution_id",
+          "task_id",
+          "workspace_id"
+        ],
+        "properties": {
+          "engine_id": {
+            "type": "string",
+            "description": "Engine ID"
+          },
+          "workspace_id": {
+            "type": "string",
+            "description": "Workspace ID"
+          },
+          "task_id": {
+            "type": "string",
+            "description": "Task ID"
+          },
+          "task_execution_id": {
+            "type": "string",
+            "description": "Task execution ID"
+          },
+          "operator": {
+            "type": "string",
+            "description": "Operator"
+          },
+          "operator_type": {
+            "type": "string",
+            "description": "Operator type",
+            "enum": [
+              "HUMAN",
+              "SERVICE"
+            ]
+          },
+          "process_id": {
+            "type": "string",
+            "description": "Process ID"
+          },
+          "job_name": {
+            "type": "string",
+            "description": "Job name"
+          },
+          "pid": {
+            "type": "string",
+            "description": "PID"
+          },
+          "father_pid": {
+            "type": "string",
+            "description": "Father PID"
+          },
+          "root_pid": {
+            "type": "string",
+            "description": "Root PID"
+          },
+          "connector_type": {
+            "type": "string",
+            "description": "Connector type"
+          },
+          "connector_label": {
+            "type": "string",
+            "description": "Connector label"
+          },
+          "connector_id": {
+            "type": "string",
+            "description": "Connector ID"
+          },
+          "target_connector_type": {
+            "type": "string",
+            "description": "Target connector type"
+          },
+          "target_label": {
+            "type": "string",
+            "description": "Target connector label"
+          },
+          "target_id": {
+            "type": "string",
+            "description": "Target connector ID"
+          },
+          "connection_type": {
+            "type": "string",
+            "description": "Connection type"
+          },
+          "connection_name": {
+            "type": "string",
+            "description": "Connection name"
+          },
+          "component_start_time_seconds": {
+            "type": "number",
+            "description": "Component start time seconds"
+          },
+          "component_connection_rows_total": {
+            "type": "number",
+            "description": "Component connection rows total"
+          },
+          "component_execution_duration_milliseconds": {
+            "type": "number",
+            "description": "Component execution duration milliseconds"
+          },
+          "stacktrace": {
+            "type": "string",
+            "description": "Contains the component stacktrace  (only if an error occurs while executing the component)"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "message",
+          "requestId",
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Status Code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error Message"
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Request ID"
+          }
+        }
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "400",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "401",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "403",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "404",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "500",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "talend-version": {
+        "name": "talend-version",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "executionId": {
+        "name": "executionId",
+        "in": "path",
+        "required": true,
+        "description": "Task Execution ID",
+        "schema": {
+          "type": "string",
+          "description": "Task Execution ID"
+        }
+      }
+    },
+    "securitySchemes": {
+      "Public": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "This Bearer authentication can be set in the Authorization header of your requests. Authentication tokens and Personal Access Tokens are supported. Personal Access Tokens can be generated in the Profile Preferences page of the Talend Cloud Portal."
+      }
+    }
+  }
+}

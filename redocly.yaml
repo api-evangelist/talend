@@ -1,0 +1,7 @@
+extends:
+  - recommended
+
+rules:
+  # These Dataset API templates are published by Talend and cannot be
+  # disambiguated locally without changing the actual API paths.
+  no-ambiguous-paths: off

@@ -1,151 +1,313 @@
 aid: talend
 name: Talend
-description: >-
-  Talend (now part of Qlik) provides data integration, quality, and API management capabilities through cloud-native
-  APIs for ETL, data pipelines, and application integration. The Qlik Talend Cloud platform exposes REST APIs for
-  orchestrating tasks and plans, executing data integration jobs, managing remote engines, configuring connections,
-  monitoring execution history, and administering identities, workspaces, and environments.
+description: "Talend (now part of Qlik) provides data integration, quality, and API management capabilities through cloud-native APIs for ETL, data pipelines, identity administration, monitoring, security controls, and application integration. This index catalogs the public Qlik Talend Cloud API contracts published at talend.qlik.dev."
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
-  - API Management
-  - Data Integration
-  - Data Quality
-  - ETL
-  - Orchestration
-  - Pipelines
+  - "API Management"
+  - "Data Integration"
+  - "Data Quality"
+  - "ETL"
+  - "Identity Management"
+  - "Monitoring"
+  - "Orchestration"
+  - "Pipelines"
+  - "Security"
 created: '2026-03-16'
-modified: '2026-05-19'
+modified: '2026-06-29'
 url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
+  - aid: talend:talend-dynamic-engine-environments-api
+    name: "Talend Cloud Dynamic Engine Environments API"
+    description: "Manage and assign your Environments to Dynamic Engines."
+    humanURL: https://talend.qlik.dev/apis/dynamic-engine-environments/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Dynamic Engine"
+      - "Dynamic Engine Environments"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/dynamic-engine-environments/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-dynamic-engine-environments-openapi.json
+  - aid: talend:talend-dynamic-engine-api
+    name: "Talend Cloud Dynamic Engine API"
+    description: "Manage Dynamic Engines"
+    humanURL: https://talend.qlik.dev/apis/dynamic-engine/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Dynamic Engine"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/dynamic-engine/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-dynamic-engine-openapi.json
+  - aid: talend:talend-identities-management-api
+    name: "Talend Cloud Identities Management API"
+    description: "Manage identity data related to users, groups and roles from your Talend Cloud account."
+    humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Account"
+      - "Identities Management"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/identities-management/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-identities-management-openapi.json
+  - aid: talend:talend-service-accounts-api
+    name: "Talend Cloud Service Accounts API"
+    description: "Manage service accounts and their permissions."
+    humanURL: https://talend.qlik.dev/apis/service-accounts/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Account"
+      - "Service Accounts"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/service-accounts/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-service-accounts-openapi.json
+  - aid: talend:talend-connections-api
+    name: "Talend Cloud Connections API"
+    description: "Manage the connections used by the datasets."
+    humanURL: https://talend.qlik.dev/apis/connections/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Connections"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/connections/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-connections-openapi.json
+  - aid: talend:talend-crawler-api
+    name: "Talend Cloud Crawler API"
+    description: "A crawler allows you to retrieve a full list of assets contained in a connection, in a single operation. Manage crawlers to retrieve data at a large scale and enrich your inventory more efficiently."
+    humanURL: https://talend.qlik.dev/apis/crawler/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Connections"
+      - "Crawler"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/crawler/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-crawler-openapi.json
+  - aid: talend:talend-execution-logs-api
+    name: "Talend Cloud Execution Logs API"
+    description: "Retrieve logs about task runs."
+    humanURL: https://talend.qlik.dev/apis/execution-logs/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Monitoring"
+      - "Execution Logs"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/execution-logs/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-execution-logs-openapi.json
+  - aid: talend:talend-observability-metrics-api
+    name: "Talend Cloud Observability Metrics API"
+    description: "Retrieve execution metrics"
+    humanURL: https://talend.qlik.dev/apis/observability-metrics/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Monitoring"
+      - "Observability Metrics"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/observability-metrics/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-observability-metrics-openapi.json
+  - aid: talend:talend-execution-history-search-api
+    name: "Talend Cloud Execution History Search API"
+    description: "Retrieve execution history by filtering on fields such as time period and workspaces while excluding plan execution tasks."
+    humanURL: https://talend.qlik.dev/apis/execution-history-search/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Monitoring"
+      - "Execution History Search"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/execution-history-search/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-execution-history-search-openapi.json
+  - aid: talend:talend-audit-logs-api
+    name: "Talend Cloud Audit Logs API"
+    description: "Load your account's audit logs for monitoring activities on Talend Cloud applications, ensuring data security and managing regulatory compliance risks."
+    humanURL: https://talend.qlik.dev/apis/audit-logs/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Security"
+      - "Audit Logs"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/audit-logs/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-audit-logs-openapi.json
+  - aid: talend:talend-ip-allowlist-api
+    name: "Talend Cloud IP Allowlist API"
+    description: "Create and alter client IP allowlists, to restrict the access to Talend Cloud to only trusted IP addresses."
+    humanURL: https://talend.qlik.dev/apis/ip-allowlist/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Security"
+      - "IP Allowlist"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/ip-allowlist/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-ip-allowlist-openapi.json
+  - aid: talend:talend-oauth-api
+    name: "Talend Cloud OAuth API"
+    description: "With service accounts, you are enabled to use the OAuth2 Client Credentials Flow for accessing Talend Cloud APIs. This service account specific token is more secure than the personal access tokens typically used by a user. It is recommended to use service accounts along with their access tokens to issue API calls, when a specific user does not need to be involved in these calls."
+    humanURL: https://talend.qlik.dev/apis/oauth/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Security"
+      - "OAuth"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/oauth/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-oauth-openapi.json
+  - aid: talend:talend-workspace-permissions-api
+    name: "Talend Cloud Workspace Permissions API"
+    description: "Control and manage your users detailed permissions upon Workspaces and Engines."
+    humanURL: https://talend.qlik.dev/apis/workspace-permissions/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Security"
+      - "Workspace Permissions"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/workspace-permissions/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-workspace-permissions-openapi.json
+  - aid: talend:talend-sso-role-mapping-api
+    name: "Talend Cloud SSO Role Mapping API"
+    description: "Create and alter the role mappings, to assign automatically Talend roles to your SSO users."
+    humanURL: https://talend.qlik.dev/apis/sso-role-mapping/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Security"
+      - "SSO Role Mapping"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/sso-role-mapping/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-sso-role-mapping-openapi.json
+  - aid: talend:talend-dataset-api
+    name: "Talend Cloud Dataset API"
+    description: "Manage the datasources referenced in Talend Cloud applications and the configuration and metadata associated to these datasources (attributes, data types, data quality)."
+    humanURL: https://talend.qlik.dev/apis/dataset/2021-03/
+    baseURL: https://api.{region}.cloud.talend.com
+    tags:
+      - "Other APIs"
+      - "Dataset"
+    properties:
+      - type: Documentation
+        url: https://talend.qlik.dev/apis/dataset/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-dataset-openapi.json
   - aid: talend:talend-orchestration-api
-    name: Talend Cloud Orchestration API
-    description: >-
-      Manages tasks, plans, schedules, workspaces, environments, connections, artifacts, promotions, and resources in
-      Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules,
-      and manage workspace resources via Bearer token authentication.
+    name: "Talend Cloud Orchestration API"
+    description: "Manage your Artifacts, Tasks, Plans, Schedules, Environments, Workspaces, Promotions, and all associated Resources."
     humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
     baseURL: https://api.{region}.cloud.talend.com
     tags:
-      - Artifacts
-      - Connections
-      - ETL
-      - Orchestration
-      - Plans
-      - Tasks
-      - Workspaces
+      - "Other APIs"
+      - "Orchestration"
     properties:
       - type: Documentation
         url: https://talend.qlik.dev/apis/orchestration/2021-03/
-      - type: GettingStarted
-        url: https://talend.qlik.dev/getting-started/
       - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-orchestration-openapi.yml
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-orchestration-openapi.json
   - aid: talend:talend-processing-api
-    name: Talend Cloud Processing API
-    description: >-
-      Manages task and plan executions, remote engines and clusters, and run profiles in Qlik Talend Cloud. Use this API
-      to trigger and monitor data integration job runs, manage remote engine lifecycles, and configure execution
-      profiles.
+    name: "Talend Cloud Processing API"
+    description: "Configure Engines and Clusters, manage and browse executions of your Tasks, Plans and Promotions."
     humanURL: https://talend.qlik.dev/apis/processing/2021-03/
     baseURL: https://api.{region}.cloud.talend.com
     tags:
-      - ETL
-      - Execution
-      - Monitoring
-      - Remote Engine
-      - Run Profiles
+      - "Other APIs"
+      - "Processing"
     properties:
       - type: Documentation
         url: https://talend.qlik.dev/apis/processing/2021-03/
       - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-processing-openapi.yml
-  - aid: talend:talend-identities-api
-    name: Talend Cloud Identities Management API
-    description: >-
-      Manages user, group, and role identity information for Talend Cloud accounts. Supports SCIM v2 for automated
-      provisioning from enterprise identity providers.
-    humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-processing-openapi.json
+  - aid: talend:talend-sharing-api
+    name: "Talend Cloud Sharing API"
+    description: "Manage how your users and groups can access your Talend Cloud entities."
+    humanURL: https://talend.qlik.dev/apis/sharing/2021-03/
     baseURL: https://api.{region}.cloud.talend.com
     tags:
-      - Identity Management
-      - SCIM
-      - User Provisioning
+      - "Other APIs"
+      - "Sharing"
     properties:
       - type: Documentation
-        url: https://talend.qlik.dev/apis/identities-management/2021-03/
-  - aid: talend:talend-audit-logs-api
-    name: Talend Cloud Audit Logs API
-    description: >-
-      Load account audit logs for monitoring activities on Talend Cloud applications, ensuring data security and
-      regulatory compliance.
-    humanURL: https://talend.qlik.dev/apis/audit-logs/2021-03/
+        url: https://talend.qlik.dev/apis/sharing/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-sharing-openapi.json
+  - aid: talend:talend-scim-v2-api
+    name: "Talend Cloud SCIM v2 API"
+    description: "Manage your users and groups using SCIM 2.0."
+    humanURL: https://talend.qlik.dev/apis/scim-v2/2021-03/
     baseURL: https://api.{region}.cloud.talend.com
     tags:
-      - Audit
-      - Compliance
-      - Monitoring
+      - "Other APIs"
+      - "SCIM v2"
     properties:
       - type: Documentation
-        url: https://talend.qlik.dev/apis/audit-logs/2021-03/
-  - aid: talend:talend-connections-api
-    name: Talend Cloud Connections API
-    description: Administers connections used by datasets and crawlers to retrieve data at scale.
-    humanURL: https://talend.qlik.dev/apis/connections/2021-03/
+        url: https://talend.qlik.dev/apis/scim-v2/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-scim-v2-openapi.json
+  - aid: talend:talend-seats-and-subscription-api
+    name: "Talend Cloud Seats and Subscription API"
+    description: "Retrieve information details on your subscription and its usage across Talend Apps."
+    humanURL: https://talend.qlik.dev/apis/seats-and-subscription/2021-03/
     baseURL: https://api.{region}.cloud.talend.com
     tags:
-      - Connections
-      - Data Sources
+      - "Other APIs"
+      - "Seats and Subscription"
     properties:
       - type: Documentation
-        url: https://talend.qlik.dev/apis/connections/2021-03/
-  - aid: talend:talend-execution-logs-api
-    name: Talend Cloud Execution Logs API
-    description: Retrieve logs about task runs for debugging and monitoring data integration pipeline executions.
-    humanURL: https://talend.qlik.dev/apis/execution-logs/2021-03/
-    baseURL: https://api.{region}.cloud.talend.com
-    tags:
-      - Execution Logs
-      - Monitoring
-    properties:
-      - type: Documentation
-        url: https://talend.qlik.dev/apis/execution-logs/2021-03/
+        url: https://talend.qlik.dev/apis/seats-and-subscription/2021-03/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-seats-and-subscription-openapi.json
 common:
-  - type: LinkedIn
+  - type: "LinkedIn"
     url: https://www.linkedin.com/company/talend
-  - type: Portal
+  - type: "Portal"
     url: https://talend.qlik.dev/
-  - type: Documentation
+  - type: "Documentation"
     url: https://talend.qlik.dev/
-  - type: APIs
+  - type: "APIs"
     url: https://talend.qlik.dev/apis/
-  - type: GettingStarted
+  - type: "GettingStarted"
     url: https://talend.qlik.dev/getting-started/
-  - type: Website
+  - type: "Website"
     url: https://www.talend.com/
-  - type: Qlik Data Fabric
+  - type: "Qlik Data Fabric"
     url: https://www.qlik.com/us/products/talend-data-fabric
-  - type: GitHubOrg
+  - type: "GitHubOrg"
     url: https://github.com/Talend
-  - type: Help
+  - type: "Help"
     url: https://help.qlik.com/en-US/cloud-services/Content/Sense_Helpsites/Home-talend-cloud.htm
-  - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/json-schema/talend-task-schema.json
-  - type: Vocabulary
+  - type: "Vocabulary"
     url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/vocabulary/talend-vocabulary.yml
-  - type: Integrations
+  - type: "Integrations"
     url: https://www.talend.com/partners
 integrations:
-  - name: Snowflake
-  - name: AWS
-  - name: Azure
-  - name: Databricks
-  - name: Google
-  - name: Cloudera
+  - name: "Snowflake"
+  - name: "AWS"
+  - name: "Azure"
+  - name: "Databricks"
+  - name: "Google"
+  - name: "Cloudera"
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
