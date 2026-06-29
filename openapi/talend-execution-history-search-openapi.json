@@ -1,0 +1,730 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Execution History Search",
+    "description": "Retrive execution history by filtering on the fields such as time period, workspaces while exluding plan execution tasks.",
+    "contact": {},
+    "version": "2021-03",
+    "license": {
+      "name": "Apache License Version 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.eu.cloud.talend.com",
+      "description": "URL for the AWS Europe region",
+      "x-talend": {
+        "isPublished": true
+      }
+    },
+    {
+      "url": "https://api.ap.cloud.talend.com",
+      "description": "URL for the AWS Asia Pacific region",
+      "x-talend": {
+        "isPublished": true
+      }
+    },
+    {
+      "url": "https://api.us.cloud.talend.com",
+      "description": "URL for the AWS United States East region",
+      "x-talend": {
+        "isPublished": true
+      }
+    },
+    {
+      "url": "https://api.au.cloud.talend.com",
+      "description": "URL for the AWS Australia region",
+      "x-talend": {
+        "isPublished": true
+      }
+    },
+    {
+      "url": "https://api.us-west.cloud.talend.com",
+      "description": "URL for the Azure United States West region",
+      "x-talend": {
+        "isPublished": true
+      }
+    }
+  ],
+  "security": [
+    {
+      "BearerAuthentication": []
+    }
+  ],
+  "paths": {
+    "/monitoring/observability/executions/search": {
+      "post": {
+        "summary": "Get execution records from history",
+        "description": "Use this endpoint to filter historical executions by filtering various execution fields, including `workspaceId`, `environmentId`, `name`, `destination`, or `tags`.      \nThis endpoing also supports partial match for faster searches.\n   \nIn addition, you can use  the `exclude` parameter to exclude plan executions or executions triggered in a plan.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutionPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Status 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Status 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Status 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status 500",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postExecutionHistorySearchMonitoringObservabilityExecutionsSearch"
+      }
+    },
+    "/monitoring/observability/executions/download": {
+      "post": {
+        "summary": "Download execution records from history",
+        "description": "Use this endpoint to download historical executions by filtering various execution fields, includingincluding `workspaceId`, `environmentId`, `name`, `destination`, or `tags`.      \n\nThis endpoing also supports partial match for faster searches.\n   \nIn addition, you can use  the `exclude` parameter to exclude plan executions or executions triggered in a plan.\nPartial match is also supported for a quicker search performance.\n\nThis endpoint makes use of a keyset pagination.\n* `limit` is used to set the page size.\n* `lastId` contains the last element of the previous page. You can get it from the downloaded CSV file.\n\nThe elements are sorted according to the following criteria\n* runEndTime in desc order \n* triggerTime in asc order\n* id in desc",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DownloadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "This API returns a CSV file which complies with the following rules\n*  \tThe delimiter is a comma\n*  \tThe first line of the file is a header. It contains the following column names : `id`, `name`, `status`, `subStatus`, `type`, `version`, `triggerType`, `triggerTime`, `runStartTime`, `runEndTime`, `operator`, `operatorType`, `author`, `authorType`, `attempts`, `accountId`, `environmentId`, `workspaceId`, `taskId`, `planExecutionId`, `planName`, `artifactId`, `artifactName`, `artifactVersion`, `artifactWorkspaceId`, `destination`, `clusterId`, `clusterName`, `engineId`, `engineName`, `runProfileId`, `runProfileName`, `errorMessage`, `misfiredReason`, `logLevel`, `tags`, `numberOfRejectedRows`, `deploymentStrategy`, `planId`, `failedStepName`,`rerunPlanExecutionId`, `parentPlanExecutionId`, `executeDurationMs`, `engineVersion`, `javaVersion`, `javaVendor`, `jvmName` \n* The double quotation marks are used as quoting character\n* When data contains double quotations, is it escaped by doubling the double quotations;  \n* Encoding : UTF8 is used\n\nThe following table describes the format of each column\n\n| Column name | Column type |  Comment |\n| -------- | -------- | -------- |\n| id | UUID | Execution ID of plan/task |\n| name |String | name of plan/task |\n| status |Enum | execution status of plan/task |\n| subStatus | Enum |  available only for execution `type=ROUTE/DATA_SERVICE`; the subStatus `EXECUTION_TERMINATED_TIMEOUT` available also in `type=STANDARD` |\n| type | Enum| execution type |\n| version |String |available only for execution `type!=PLAN` | \n| triggerType | String| trigger type of the execution |\n| triggerTime |timestamp with time zone  | trigger time of the execution |\n| runStartTime |timestamp with time zone  | run start time of the execution |\n| runEndTime |timestamp with time zone  | run end time of the execution |\n| executeDurationMs | Long | duration of the execution |\n| operator |String | operator of the execution; login of user or ID of service account |\n| operatorType |String |`HUMAN` or   `SERVICE` |\n| author |String | author of the plan/task; login of user or ID of service account |\n| authorType |String |\n| attempts | int| attempt number of running the task; only for execution `type!=PLAN` |\n| accountId | UUID | |\n| environmentId |String | environment ID of the plan/task |\n| workspaceId | String | workspace ID of the plan/task \n| taskId |String | ID of the task; only for execution `type!=PLAN` |\n| planExecutionId | UUID |available only for execution `type=STANDARD/PIPELINE/BIG_DATA_BATCH/BIG_DATA_STREAMING`, and `triggerType=PLAN` |\n| planName | String|available only for execution `type=STANDARD/PIPELINE/BIG_DATA_BATCH/BIG_DATA_STREAMING`, and `triggerType=PLAN`|\n| artifactId | String|available only for execution `type!=PLAN` |\n| artifactName | String|available only for execution `type!=PLAN` |\n| artifactVersion |String |available only for execution `type!=PLAN` |\n| artifactWorkspaceId |String | available only for execution `type!=PLAN`| \n| destination | Enum| `CLOUD` OR `CLOUD_EXCLUSIVE` OR `CLOUD_SANDBOX` OR `REMOTE_ENGINE` OR `REMOTE_ENGINE_CLUSTER` OR `ELASTIC_ENGINE`; available only for execution `type!=PLAN`| \n| clusterId |String |available only for execution `type!=PLAN` | \n| clusterName | String |available only for execution `type!=PLAN`|\n| engineId | String |available only for execution `type!=PLAN` |\n| engineName | | available only for execution `type!=PLAN`|\n| runProfileId | String | available only for execution `type!=PLAN`|\n| runProfileName |String | available only for execution `type!=PLAN`| \n| errorMessage | String| available only for execution `type!=PLAN`| \n| misfiredReason | String | misfired type | \n| logLevel |String | `INFO`, `DEBUG`, `ERROR`, `WARN`; available only for execution `type!=PLAN`| \n| tags | String |available only for execution `type!=PLAN`|\n| numberOfRejectedRows | int|available only for execution `type!=PLAN`|\n| deploymentStrategy | Enum|`PARALLEL` OR `ROLLING`; available only for `type!=PLAN`|\n| planId |UUID | available only for execution of `type=PLAN` OR `triggerType=PLAN`| \n| failedStepName |String |available only for execution of `type=PLAN`|\n| rerunPlanExecutionId |String |available only for execution of `type=PLAN`|\n| parentPlanExecutionId |String |available only for execution of `type=PLAN`|\n| executeDurationMs |Number |execute duration with millisecond unit|\n| engineVersion |String |available only for execution `type!=PLAN`|\n| javaVersion |String |available only for execution `type!=PLAN`|\n| javaVendor |String |available only for execution `type!=PLAN`|\n| jvmName |String |available only for execution `type!=PLAN`|\n\n\n\n\n\n\n\n"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Status 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Status 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Status 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Status 500",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "postExecutionHistorySearchMonitoringObservabilityExecutionsDownload"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FieldFilter": {
+        "type": "object",
+        "required": [
+          "field",
+          "operator",
+          "value"
+        ],
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "field names to be used as filtering criteria",
+            "enum": [
+              "status ( Status of the execution in interest. Sub-status is not taken in account )",
+              "workspaceId ( Workspace ID where execution resides )",
+              "name ( Execution name )",
+              "taskId ( Task execution Identifier )",
+              "planId ( Plan execution Identifier )",
+              "artifactId ( Artifact Identifier )",
+              "artifactVersion ( Artifact Identifier )",
+              "tags ( Tag names that have been assigned to the task )",
+              "runtime ( Composite search field that consists of following subfields: engineId, clusterId and destination )",
+              "period ( Time cut determined by start and end date  within which execution took place )",
+              "executeDurationMs ( Duration of execution in milliseconds )",
+              "operator ( Operator's login name for `HUMAN` type or ID for `SERVICE` type, that has triggered the execution  )",
+              "author (  Author's login name for `HUMAN` type or ID for `SERVICE` type, that owns the task )",
+              "version ( Task execution version. `NOTE`: requires taskId filter to be used together with it )",
+              "logLevel ( Log level that has been set with the execution. `NOTE`: requires taskId filter to be used together with it )",
+              "id (Execution Run Identifier)",
+              "runProfileId ( Execution run profile Identifier )",
+              "apiVersion (the version of the API through which the execution was triggered)"
+            ]
+          },
+          "operator": {
+            "type": "string",
+            "description": "Filter operators. They are used to specify criteria for filtering data based on field values, allowing you to narrow down your searches.\n\nThis table explains some specific cases for operators to be used in filters:\n\n| Case | Operator | Restrictions / Recommendations | Constraint |\n| -------- | -------- | -------- | --------- |\n | Search criteria must include or contain the value partially|  `match` / `not_match` | Strictly to be used only with `name` field filter |  The value cannot be less than 3 characters |\n| Search criteria for exact match of a given character sequence |  `in` / `not_in` | Should be always used to filter on IDs | |\n| Inclusive conditions |  `and` | Should be used when the sub-filters of the runtime filter uses inner operator `not_in`| |\n| Exclusive conditions | `or` | Should be used when the sub-filters of the runtime filter uses the inner operator `in` | |\n| Search criteria requires execution within time frame | `between` | Should be used only with the `period` field filter | |\n| Search criteria requires fetching execution duration within time boundaries | `greater_than` / `less_than` | Strictly for use only with field filter `executeDurationMs` | |\n| Searching for the API version of all executions triggered by API or not by API| `is_empty` | Strictly for use only with `apiVersion` field filter| |",
+            "writeOnly": true,
+            "enum": [
+              "in",
+              "not_in",
+              "match",
+              "not_match",
+              "or",
+              "and",
+              "between",
+              "greater_than",
+              "less_than",
+              "is_empty"
+            ]
+          },
+          "value": {
+            "type": "object",
+            "description": "The table lists the possible values and their usage in filters:\n| Value type | operators |  Comment |\n| -------- | -------- | -------- |\n| Array of values | `in` / `not_in` | type could be string, integers, enum if allowed, and so on |\n| Single value | `match` / `not_match` | it is used only with `name` field filter |\n| Array of FieldFilter objects | `and` / `or` | it is used in `runtime` filed filter only |\n| Array of only 2 values of type  ISO-formatted date | `between` | it is used with `period` field filter and 1-st value represents the starting date, 2-nd value represents the ending date of that time cut |\n| Single boolean value | `is_empty` | `true` for execution that are not triggered by API, `false` for executions triggered by API |"
+          }
+        }
+      },
+      "SearchRequest": {
+        "type": "object",
+        "required": [
+          "category",
+          "environmentId"
+        ],
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "description": "the ID that identifies the environment where the execution targeted by the search took place"
+          },
+          "category": {
+            "type": "string",
+            "description": "group of execution types\n\n`ETL` includes types:\n- PLAN\n- STANDARD\n- PIPELINE\n- BIG_DATA_BATCH\n- BIG_DATA_STREAMING\n\n`ESB` includes types:\n- ROUTE\n- DATA_SERVICE",
+            "enum": [
+              "ETL",
+              "ESB"
+            ]
+          },
+          "filters": {
+            "type": "array",
+            "description": "Defined filters for execution query",
+            "items": {
+              "$ref": "#/components/schemas/FieldFilter"
+            }
+          },
+          "limit": {
+            "type": "number",
+            "description": "This is the number of records to be returned on a single page (Page size)",
+            "default": 50,
+            "minimum": 1,
+            "maximum": 200
+          },
+          "offset": {
+            "type": "number",
+            "description": "Used for fetching next page in paginated response.\nLimited to 20 pages\n\n`NOTE!`\nIt is highly recommended to use a period filter if you require to obtain executions older than a month, or where applicable for getting more than the ones fetched up to 20-th page limit.",
+            "default": 0,
+            "minimum": 0
+          },
+          "exclude": {
+            "type": "string",
+            "description": "Excluding certain execution types from the returned results\n\n`TASK_EXECUTIONS_TRIGGERED_BY_PLAN`: all task executions triggered by plans are excluded, that is to say, the returned executions include all plans and all individual execution tasks of the `ETL`  category that are not triggered by any plan.\n\n`PLAN_EXECUTIONS`: plans are excluded, in other words, the returned executions include all execution tasks of category `ETL`, triggered or not triggered by plans.",
+            "default": "TASK_EXECUTIONS_TRIGGERED_BY_PLAN",
+            "enum": [
+              "PLAN_EXECUTIONS",
+              "TASK_EXECUTIONS_TRIGGERED_BY_PLAN"
+            ]
+          }
+        }
+      },
+      "Execution": {
+        "type": "object",
+        "required": [
+          "author",
+          "authorName",
+          "authorType",
+          "environmentId",
+          "id",
+          "name",
+          "operatorName",
+          "status",
+          "triggerType",
+          "type",
+          "version",
+          "workspaceId"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Execution ID",
+            "pattern": "UUID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Task or plan name"
+          },
+          "status": {
+            "type": "string",
+            "description": "Execution status",
+            "enum": [
+              "DEPLOY_FAILED ( The task could not be deployed to the processor )",
+              "EXECUTION_SUCCESS ( The execution finished successfully )",
+              "EXECUTION_FAILED ( The execution encountered an error and did not complete successfully )",
+              "EXECUTION_TERMINATED ( The execution was stopped by the user or system before completion )",
+              "EXECUTION_TERMINATED_TIMEOUT ( The execution was automatically terminated due to exceeding the allowed time limit )",
+              "EXECUTION_REJECTED ( The execution finished and was marked as rejected because it contains rejected rows )",
+              "EXECUTION_EVENT_RECEIVED ( The system has received a request to execute a task, but processing has not yet started )",
+              "DISPATCHING_FLOW (The system is assigning the task to a processor )",
+              "STARTING_FLOW_EXECUTION ( The task execution is being initialized and resources are being allocated )",
+              "STOPPING_FLOW_EXECUTION (The task execution is in the process of being stopped )",
+              "UNKNOWN ( There is no clear status of the execution )",
+              "EXECUTION_MISFIRED ( The plan execution has not been able to start, and no task execution within will be processed )"
+            ]
+          },
+          "subStatus": {
+            "type": "string",
+            "description": "Sub-status of the work flow\n\n- This sub-status, except `EXECUTION_TERMINATED_TIMEOUT`, is available only when the execution type is `ROUTE` or `DATA_SERVICE`\n- the subStatus `EXECUTION_TERMINATED_TIMEOUT` is also available when the execution type is `STANDARD`",
+            "enum": [
+              "DOWNLOADING_ARTIFACT ( Downloading the artifact from the location where it was stored )",
+              "STARTING_ARTIFACT ( Starting the execution of the artifact from the processor )",
+              "TASK_ACTIVE ( Task execution is in progress )",
+              "TASK_INACTIVE ( Task execution is not in progress )",
+              "TASK_DETACHED ( Task has been set to be removed from the processor )",
+              "SENDING_REQUEST ( Sending a request for termination of the execution )",
+              "UNDEPLOYING_TASK ( Task will be removed from processor )",
+              "EXECUTION_TERMINATED_TIMEOUT ( The task execution was automatically terminated due to exceeding the allowed time limit )"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "Execution type",
+            "enum": [
+              "PLAN",
+              "STANDARD",
+              "PIPELINE",
+              "BIG_DATA_BATCH",
+              "BIG_DATA_STREAMING",
+              "ROUTE",
+              "DATA_SERVICE"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "description": "Task version\n\n- available only for execution `type!=PLAN`, that is to say, the execution type is not a plan."
+          },
+          "triggerType": {
+            "type": "string",
+            "description": "Trigger type",
+            "enum": [
+              "MANUAL",
+              "SCHEDULED",
+              "WEBHOOK",
+              "PLAN"
+            ]
+          },
+          "triggerTime": {
+            "type": "number",
+            "format": "int32",
+            "description": "Trigger time of this execution in `milliseconds`.\n\n- useful only for execution `type!=PLAN`, meaning the execution type is not a plan.\n- when the execution type is a plan (`type=PLAN`), this `triggerTime` equals `runStartTime`"
+          },
+          "runStartTime": {
+            "type": "number",
+            "format": "int32",
+            "description": "Start time of the execution in `milliseconds`"
+          },
+          "runEndTime": {
+            "type": "number",
+            "format": "int32",
+            "description": "Time when the execution finishes in `milliseconds`"
+          },
+          "operator": {
+            "type": "string",
+            "description": "The operator of a task or plan\n\n- Login name of user when `authorType=HUMAN`\n- ID of service account when `authorType=SERVICE`"
+          },
+          "operatorName": {
+            "type": "string",
+            "description": "Actual name of the user or service as task or plan operator.\n\n\n`Warning!` If the user/service account has been deleted,\nthis field value will be returned with an empty string",
+            "default": "empty string"
+          },
+          "operatorType": {
+            "type": "string",
+            "description": "Operator type",
+            "enum": [
+              "HUMAN",
+              "SERVICE"
+            ]
+          },
+          "author": {
+            "type": "string",
+            "description": "The author of a task or plan\n\n- Login name of user when `authorType=HUMAN`\n- ID of service account when `authorType=SERVICE`"
+          },
+          "authorName": {
+            "type": "string",
+            "description": "Actual name of the user or service that is the author\n\n\n`Warning!` If the user/service account has been deleted,\nthis field value will be returned with an empty string",
+            "default": "empty string"
+          },
+          "authorType": {
+            "type": "string",
+            "enum": [
+              "HUMAN",
+              "SERVICE"
+            ]
+          },
+          "attempts": {
+            "type": "number",
+            "format": "int32",
+            "description": "Scheduler may try to start task in parallel several times\n\n- available only for execution `type!=PLAN`"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "Environment ID"
+          },
+          "workspaceId": {
+            "type": "string",
+            "description": "Workspace ID"
+          },
+          "taskId": {
+            "type": "string",
+            "description": "Task ID\n\n- available only for execution `type!=PLAN`"
+          },
+          "planExecutionId": {
+            "type": "string",
+            "description": "Execution ID of the plan from which a task was triggered.\n\n- available only for execution `type=STANDARD/PIPELINE/BIG_DATA_BATCH/BIG_DATA_STREAMING`, and `triggerType=PLAN`\n- if user has no permission over the plan’s workspace, this field will not be included in the response",
+            "pattern": "UUID"
+          },
+          "planName": {
+            "type": "string",
+            "description": "Name of the plan from which a task was triggered.\n\n- available only for execution `type=STANDARD/PIPELINE/BIG_DATA_BATCH/BIG_DATA_STREAMING`, and `triggerType=PLAN`\n- if user has no permission over the plan’s workspace, this field will be masked as `******`"
+          },
+          "artifactId": {
+            "type": "string",
+            "description": "Artifact ID\n\n- available only for execution `type!=PLAN`"
+          },
+          "artifactName": {
+            "type": "string",
+            "description": "Artifact name\n\n- available only for execution `type!=PLAN`"
+          },
+          "artifactVersion": {
+            "type": "string",
+            "description": "Artifact version\n\n- available only for execution `type!=PLAN`"
+          },
+          "artifactWorkspaceId": {
+            "type": "string",
+            "description": "Artifact workspace ID\n\n- available only for execution `type!=PLAN`"
+          },
+          "destination": {
+            "type": "string",
+            "description": "Where the job runs\n\n- available only for execution `type!=PLAN`",
+            "enum": [
+              "CLOUD",
+              "CLOUD_EXCLUSIVE",
+              "CLOUD_SANDBOX",
+              "REMOTE_ENGINE",
+              "REMOTE_ENGINE_CLUSTER",
+              "ELASTIC_ENGINE"
+            ]
+          },
+          "clusterId": {
+            "type": "string",
+            "description": "Cluster ID\n\n- available only for execution `type!=PLAN`"
+          },
+          "clusterName": {
+            "type": "string",
+            "description": "Cluster name\n\n- available only for execution `type!=PLAN`"
+          },
+          "engineId": {
+            "type": "string",
+            "description": "Engine ID\n\n- available only for execution `type!=PLAN`"
+          },
+          "engineName": {
+            "type": "string",
+            "description": "Engine name\n\n- available only for execution `type!=PLAN`"
+          },
+          "runProfileId": {
+            "type": "string",
+            "description": "Run profile ID\n\n- available only for execution `type!=PLAN`"
+          },
+          "runProfileName": {
+            "type": "string",
+            "description": "Run profile name\n\n- available only for execution `type!=PLAN`",
+            "default": "profile1"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Message raised by an error during execution process.\n\n- it may not present if none produced"
+          },
+          "misfiredReason": {
+            "type": "string",
+            "description": "Misfired type",
+            "enum": [
+              "PARALLEL_EXECUTION_FORBIDDEN",
+              "UNABLE_TO_RETRIEVE_ARTIFACT_OR_TASK_MAVEN_URL",
+              "TASK_IS_PAUSED",
+              "DE_ENV_NOT_CONNECTED",
+              "REMOTE_ENGINE_UNAVAILABLE_IN_CLUSTER",
+              "REMOTE_ENGINE_UNAVAILABLE",
+              "DYNAMIC_ENGINE_UNAVAILABLE",
+              "REMOTE_ENGINE_CONTAINER_NOT_FOUND",
+              "MAX_DEPLOYMENT_ATTEMPTS_REACHED",
+              "MAX_PARALLEL_TASKS_LIMIT_REACHED",
+              "PIPELINE_RUN_PROFILE_NOT_FOUND",
+              "PIPELINE_ARTIFACT_NOT_FOUND",
+              "DATA_FABRIC_ARTIFACT_NOT_FOUND",
+              "ELASTIC_ENGINE_CONTAINER_NOT_FOUND",
+              "INCOMPATIBILITY_BETWEEN_ACTIONS_VERSIONS_AND_ENGINE",
+              "UNKNOWN",
+              "SIMULTANEOUS_EXECUTIONS_LIMIT_REACHED",
+              "PLAN_EXECUTIONS_PAUSED",
+              "PARALLEL_EXECUTIONS_FORBIDDEN"
+            ]
+          },
+          "logLevel": {
+            "type": "string",
+            "description": "Logging level set for the execution\n\n- available only for execution `type!=PLAN`",
+            "enum": [
+              "INFO",
+              "DEBUG",
+              "ERROR",
+              "WARN"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "description": "Tags\n\n- available only for execution `type!=PLAN`",
+            "items": {
+              "type": "string"
+            }
+          },
+          "numberOfRejectedRows": {
+            "type": "number",
+            "description": "Number of rows that have been rejected\n\n- available in executions of `type!=PLAN and status=EXECUTION_REJECTED`"
+          },
+          "deploymentStrategy": {
+            "type": "string",
+            "description": "Deployment strategy of artifacts\n\n- available in executions of `type!=PLAN`",
+            "enum": [
+              "PARALLEL",
+              "ROLLING"
+            ]
+          },
+          "planId": {
+            "type": "string",
+            "description": "Plan ID\n\n- available in executions of `type=PLAN or triggerType=PLAN`\n- if `triggerType=PLAN`, and user has no permission of the plan's workspace, this field will not included in the response.",
+            "pattern": "UUID"
+          },
+          "failedStepName": {
+            "type": "string",
+            "description": "Failed step name\n\n- available in executions of  `type=PLAN`"
+          },
+          "rerunPlanExecutionId": {
+            "type": "string",
+            "description": "Rerun plan execution ID\n- available in executions of `type=PLAN`",
+            "pattern": "UUID"
+          },
+          "parentPlanExecutionId": {
+            "type": "string",
+            "description": "Parent plan execution ID\n- available in executions of `type=PLAN`",
+            "pattern": "UUID"
+          },
+          "executeDurationMs": {
+            "type": "number",
+            "description": "Execute duration with millisecond unit"
+          },
+          "engineVersion": {
+            "type": "string",
+            "description": "Engine version\n- available only for execution `type!=PLAN`"
+          },
+          "javaVersion": {
+            "type": "string",
+            "description": "Java version\n- available only for execution `type!=PLAN`"
+          },
+          "javaVendor": {
+            "type": "string",
+            "description": "Java vendor\n- available only for execution `type!=PLAN`"
+          },
+          "jvmName": {
+            "type": "string",
+            "description": "JVM name\n- available only for execution `type!=PLAN`"
+          },
+          "apiVersion": {
+            "type": "string",
+            "description": "The version of the API through which the execution was triggered. If this was done from the TMC-UI , no apiVersion would be present."
+          }
+        }
+      },
+      "ExecutionPage": {
+        "type": "object",
+        "required": [
+          "nextPageExists"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "NOTE: Records are sorted by `runEndTime` in `desc` order and then by `triggerTime` in `asc` order.\n\n\nSorting by trigger time allows you to get the oldest runs on top.",
+            "items": {
+              "$ref": "#/components/schemas/Execution"
+            }
+          },
+          "limit": {
+            "type": "number",
+            "description": "Maximum number of records to be shown on each page",
+            "default": 50,
+            "minimum": 5,
+            "maximum": 200
+          },
+          "offset": {
+            "type": "number",
+            "description": "Pagination pointer index, from which to start returning \"n\" number of records",
+            "default": 0,
+            "minimum": 0
+          },
+          "nextPageExists": {
+            "type": "boolean",
+            "description": "Boolean flag indicating if there is a next page"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "message",
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "number",
+            "format": "int32",
+            "readOnly": true
+          },
+          "message": {
+            "type": "string",
+            "readOnly": true
+          },
+          "requestId": {
+            "type": "string",
+            "readOnly": true,
+            "pattern": "UUID"
+          }
+        }
+      },
+      "DownloadRequest": {
+        "type": "object",
+        "required": [
+          "category",
+          "environmentId"
+        ],
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "description": "the ID that identifies the environment in which the execution targeted by the search took place"
+          },
+          "category": {
+            "type": "string",
+            "description": "group of execution types\n\n`ETL` includes types:\n- PLAN\n- STANDARD\n- PIPELINE\n- BIG_DATA_BATCH\n- BIG_DATA_STREAMING\n\n`ESB` includes types:\n- ROUTE\n- DATA_SERVICE",
+            "enum": [
+              "ETL",
+              "ESB"
+            ]
+          },
+          "filters": {
+            "type": "array",
+            "description": "Defined filters for record query",
+            "items": {
+              "$ref": "#/components/schemas/FieldFilter"
+            }
+          },
+          "exclude": {
+            "type": "string",
+            "description": "Excluding certain execution types from the returned results\n\n\n\n`TASK_EXECUTIONS_TRIGGERED_BY_PLAN`: all task executions triggered by plans are excluded, that is to say, the returned executions include all plans and all individual execution tasks of the `ETL`  category that are not triggered by any plan.\n\n`PLAN_EXECUTIONS`: plans are excluded, in other words, the returned executions include all execution tasks of category `ETL`, triggered or not triggered by plans.",
+            "default": "TASK_EXECUTIONS_TRIGGERED_BY_PLAN",
+            "enum": [
+              "PLAN_EXECUTIONS",
+              "TASK_EXECUTIONS_TRIGGERED_BY_PLAN"
+            ]
+          },
+          "limit": {
+            "type": "number",
+            "description": "This is the number of records to be returned on a single page (Page size)",
+            "default": 1000,
+            "minimum": 1,
+            "maximum": 100000
+          },
+          "lastId": {
+            "type": "string",
+            "description": "the last execution id of the previous page"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuthentication": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "This Bearer authentication can be set in the Authorization header of your requests. Authentication tokens and Personal Access Tokens are supported. Personal Access Tokens can be generated in the Profile Preferences page of the Talend Cloud Portal."
+      }
+    },
+    "responses": {}
+  }
+}
