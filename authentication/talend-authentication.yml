@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/talend-orchestration-openapi.yml, openapi/talend-processing-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Bearer token from Talend Cloud personal access token or service account token
+  sources:
+  - openapi/talend-orchestration-openapi.yml
+  - openapi/talend-processing-openapi.yml

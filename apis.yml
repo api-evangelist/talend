@@ -115,6 +115,10 @@ apis:
       - type: Documentation
         url: https://talend.qlik.dev/apis/execution-logs/2021-03/
 common:
+  - type: DomainSecurity
+    url: security/talend-domain-security.yml
+  - type: Authentication
+    url: authentication/talend-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/talend
   - type: Portal
