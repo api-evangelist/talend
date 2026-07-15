@@ -115,6 +115,8 @@ apis:
       - type: Documentation
         url: https://talend.qlik.dev/apis/execution-logs/2021-03/
 common:
+  - type: AgenticAccess
+    url: agentic-access/talend-agentic-access.yml
   - type: DomainSecurity
     url: security/talend-domain-security.yml
   - type: Authentication
