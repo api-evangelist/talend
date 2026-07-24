@@ -1,0 +1,227 @@
+openapi: 3.0.3
+info:
+  title: Talend Cloud Orchestration Artifacts Tasks API
+  description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
+  version: 2021-03
+  contact:
+    name: Qlik Talend Support
+    url: https://talend.qlik.dev
+  termsOfService: https://www.qlik.com/us/legal/license-terms
+servers:
+- url: https://api.{region}.cloud.talend.com
+  description: Talend Cloud API
+  variables:
+    region:
+      description: Cloud region
+      default: eu
+      enum:
+      - eu
+      - us
+      - us-west
+      - ap
+      - au
+security:
+- BearerAuth: []
+tags:
+- name: Tasks
+paths:
+  /orchestration/executables/tasks:
+    get:
+      operationId: listTasks
+      summary: List Tasks
+      description: Retrieve all data integration tasks in the account
+      tags:
+      - Tasks
+      parameters:
+      - name: workspaceId
+        in: query
+        schema:
+          type: string
+        description: Filter tasks by workspace
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+        description: Maximum number of tasks to return
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+        description: Number of tasks to skip
+      responses:
+        '200':
+          description: List of tasks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createTask
+      summary: Create Task
+      description: Create a new data integration task
+      tags:
+      - Tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCreate'
+      responses:
+        '201':
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /orchestration/executables/tasks/{taskId}:
+    get:
+      operationId: getTask
+      summary: Get Task
+      description: Retrieve details of a specific task
+      tags:
+      - Tasks
+      parameters:
+      - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: Task details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+    put:
+      operationId: updateTask
+      summary: Update Task
+      description: Update an existing task configuration
+      tags:
+      - Tasks
+      parameters:
+      - $ref: '#/components/parameters/TaskId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCreate'
+      responses:
+        '200':
+          description: Task updated
+    delete:
+      operationId: deleteTask
+      summary: Delete Task
+      description: Remove a task from the account
+      tags:
+      - Tasks
+      parameters:
+      - $ref: '#/components/parameters/TaskId'
+      responses:
+        '204':
+          description: Task deleted
+  /orchestration/executables/tasks/search:
+    post:
+      operationId: searchTasks
+      summary: Search Tasks
+      description: Search tasks with filters
+      tags:
+      - Tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                workspaceId:
+                  type: string
+                environmentId:
+                  type: string
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Task'
+components:
+  schemas:
+    TaskCreate:
+      type: object
+      required:
+      - name
+      - workspaceId
+      properties:
+        name:
+          type: string
+        workspaceId:
+          type: string
+        environmentId:
+          type: string
+        description:
+          type: string
+    Task:
+      type: object
+      description: A data integration task in Talend Cloud
+      properties:
+        id:
+          type: string
+          description: Unique task identifier
+        name:
+          type: string
+          description: Task name
+        workspaceId:
+          type: string
+          description: Parent workspace ID
+        environmentId:
+          type: string
+          description: Execution environment ID
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - DRAFT
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing bearer token
+  parameters:
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Task identifier
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token from Talend Cloud personal access token or service account token
+externalDocs:
+  description: Talend Orchestration API Documentation
+  url: https://talend.qlik.dev/apis/orchestration/2021-03/

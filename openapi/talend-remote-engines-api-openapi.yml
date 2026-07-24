@@ -1,0 +1,148 @@
+openapi: 3.0.3
+info:
+  title: Talend Cloud Orchestration Artifacts Remote Engines API
+  description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
+  version: 2021-03
+  contact:
+    name: Qlik Talend Support
+    url: https://talend.qlik.dev
+  termsOfService: https://www.qlik.com/us/legal/license-terms
+servers:
+- url: https://api.{region}.cloud.talend.com
+  description: Talend Cloud API
+  variables:
+    region:
+      description: Cloud region
+      default: eu
+      enum:
+      - eu
+      - us
+      - us-west
+      - ap
+      - au
+security:
+- BearerAuth: []
+tags:
+- name: Remote Engines
+paths:
+  /processing/runtimes/remote-engines:
+    get:
+      operationId: listRemoteEngines
+      summary: List Remote Engines
+      description: Get all available remote engines in the account
+      tags:
+      - Remote Engines
+      responses:
+        '200':
+          description: List of remote engines
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RemoteEngine'
+    post:
+      operationId: createRemoteEngine
+      summary: Create Remote Engine
+      description: Register a new remote engine
+      tags:
+      - Remote Engines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoteEngineCreate'
+      responses:
+        '201':
+          description: Remote engine created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteEngine'
+  /processing/runtimes/remote-engines/{id}:
+    get:
+      operationId: getRemoteEngine
+      summary: Get Remote Engine
+      description: Retrieve details of a specific remote engine
+      tags:
+      - Remote Engines
+      parameters:
+      - $ref: '#/components/parameters/EngineId'
+      responses:
+        '200':
+          description: Remote engine details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteEngine'
+    delete:
+      operationId: deleteRemoteEngine
+      summary: Delete Remote Engine
+      description: Remove a remote engine from the account
+      tags:
+      - Remote Engines
+      parameters:
+      - $ref: '#/components/parameters/EngineId'
+      responses:
+        '204':
+          description: Remote engine deleted
+components:
+  schemas:
+    RemoteEngine:
+      type: object
+      description: A self-hosted Talend remote engine instance
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - PAIRED
+          - UNPAIRED
+          - OFFLINE
+          - ONLINE
+        version:
+          type: string
+          description: Talend Runtime version
+        workspaceId:
+          type: string
+        created:
+          type: string
+          format: date-time
+    RemoteEngineCreate:
+      type: object
+      required:
+      - name
+      - workspaceId
+      properties:
+        name:
+          type: string
+        workspaceId:
+          type: string
+        description:
+          type: string
+  parameters:
+    EngineId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Remote engine identifier
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token from Talend Cloud personal access token or service account token
+externalDocs:
+  description: Talend Orchestration API Documentation
+  url: https://talend.qlik.dev/apis/orchestration/2021-03/

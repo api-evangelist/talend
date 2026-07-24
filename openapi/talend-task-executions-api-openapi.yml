@@ -1,0 +1,218 @@
+openapi: 3.0.3
+info:
+  title: Talend Cloud Orchestration Artifacts Task Executions API
+  description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
+  version: 2021-03
+  contact:
+    name: Qlik Talend Support
+    url: https://talend.qlik.dev
+  termsOfService: https://www.qlik.com/us/legal/license-terms
+servers:
+- url: https://api.{region}.cloud.talend.com
+  description: Talend Cloud API
+  variables:
+    region:
+      description: Cloud region
+      default: eu
+      enum:
+      - eu
+      - us
+      - us-west
+      - ap
+      - au
+security:
+- BearerAuth: []
+tags:
+- name: Task Executions
+paths:
+  /processing/executions:
+    post:
+      operationId: executeTask
+      summary: Execute Task
+      description: Trigger the execution of a data integration task
+      tags:
+      - Task Executions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskExecutionRequest'
+      responses:
+        '200':
+          description: Task execution started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskExecution'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /processing/executions/{executionId}:
+    get:
+      operationId: getTaskExecutionStatus
+      summary: Get Task Execution Status
+      description: Check the status and details of a running or completed task execution
+      tags:
+      - Task Executions
+      parameters:
+      - $ref: '#/components/parameters/ExecutionId'
+      responses:
+        '200':
+          description: Task execution details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskExecution'
+    delete:
+      operationId: terminateTaskExecution
+      summary: Terminate Task Execution
+      description: Stop a currently running task execution
+      tags:
+      - Task Executions
+      parameters:
+      - $ref: '#/components/parameters/ExecutionId'
+      responses:
+        '204':
+          description: Execution terminated
+  /processing/executables/tasks/executions:
+    get:
+      operationId: listTaskExecutions
+      summary: List Task Executions
+      description: Retrieve task execution history with optional filters
+      tags:
+      - Task Executions
+      parameters:
+      - name: taskId
+        in: query
+        schema:
+          type: string
+        description: Filter by task ID
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - RUNNING
+          - SUCCESS
+          - FAILURE
+          - CANCELLED
+        description: Filter by execution status
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of task executions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaskExecution'
+    post:
+      operationId: searchTaskExecutions
+      summary: Search Task Executions
+      description: Search task executions with advanced filters
+      tags:
+      - Task Executions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                taskId:
+                  type: string
+                status:
+                  type: string
+                startTime:
+                  type: string
+                  format: date-time
+                endTime:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Search results
+components:
+  responses:
+    BadRequest:
+      description: Bad Request - invalid request body
+    Unauthorized:
+      description: Unauthorized - invalid or missing bearer token
+  parameters:
+    ExecutionId:
+      name: executionId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Execution identifier
+  schemas:
+    TaskExecution:
+      type: object
+      description: A task execution instance
+      properties:
+        executionId:
+          type: string
+          description: Unique execution identifier
+        taskId:
+          type: string
+        status:
+          type: string
+          enum:
+          - RUNNING
+          - SUCCESS
+          - FAILURE
+          - CANCELLED
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Execution duration in milliseconds
+        engineId:
+          type: string
+          description: Remote engine that ran the task
+        logUrl:
+          type: string
+          format: uri
+          description: URL to access execution logs
+    TaskExecutionRequest:
+      type: object
+      required:
+      - taskId
+      properties:
+        taskId:
+          type: string
+          description: Task identifier to execute
+        environmentId:
+          type: string
+          description: Target execution environment
+        logLevel:
+          type: string
+          enum:
+          - INFO
+          - DEBUG
+          - TRACE
+          description: Log verbosity level
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token from Talend Cloud personal access token or service account token
+externalDocs:
+  description: Talend Orchestration API Documentation
+  url: https://talend.qlik.dev/apis/orchestration/2021-03/

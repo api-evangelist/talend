@@ -1,0 +1,171 @@
+openapi: 3.0.3
+info:
+  title: Talend Cloud Orchestration Artifacts Plan Executions API
+  description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
+  version: 2021-03
+  contact:
+    name: Qlik Talend Support
+    url: https://talend.qlik.dev
+  termsOfService: https://www.qlik.com/us/legal/license-terms
+servers:
+- url: https://api.{region}.cloud.talend.com
+  description: Talend Cloud API
+  variables:
+    region:
+      description: Cloud region
+      default: eu
+      enum:
+      - eu
+      - us
+      - us-west
+      - ap
+      - au
+security:
+- BearerAuth: []
+tags:
+- name: Plan Executions
+paths:
+  /processing/executions/plans:
+    post:
+      operationId: executePlan
+      summary: Execute Plan
+      description: Trigger the execution of a data integration plan
+      tags:
+      - Plan Executions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanExecutionRequest'
+      responses:
+        '200':
+          description: Plan execution started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanExecution'
+  /processing/executions/plans/{planExecutionId}:
+    get:
+      operationId: getPlanExecutionStatus
+      summary: Get Plan Execution Status
+      description: Get detailed status of a plan execution
+      tags:
+      - Plan Executions
+      parameters:
+      - name: planExecutionId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Plan execution identifier
+      responses:
+        '200':
+          description: Plan execution status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanExecution'
+  /processing/executions/plans/{planExecutionId}/steps:
+    get:
+      operationId: getPlanExecutionSteps
+      summary: Get Plan Execution Steps
+      description: Get the status of all step executions within a plan execution
+      tags:
+      - Plan Executions
+      parameters:
+      - name: planExecutionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Plan execution steps
+  /processing/executables/plans/executions:
+    get:
+      operationId: listPlanExecutions
+      summary: List Plan Executions
+      description: Retrieve plan execution history
+      tags:
+      - Plan Executions
+      parameters:
+      - name: planId
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - RUNNING
+          - SUCCESS
+          - FAILURE
+          - CANCELLED
+      responses:
+        '200':
+          description: List of plan executions
+components:
+  schemas:
+    PlanExecutionRequest:
+      type: object
+      required:
+      - planId
+      properties:
+        planId:
+          type: string
+          description: Plan identifier to execute
+        environmentId:
+          type: string
+        resumeFromStep:
+          type: integer
+          description: Step number to resume from (for re-runs after failure)
+    PlanExecution:
+      type: object
+      description: A plan execution instance
+      properties:
+        executionId:
+          type: string
+        planId:
+          type: string
+        status:
+          type: string
+          enum:
+          - RUNNING
+          - SUCCESS
+          - FAILURE
+          - PARTIAL_SUCCESS
+          - CANCELLED
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              stepId:
+                type: string
+              taskId:
+                type: string
+              status:
+                type: string
+              startTime:
+                type: string
+                format: date-time
+              endTime:
+                type: string
+                format: date-time
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token from Talend Cloud personal access token or service account token
+externalDocs:
+  description: Talend Orchestration API Documentation
+  url: https://talend.qlik.dev/apis/orchestration/2021-03/

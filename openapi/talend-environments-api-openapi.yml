@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+  title: Talend Cloud Orchestration Artifacts Environments API
+  description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
+  version: 2021-03
+  contact:
+    name: Qlik Talend Support
+    url: https://talend.qlik.dev
+  termsOfService: https://www.qlik.com/us/legal/license-terms
+servers:
+- url: https://api.{region}.cloud.talend.com
+  description: Talend Cloud API
+  variables:
+    region:
+      description: Cloud region
+      default: eu
+      enum:
+      - eu
+      - us
+      - us-west
+      - ap
+      - au
+security:
+- BearerAuth: []
+tags:
+- name: Environments
+paths:
+  /orchestration/environments:
+    get:
+      operationId: listEnvironments
+      summary: List Environments
+      description: Retrieve all environments in the account
+      tags:
+      - Environments
+      responses:
+        '200':
+          description: List of environments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Environment'
+    post:
+      operationId: createEnvironment
+      summary: Create Environment
+      description: Create a new environment
+      tags:
+      - Environments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentCreate'
+      responses:
+        '201':
+          description: Environment created
+components:
+  schemas:
+    EnvironmentCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Environment:
+      type: object
+      description: An execution environment in Talend Cloud
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        default:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token from Talend Cloud personal access token or service account token
+externalDocs:
+  description: Talend Orchestration API Documentation
+  url: https://talend.qlik.dev/apis/orchestration/2021-03/

@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: Talend Cloud Orchestration Artifacts Run Profiles API
+  description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
+  version: 2021-03
+  contact:
+    name: Qlik Talend Support
+    url: https://talend.qlik.dev
+  termsOfService: https://www.qlik.com/us/legal/license-terms
+servers:
+- url: https://api.{region}.cloud.talend.com
+  description: Talend Cloud API
+  variables:
+    region:
+      description: Cloud region
+      default: eu
+      enum:
+      - eu
+      - us
+      - us-west
+      - ap
+      - au
+security:
+- BearerAuth: []
+tags:
+- name: Run Profiles
+paths:
+  /processing/run-profiles:
+    post:
+      operationId: createRunProfile
+      summary: Create Run Profile
+      description: Create a new run profile defining execution parameters
+      tags:
+      - Run Profiles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunProfileCreate'
+      responses:
+        '201':
+          description: Run profile created
+  /processing/run-profiles/search:
+    post:
+      operationId: searchRunProfiles
+      summary: Search Run Profiles
+      description: Search run profiles with filters
+      tags:
+      - Run Profiles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                engineId:
+                  type: string
+      responses:
+        '200':
+          description: Search results
+components:
+  schemas:
+    RunProfileCreate:
+      type: object
+      required:
+      - name
+      - engineId
+      properties:
+        name:
+          type: string
+        engineId:
+          type: string
+        description:
+          type: string
+        parallelExecutions:
+          type: integer
+          description: Maximum concurrent executions
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token from Talend Cloud personal access token or service account token
+externalDocs:
+  description: Talend Orchestration API Documentation
+  url: https://talend.qlik.dev/apis/orchestration/2021-03/

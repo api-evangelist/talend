@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: Talend Cloud Orchestration Artifacts Promotions API
+  description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
+  version: 2021-03
+  contact:
+    name: Qlik Talend Support
+    url: https://talend.qlik.dev
+  termsOfService: https://www.qlik.com/us/legal/license-terms
+servers:
+- url: https://api.{region}.cloud.talend.com
+  description: Talend Cloud API
+  variables:
+    region:
+      description: Cloud region
+      default: eu
+      enum:
+      - eu
+      - us
+      - us-west
+      - ap
+      - au
+security:
+- BearerAuth: []
+tags:
+- name: Promotions
+paths:
+  /orchestration/executables/promotions:
+    get:
+      operationId: listPromotions
+      summary: List Promotions
+      description: List all environment promotions in the account
+      tags:
+      - Promotions
+      responses:
+        '200':
+          description: List of promotions
+    post:
+      operationId: createPromotion
+      summary: Create Promotion
+      description: Create a new environment promotion
+      tags:
+      - Promotions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                sourceEnvironmentId:
+                  type: string
+                targetEnvironmentId:
+                  type: string
+      responses:
+        '201':
+          description: Promotion created
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token from Talend Cloud personal access token or service account token
+externalDocs:
+  description: Talend Orchestration API Documentation
+  url: https://talend.qlik.dev/apis/orchestration/2021-03/
