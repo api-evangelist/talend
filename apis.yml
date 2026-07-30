@@ -6,9 +6,22 @@ description: >-
   orchestrating tasks and plans, executing data integration jobs, managing remote engines, configuring connections,
   monitoring execution history, and administering identities, workspaces, and environments.
 type: Index
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/talend.png
 tags:
   - API Management
   - Data Integration
@@ -21,99 +34,281 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: talend:talend-orchestration-api
-    name: Talend Cloud Orchestration API
-    description: >-
-      Manages tasks, plans, schedules, workspaces, environments, connections, artifacts, promotions, and resources in
-      Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules,
-      and manage workspace resources via Bearer token authentication.
-    humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
-    baseURL: https://api.{region}.cloud.talend.com
-    tags:
-      - Artifacts
-      - Connections
-      - ETL
-      - Orchestration
-      - Plans
-      - Tasks
-      - Workspaces
-    properties:
-      - type: Documentation
-        url: https://talend.qlik.dev/apis/orchestration/2021-03/
-      - type: GettingStarted
-        url: https://talend.qlik.dev/getting-started/
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-orchestration-openapi.yml
-  - aid: talend:talend-processing-api
-    name: Talend Cloud Processing API
-    description: >-
-      Manages task and plan executions, remote engines and clusters, and run profiles in Qlik Talend Cloud. Use this API
-      to trigger and monitor data integration job runs, manage remote engine lifecycles, and configure execution
-      profiles.
-    humanURL: https://talend.qlik.dev/apis/processing/2021-03/
-    baseURL: https://api.{region}.cloud.talend.com
-    tags:
-      - ETL
-      - Execution
-      - Monitoring
-      - Remote Engine
-      - Run Profiles
-    properties:
-      - type: Documentation
-        url: https://talend.qlik.dev/apis/processing/2021-03/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-processing-openapi.yml
-  - aid: talend:talend-identities-api
-    name: Talend Cloud Identities Management API
-    description: >-
-      Manages user, group, and role identity information for Talend Cloud accounts. Supports SCIM v2 for automated
-      provisioning from enterprise identity providers.
-    humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
-    baseURL: https://api.{region}.cloud.talend.com
-    tags:
-      - Identity Management
-      - SCIM
-      - User Provisioning
-    properties:
-      - type: Documentation
-        url: https://talend.qlik.dev/apis/identities-management/2021-03/
-  - aid: talend:talend-audit-logs-api
-    name: Talend Cloud Audit Logs API
-    description: >-
-      Load account audit logs for monitoring activities on Talend Cloud applications, ensuring data security and
-      regulatory compliance.
-    humanURL: https://talend.qlik.dev/apis/audit-logs/2021-03/
-    baseURL: https://api.{region}.cloud.talend.com
-    tags:
-      - Audit
-      - Compliance
-      - Monitoring
-    properties:
-      - type: Documentation
-        url: https://talend.qlik.dev/apis/audit-logs/2021-03/
-  - aid: talend:talend-connections-api
-    name: Talend Cloud Connections API
-    description: Administers connections used by datasets and crawlers to retrieve data at scale.
-    humanURL: https://talend.qlik.dev/apis/connections/2021-03/
-    baseURL: https://api.{region}.cloud.talend.com
-    tags:
-      - Connections
-      - Data Sources
-    properties:
-      - type: Documentation
-        url: https://talend.qlik.dev/apis/connections/2021-03/
-  - aid: talend:talend-execution-logs-api
-    name: Talend Cloud Execution Logs API
-    description: Retrieve logs about task runs for debugging and monitoring data integration pipeline executions.
-    humanURL: https://talend.qlik.dev/apis/execution-logs/2021-03/
-    baseURL: https://api.{region}.cloud.talend.com
-    tags:
-      - Execution Logs
-      - Monitoring
-    properties:
-      - type: Documentation
-        url: https://talend.qlik.dev/apis/execution-logs/2021-03/
+- aid: talend:talend-identities-api
+  name: Talend Cloud Identities Management API
+  description: >-
+    Manages user, group, and role identity information for Talend Cloud accounts. Supports SCIM v2 for
+    automated provisioning from enterprise identity providers.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Identity Management
+  - SCIM
+  - User Provisioning
+  properties:
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/identities-management/2021-03/
+- aid: talend:talend-audit-logs-api
+  name: Talend Cloud Audit Logs API
+  description: >-
+    Load account audit logs for monitoring activities on Talend Cloud applications, ensuring data security
+    and regulatory compliance.
+  humanURL: https://talend.qlik.dev/apis/audit-logs/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Audit
+  - Compliance
+  - Monitoring
+  properties:
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/audit-logs/2021-03/
+- aid: talend:talend-connections-api
+  name: Talend Cloud Connections API
+  description: Administers connections used by datasets and crawlers to retrieve data at scale.
+  humanURL: https://talend.qlik.dev/apis/connections/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Connections
+  - Data Sources
+  properties:
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/connections/2021-03/
+- aid: talend:talend-execution-logs-api
+  name: Talend Cloud Execution Logs API
+  description: >-
+    Retrieve logs about task runs for debugging and monitoring data integration pipeline executions.
+  humanURL: https://talend.qlik.dev/apis/execution-logs/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Execution Logs
+  - Monitoring
+  properties:
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/execution-logs/2021-03/
+- aid: talend:talend-artifacts-api
+  name: Talend Artifacts API
+  description: The Artifacts API from Talend — 1 operation(s) for artifacts.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Artifacts
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-artifacts-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-connections-api
+  name: Talend Connections API
+  description: The Connections API from Talend — 1 operation(s) for connections.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Connections
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-connections-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-environments-api
+  name: Talend Environments API
+  description: The Environments API from Talend — 1 operation(s) for environments.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Environments
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-environments-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-plan-executions-api
+  name: Talend Plan Executions API
+  description: The Plan Executions API from Talend — 4 operation(s) for plan executions.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Plan Executions
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-plan-executions-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-plans-api
+  name: Talend Plans API
+  description: The Plans API from Talend — 2 operation(s) for plans.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-plans-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-promotion-executions-api
+  name: Talend Promotion Executions API
+  description: The Promotion Executions API from Talend — 1 operation(s) for promotion executions.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Promotion Executions
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-promotion-executions-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-promotions-api
+  name: Talend Promotions API
+  description: The Promotions API from Talend — 1 operation(s) for promotions.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Promotions
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-promotions-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-remote-engine-clusters-api
+  name: Talend Remote Engine Clusters API
+  description: The Remote Engine Clusters API from Talend — 1 operation(s) for remote engine clusters.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Remote Engine Clusters
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-remote-engine-clusters-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-remote-engines-api
+  name: Talend Remote Engines API
+  description: The Remote Engines API from Talend — 2 operation(s) for remote engines.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Remote Engines
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-remote-engines-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-run-profiles-api
+  name: Talend Run Profiles API
+  description: The Run Profiles API from Talend — 2 operation(s) for run profiles.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Run Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-run-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-schedules-api
+  name: Talend Schedules API
+  description: The Schedules API from Talend — 1 operation(s) for schedules.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-schedules-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-task-executions-api
+  name: Talend Task Executions API
+  description: The Task Executions API from Talend — 3 operation(s) for task executions.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Task Executions
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-task-executions-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-tasks-api
+  name: Talend Tasks API
+  description: The Tasks API from Talend — 3 operation(s) for tasks.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
+- aid: talend:talend-workspaces-api
+  name: Talend Workspaces API
+  description: The Workspaces API from Talend — 2 operation(s) for workspaces.
+  humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Workspaces
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-workspaces-api-openapi.yml
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  - type: GettingStarted
+    url: https://talend.qlik.dev/getting-started/
+  - type: Documentation
+    url: https://talend.qlik.dev/apis/processing/2021-03/
 common:
   - type: AgenticAccess
     url: agentic-access/talend-agentic-access.yml
