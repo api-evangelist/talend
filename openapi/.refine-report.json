@@ -1,0 +1,40 @@
+{
+  "provider": "talend",
+  "sources": [
+    "talend-artifacts-api-openapi.yml",
+    "talend-connections-api-openapi.yml",
+    "talend-environments-api-openapi.yml",
+    "talend-plan-executions-api-openapi.yml",
+    "talend-plans-api-openapi.yml",
+    "talend-promotion-executions-api-openapi.yml",
+    "talend-promotions-api-openapi.yml",
+    "talend-remote-engine-clusters-api-openapi.yml",
+    "talend-remote-engines-api-openapi.yml",
+    "talend-run-profiles-api-openapi.yml",
+    "talend-schedules-api-openapi.yml",
+    "talend-task-executions-api-openapi.yml",
+    "talend-tasks-api-openapi.yml",
+    "talend-workspaces-api-openapi.yml"
+  ],
+  "outputs": [
+    "talend-artifacts-api-openapi.yml",
+    "talend-connections-api-openapi.yml",
+    "talend-environments-api-openapi.yml",
+    "talend-plan-executions-api-openapi.yml",
+    "talend-plans-api-openapi.yml",
+    "talend-promotion-executions-api-openapi.yml",
+    "talend-promotions-api-openapi.yml",
+    "talend-remote-engine-clusters-api-openapi.yml",
+    "talend-remote-engines-api-openapi.yml",
+    "talend-run-profiles-api-openapi.yml",
+    "talend-schedules-api-openapi.yml",
+    "talend-task-executions-api-openapi.yml",
+    "talend-tasks-api-openapi.yml",
+    "talend-workspaces-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
