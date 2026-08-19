@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts Schedules API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/schedules"
+          },
+          "docs": "List all execution schedules in the account"
+        },
+        {
+          "info": {
+            "name": "Create Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new execution schedule"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

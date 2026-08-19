@@ -1,0 +1,251 @@
+{
+  "item": [
+    {
+      "id": "32bd6f68-3a18-4796-8d5a-5ff4065ec3a7",
+      "name": "Schedules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2c98ce17-f151-43d4-84f2-5c19c0f2fedf",
+          "name": "List Schedules",
+          "request": {
+            "name": "List Schedules",
+            "description": {
+              "content": "List all execution schedules in the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a17d039-15f0-49a7-a8ad-0223234c89d2",
+              "name": "List of schedules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"timezone\": \"string\",\n      \"created\": \"2017-05-15T03:03:02.348Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"timezone\": \"string\",\n      \"created\": \"2012-03-31T02:19:40.795Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "314ceb35-d707-4a49-a26b-79ef7d1e96f8",
+          "name": "Create Schedule",
+          "request": {
+            "name": "Create Schedule",
+            "description": {
+              "content": "Create a new execution schedule",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"timezone\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d738d8a-8407-4751-8883-c468409226ea",
+              "name": "Schedule created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"timezone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "eu",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://api.{{region}}.cloud.talend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e0782a9e-ccab-4eaa-9893-5916d5ba0fa1",
+    "name": "Talend Cloud Orchestration Artifacts Schedules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.\n\nContact Support:\n Name: Qlik Talend Support",
+      "type": "text/plain"
+    }
+  }
+}

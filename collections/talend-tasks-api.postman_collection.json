@@ -1,0 +1,814 @@
+{
+  "item": [
+    {
+      "id": "4518ce89-d5cd-4f07-93e0-22f733075fd3",
+      "name": "Tasks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd01e0d0-bb02-480f-b17b-95abbd57d354",
+          "name": "List Tasks",
+          "request": {
+            "name": "List Tasks",
+            "description": {
+              "content": "Retrieve all data integration tasks in the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workspaceId",
+                  "value": "<string>",
+                  "description": "Filter tasks by workspace"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of tasks to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of tasks to skip"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f52fbbd0-f095-4407-9d29-5bfb82a10a21",
+              "name": "List of tasks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workspaceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"workspaceId\": \"string\",\n      \"environmentId\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"INACTIVE\",\n      \"created\": \"1972-01-30T21:42:23.940Z\",\n      \"updated\": \"2002-03-08T19:37:07.537Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"workspaceId\": \"string\",\n      \"environmentId\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"DRAFT\",\n      \"created\": \"1991-03-22T02:19:30.181Z\",\n      \"updated\": \"1953-08-09T12:18:36.687Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c3a07fb-b2f8-4243-9d13-17c4cadfc056",
+              "name": "Unauthorized - invalid or missing bearer token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workspaceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22fff331-070a-46bf-a4f1-71228e67d796",
+          "name": "Create Task",
+          "request": {
+            "name": "Create Task",
+            "description": {
+              "content": "Create a new data integration task",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceId\": \"<string>\",\n  \"environmentId\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9eafd0e9-c3e3-4d1e-8906-c27a749c118e",
+              "name": "Task created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceId\": \"<string>\",\n  \"environmentId\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"workspaceId\": \"string\",\n  \"environmentId\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"INACTIVE\",\n  \"created\": \"2016-01-21T19:35:21.196Z\",\n  \"updated\": \"1954-12-27T18:41:45.470Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f1c15f8-2c31-4f6c-a2df-10d5139bc7d4",
+          "name": "Get Task",
+          "request": {
+            "name": "Get Task",
+            "description": {
+              "content": "Retrieve details of a specific task",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) Task identifier"
+                },
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "971c1b48-a143-4a05-92cb-7cb72dbff1e4",
+              "name": "Task details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) Task identifier"
+                    },
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"workspaceId\": \"string\",\n  \"environmentId\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"INACTIVE\",\n  \"created\": \"2016-01-21T19:35:21.196Z\",\n  \"updated\": \"1954-12-27T18:41:45.470Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0137e244-bfe1-416f-832d-a03abec7fa2f",
+          "name": "Update Task",
+          "request": {
+            "name": "Update Task",
+            "description": {
+              "content": "Update an existing task configuration",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) Task identifier"
+                },
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceId\": \"<string>\",\n  \"environmentId\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18b873fa-4d82-4293-ac43-128b4445bdea",
+              "name": "Task updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) Task identifier"
+                    },
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceId\": \"<string>\",\n  \"environmentId\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a27c8f1-0c99-4951-8f43-d8d5e3931a7f",
+          "name": "Delete Task",
+          "request": {
+            "name": "Delete Task",
+            "description": {
+              "content": "Remove a task from the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) Task identifier"
+                },
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1497c145-7b90-44ca-b9c9-dbc7b8504331",
+              "name": "Task deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) Task identifier"
+                    },
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4e3fe62-925c-457c-805a-89e6fffd2cc0",
+          "name": "Search Tasks",
+          "request": {
+            "name": "Search Tasks",
+            "description": {
+              "content": "Search tasks with filters",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "tasks",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceId\": \"<string>\",\n  \"environmentId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9fc7c2cb-700c-4650-9e3c-05fc7f99113a",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "tasks",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceId\": \"<string>\",\n  \"environmentId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"workspaceId\": \"string\",\n      \"environmentId\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"INACTIVE\",\n      \"created\": \"1972-01-30T21:42:23.940Z\",\n      \"updated\": \"2002-03-08T19:37:07.537Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"workspaceId\": \"string\",\n      \"environmentId\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"DRAFT\",\n      \"created\": \"1991-03-22T02:19:30.181Z\",\n      \"updated\": \"1953-08-09T12:18:36.687Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "eu",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://api.{{region}}.cloud.talend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9960d73e-c371-405f-9bbd-5108fd0feae0",
+    "name": "Talend Cloud Orchestration Artifacts Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.\n\nContact Support:\n Name: Qlik Talend Support",
+      "type": "text/plain"
+    }
+  }
+}

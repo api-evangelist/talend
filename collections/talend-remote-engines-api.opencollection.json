@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts Remote Engines API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Remote Engines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Remote Engines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engines"
+          },
+          "docs": "Get all available remote engines in the account"
+        },
+        {
+          "info": {
+            "name": "Create Remote Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new remote engine"
+        },
+        {
+          "info": {
+            "name": "Get Remote Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engines/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Remote engine identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific remote engine"
+        },
+        {
+          "info": {
+            "name": "Delete Remote Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engines/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Remote engine identifier"
+              }
+            ]
+          },
+          "docs": "Remove a remote engine from the account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

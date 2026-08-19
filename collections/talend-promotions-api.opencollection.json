@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts Promotions API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Promotions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Promotions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/executables/promotions"
+          },
+          "docs": "List all environment promotions in the account"
+        },
+        {
+          "info": {
+            "name": "Create Promotion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/executables/promotions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new environment promotion"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

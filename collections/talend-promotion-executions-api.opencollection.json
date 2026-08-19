@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts Promotion Executions API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Promotion Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute Promotion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/promotions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a promotion from source environment to target environment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

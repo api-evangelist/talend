@@ -1,0 +1,614 @@
+{
+  "item": [
+    {
+      "id": "53740c01-9010-411f-8ffc-689307115953",
+      "name": "Plans",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b708325-7409-487f-9df9-eb594f23b17b",
+          "name": "List Plans",
+          "request": {
+            "name": "List Plans",
+            "description": {
+              "content": "Retrieve all execution plans in the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workspaceId",
+                  "value": "<string>",
+                  "description": "Filter plans by workspace"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be6dc063-a0ac-43d6-aa5d-22189f0d495c",
+              "name": "List of plans",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workspaceId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"workspaceId\": \"string\",\n      \"description\": \"string\",\n      \"steps\": [\n        {\n          \"taskId\": \"string\",\n          \"order\": 4128\n        },\n        {\n          \"taskId\": \"string\",\n          \"order\": 653\n        }\n      ],\n      \"created\": \"1956-12-15T12:19:41.996Z\",\n      \"updated\": \"2019-07-16T22:44:02.268Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"workspaceId\": \"string\",\n      \"description\": \"string\",\n      \"steps\": [\n        {\n          \"taskId\": \"string\",\n          \"order\": 3117\n        },\n        {\n          \"taskId\": \"string\",\n          \"order\": 4077\n        }\n      ],\n      \"created\": \"2011-06-05T12:47:41.205Z\",\n      \"updated\": \"1969-02-01T19:16:25.445Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ceaf18ab-2548-4d5e-940c-6b0e6069205e",
+          "name": "Create Plan",
+          "request": {
+            "name": "Create Plan",
+            "description": {
+              "content": "Create a new execution plan composed of tasks",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"steps\": [\n    {\n      \"taskId\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"taskId\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75737834-34b1-4219-8dee-05f2d7b25f5b",
+              "name": "Plan created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"steps\": [\n    {\n      \"taskId\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"taskId\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"workspaceId\": \"string\",\n  \"description\": \"string\",\n  \"steps\": [\n    {\n      \"taskId\": \"string\",\n      \"order\": 7284\n    },\n    {\n      \"taskId\": \"string\",\n      \"order\": 6577\n    }\n  ],\n  \"created\": \"1991-07-28T17:43:35.378Z\",\n  \"updated\": \"1962-03-15T13:46:47.626Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5dcf8d6d-74b7-46c8-a8aa-4486c73e4367",
+          "name": "Get Plan",
+          "request": {
+            "name": "Get Plan",
+            "description": {
+              "content": "Retrieve details of a specific plan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "plans",
+                ":planId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) Plan identifier"
+                },
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c28e3e22-3329-43dc-ba91-b10620267096",
+              "name": "Plan details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) Plan identifier"
+                    },
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"workspaceId\": \"string\",\n  \"description\": \"string\",\n  \"steps\": [\n    {\n      \"taskId\": \"string\",\n      \"order\": 7284\n    },\n    {\n      \"taskId\": \"string\",\n      \"order\": 6577\n    }\n  ],\n  \"created\": \"1991-07-28T17:43:35.378Z\",\n  \"updated\": \"1962-03-15T13:46:47.626Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccb39295-90fb-416b-9d36-98438fe5a066",
+          "name": "Update Plan",
+          "request": {
+            "name": "Update Plan",
+            "description": {
+              "content": "Update an existing plan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "plans",
+                ":planId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) Plan identifier"
+                },
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"steps\": [\n    {\n      \"taskId\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"taskId\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc704604-7afa-4413-ac99-ea26f7848b84",
+              "name": "Plan updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) Plan identifier"
+                    },
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"steps\": [\n    {\n      \"taskId\": \"<string>\",\n      \"order\": \"<integer>\"\n    },\n    {\n      \"taskId\": \"<string>\",\n      \"order\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1bb3c606-6bfb-4134-9eb2-7138eecdac1c",
+          "name": "Delete Plan",
+          "request": {
+            "name": "Delete Plan",
+            "description": {
+              "content": "Remove a plan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orchestration",
+                "executables",
+                "plans",
+                ":planId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) Plan identifier"
+                },
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f217e265-1d6f-495b-837d-389d963b9c07",
+              "name": "Plan deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orchestration",
+                    "executables",
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) Plan identifier"
+                    },
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "eu",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://api.{{region}}.cloud.talend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b5eed277-84c6-4438-b7ff-0cbbe0149a81",
+    "name": "Talend Cloud Orchestration Artifacts Plans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.\n\nContact Support:\n Name: Qlik Talend Support",
+      "type": "text/plain"
+    }
+  }
+}

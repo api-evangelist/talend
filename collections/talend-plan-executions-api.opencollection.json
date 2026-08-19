@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts Plan Executions API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plan Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger the execution of a data integration plan"
+        },
+        {
+          "info": {
+            "name": "Get Plan Execution Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/plans/:planExecutionId",
+            "params": [
+              {
+                "name": "planExecutionId",
+                "value": "",
+                "type": "path",
+                "description": "Plan execution identifier"
+              }
+            ]
+          },
+          "docs": "Get detailed status of a plan execution"
+        },
+        {
+          "info": {
+            "name": "Get Plan Execution Steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/plans/:planExecutionId/steps",
+            "params": [
+              {
+                "name": "planExecutionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the status of all step executions within a plan execution"
+        },
+        {
+          "info": {
+            "name": "List Plan Executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/executables/plans/executions",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve plan execution history"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

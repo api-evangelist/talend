@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts Connections API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/connections"
+          },
+          "docs": "Retrieve all connections configured in the account"
+        },
+        {
+          "info": {
+            "name": "Create Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data source connection"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

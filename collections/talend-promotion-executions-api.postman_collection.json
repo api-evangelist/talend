@@ -1,0 +1,159 @@
+{
+  "item": [
+    {
+      "id": "b7c25990-0d85-496e-9746-43fbac682de8",
+      "name": "Promotion Executions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f11c1d02-dd13-4043-b77d-4a6b1d0e74ab",
+          "name": "Execute Promotion",
+          "request": {
+            "name": "Execute Promotion",
+            "description": {
+              "content": "Execute a promotion from source environment to target environment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "processing",
+                "executions",
+                "promotions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"promotionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18d7dbb4-303a-4b78-87ca-062d02ea6946",
+              "name": "Promotion execution started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processing",
+                    "executions",
+                    "promotions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"promotionId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "eu",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://api.{{region}}.cloud.talend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f61c4921-4a09-42dc-9c89-0e12b7595555",
+    "name": "Talend Cloud Orchestration Artifacts Promotion Executions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.\n\nContact Support:\n Name: Qlik Talend Support",
+      "type": "text/plain"
+    }
+  }
+}

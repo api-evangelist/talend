@@ -1,0 +1,725 @@
+{
+  "item": [
+    {
+      "id": "e9bd3358-5f81-4423-aa7a-74d91137d3f7",
+      "name": "Task Executions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "747c317a-a589-4fcd-b990-f24875df427d",
+          "name": "Execute Task",
+          "request": {
+            "name": "Execute Task",
+            "description": {
+              "content": "Trigger the execution of a data integration task",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "processing",
+                "executions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"taskId\": \"<string>\",\n  \"environmentId\": \"<string>\",\n  \"logLevel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2df5acd7-c2c8-4058-ae73-63199aa0f921",
+              "name": "Task execution started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processing",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskId\": \"<string>\",\n  \"environmentId\": \"<string>\",\n  \"logLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"executionId\": \"string\",\n  \"taskId\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"startTime\": \"1968-05-21T17:21:13.226Z\",\n  \"endTime\": \"2017-10-14T04:30:55.150Z\",\n  \"duration\": 6206,\n  \"engineId\": \"string\",\n  \"logUrl\": \"http://YSLrkmDeQBnIBXdjzLp.ngdJnsnrJPJCPXYwWEGqqYEoJJdFmbx--5xLIHAK+GWDBs2ZsiujJbdra\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2057bf30-27da-4b2c-a26a-96f40173afe2",
+              "name": "Bad Request - invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processing",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskId\": \"<string>\",\n  \"environmentId\": \"<string>\",\n  \"logLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dd96a127-05d6-40dd-bdb4-017f67dcb533",
+              "name": "Unauthorized - invalid or missing bearer token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processing",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskId\": \"<string>\",\n  \"environmentId\": \"<string>\",\n  \"logLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ce3c278-d888-42f7-98d4-e9cc2c9b0814",
+          "name": "Get Task Execution Status",
+          "request": {
+            "name": "Get Task Execution Status",
+            "description": {
+              "content": "Check the status and details of a running or completed task execution",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "processing",
+                "executions",
+                ":executionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) Execution identifier"
+                },
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0889892e-252b-465f-b72a-fa4dcc7a16d0",
+              "name": "Task execution details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processing",
+                    "executions",
+                    ":executionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) Execution identifier"
+                    },
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"executionId\": \"string\",\n  \"taskId\": \"string\",\n  \"status\": \"SUCCESS\",\n  \"startTime\": \"1968-05-21T17:21:13.226Z\",\n  \"endTime\": \"2017-10-14T04:30:55.150Z\",\n  \"duration\": 6206,\n  \"engineId\": \"string\",\n  \"logUrl\": \"http://YSLrkmDeQBnIBXdjzLp.ngdJnsnrJPJCPXYwWEGqqYEoJJdFmbx--5xLIHAK+GWDBs2ZsiujJbdra\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01f15193-dfd7-4c33-a015-415b64155d4f",
+          "name": "Terminate Task Execution",
+          "request": {
+            "name": "Terminate Task Execution",
+            "description": {
+              "content": "Stop a currently running task execution",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "processing",
+                "executions",
+                ":executionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) Execution identifier"
+                },
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0547ce9a-56c1-4877-8f58-1c02ce6b6764",
+              "name": "Execution terminated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processing",
+                    "executions",
+                    ":executionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) Execution identifier"
+                    },
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c021d03-e99e-402a-8003-2826f898d41e",
+          "name": "List Task Executions",
+          "request": {
+            "name": "List Task Executions",
+            "description": {
+              "content": "Retrieve task execution history with optional filters",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "processing",
+                "executables",
+                "tasks",
+                "executions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "taskId",
+                  "value": "<string>",
+                  "description": "Filter by task ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by execution status"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c62878f-4f7c-427a-a7e6-c23f71ec2b5a",
+              "name": "List of task executions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processing",
+                    "executables",
+                    "tasks",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "taskId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"executionId\": \"string\",\n      \"taskId\": \"string\",\n      \"status\": \"SUCCESS\",\n      \"startTime\": \"1958-10-01T16:38:50.827Z\",\n      \"endTime\": \"1990-05-10T16:22:02.518Z\",\n      \"duration\": 6649,\n      \"engineId\": \"string\",\n      \"logUrl\": \"http://deBQbMIjcLDLvYPCmFaCeRubigflpEUJ.ouxZedcUcOgDKO3UJOqfVxASVSKT3FD6uIOqapC-nj,H.RH\"\n    },\n    {\n      \"executionId\": \"string\",\n      \"taskId\": \"string\",\n      \"status\": \"CANCELLED\",\n      \"startTime\": \"1957-09-10T17:19:00.299Z\",\n      \"endTime\": \"1967-12-10T10:09:03.723Z\",\n      \"duration\": 5188,\n      \"engineId\": \"string\",\n      \"logUrl\": \"https://MxFzVVyjmgAevFse.vyorc.JPWQn6OOPjYZ83BZni-d7TJ\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f79c3d8c-65d2-4065-afaf-79aca5e62efd",
+          "name": "Search Task Executions",
+          "request": {
+            "name": "Search Task Executions",
+            "description": {
+              "content": "Search task executions with advanced filters",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "processing",
+                "executables",
+                "tasks",
+                "executions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"taskId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d7a1e7f2-5528-471e-a2b1-05443c637b28",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processing",
+                    "executables",
+                    "tasks",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Cloud region (This can only be one of eu,us,us-west,ap,au)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "eu",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://api.{{region}}.cloud.talend.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "538c0dc1-4cd9-45dc-97bc-9e8c53875a14",
+    "name": "Talend Cloud Orchestration Artifacts Task Executions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.\n\nContact Support:\n Name: Qlik Talend Support",
+      "type": "text/plain"
+    }
+  }
+}

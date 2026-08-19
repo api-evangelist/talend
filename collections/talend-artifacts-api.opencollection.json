@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artifacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Artifacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/artifacts"
+          },
+          "docs": "Retrieve available deployment artifacts"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

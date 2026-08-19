@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts Workspaces API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/workspaces"
+          },
+          "docs": "Retrieve all workspaces available in the Talend Cloud account"
+        },
+        {
+          "info": {
+            "name": "Create Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/workspaces",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new workspace in the Talend Cloud account"
+        },
+        {
+          "info": {
+            "name": "Get Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/workspaces/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific workspace by ID"
+        },
+        {
+          "info": {
+            "name": "Update Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/workspaces/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing workspace"
+        },
+        {
+          "info": {
+            "name": "Delete Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/workspaces/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier"
+              }
+            ]
+          },
+          "docs": "Remove a workspace from the Talend Cloud account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

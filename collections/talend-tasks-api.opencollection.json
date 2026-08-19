@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts Tasks API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/executables/tasks",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "query",
+                "description": "Filter tasks by workspace"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of tasks to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of tasks to skip"
+              }
+            ]
+          },
+          "docs": "Retrieve all data integration tasks in the account"
+        },
+        {
+          "info": {
+            "name": "Create Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/executables/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data integration task"
+        },
+        {
+          "info": {
+            "name": "Get Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/executables/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific task"
+        },
+        {
+          "info": {
+            "name": "Update Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/executables/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing task configuration"
+        },
+        {
+          "info": {
+            "name": "Delete Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/executables/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task identifier"
+              }
+            ]
+          },
+          "docs": "Remove a task from the account"
+        },
+        {
+          "info": {
+            "name": "Search Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/orchestration/executables/tasks/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search tasks with filters"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts Task Executions API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger the execution of a data integration task"
+        },
+        {
+          "info": {
+            "name": "Get Task Execution Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/:executionId",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "Execution identifier"
+              }
+            ]
+          },
+          "docs": "Check the status and details of a running or completed task execution"
+        },
+        {
+          "info": {
+            "name": "Terminate Task Execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.cloud.talend.com/processing/executions/:executionId",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "Execution identifier"
+              }
+            ]
+          },
+          "docs": "Stop a currently running task execution"
+        },
+        {
+          "info": {
+            "name": "List Task Executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/executables/tasks/executions",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by execution status"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve task execution history with optional filters"
+        },
+        {
+          "info": {
+            "name": "Search Task Executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/executables/tasks/executions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search task executions with advanced filters"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

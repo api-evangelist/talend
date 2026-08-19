@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Talend Cloud Orchestration Artifacts Remote Engine Clusters API",
+    "version": "2021-03"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Remote Engine Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Remote Engine Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engine-clusters"
+          },
+          "docs": "Get all remote engine clusters in the account"
+        },
+        {
+          "info": {
+            "name": "Create Remote Engine Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.cloud.talend.com/processing/runtimes/remote-engine-clusters",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new remote engine cluster for load balancing"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
