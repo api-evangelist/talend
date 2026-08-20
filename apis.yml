@@ -283,6 +283,8 @@ apis:
   humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
   baseURL: https://api.{region}.cloud.talend.com
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
