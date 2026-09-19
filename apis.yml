@@ -136,6 +136,8 @@ apis:
   humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
   baseURL: https://api.{region}.cloud.talend.com
   tags:
+  - Environment
+  tags_raw:
   - Environments
   properties:
   - type: OpenAPI
@@ -264,6 +266,8 @@ apis:
   humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
   baseURL: https://api.{region}.cloud.talend.com
   tags:
+  - Schedule
+  tags_raw:
   - Schedules
   properties:
   - type: OpenAPI
@@ -314,6 +318,8 @@ apis:
   humanURL: https://talend.qlik.dev/apis/orchestration/2021-03/
   baseURL: https://api.{region}.cloud.talend.com
   tags:
+  - Workspace
+  tags_raw:
   - Workspaces
   properties:
   - type: OpenAPI
@@ -325,6 +331,11 @@ apis:
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
 common:
+  - type: ParentCompany
+    url: https://apis.io/providers/qlik/
+    name: Qlik
+    x-relationship: acquired
+    x-evidence: "description names Qlik and https://www.talend.com/ now redirects to qlik.com (roadmap#390, corroborate-dead.py)"
   - type: AgenticAccess
     url: agentic-access/talend-agentic-access.yml
   - type: DomainSecurity
