@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Talend Cloud Orchestration Artifacts Environments API
+  title: Talend Cloud Orchestration Environments API
   description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
   version: 2021-03
   contact:
@@ -61,15 +61,6 @@ paths:
           description: Environment created
 components:
   schemas:
-    EnvironmentCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
     Environment:
       type: object
       description: An execution environment in Talend Cloud
@@ -85,6 +76,15 @@ components:
         created:
           type: string
           format: date-time
+    EnvironmentCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http

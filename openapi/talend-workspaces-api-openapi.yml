@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Talend Cloud Orchestration Artifacts Workspaces API
+  title: Talend Cloud Orchestration Workspaces API
   description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
   version: 2021-03
   contact:
@@ -120,22 +120,16 @@ paths:
         '204':
           description: Workspace deleted
 components:
-  responses:
-    NotFound:
-      description: Not Found - resource does not exist
-    BadRequest:
-      description: Bad Request - invalid request body
-    Unauthorized:
-      description: Unauthorized - invalid or missing bearer token
-  parameters:
-    Id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Resource identifier
   schemas:
+    WorkspaceCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
     Workspace:
       type: object
       description: A logical grouping of tasks, plans, and connections in Talend Cloud
@@ -158,15 +152,21 @@ components:
         updated:
           type: string
           format: date-time
-    WorkspaceCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Resource identifier
+  responses:
+    BadRequest:
+      description: Bad Request - invalid request body
+    Unauthorized:
+      description: Unauthorized - invalid or missing bearer token
+    NotFound:
+      description: Not Found - resource does not exist
   securitySchemes:
     BearerAuth:
       type: http

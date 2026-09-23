@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Talend Cloud Orchestration Artifacts Plan Executions API
-  description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
+  title: Talend Cloud Processing Plan Executions API
+  description: The Talend Cloud Processing API manages task and plan executions, remote engine lifecycle, and run profiles in Qlik Talend Cloud. Use this API to trigger and monitor data integration job runs, manage remote engine clusters, and configure execution run profiles.
   version: 2021-03
   contact:
     name: Qlik Talend Support
@@ -167,5 +167,5 @@ components:
       bearerFormat: JWT
       description: Bearer token from Talend Cloud personal access token or service account token
 externalDocs:
-  description: Talend Orchestration API Documentation
-  url: https://talend.qlik.dev/apis/orchestration/2021-03/
+  description: Talend Processing API Documentation
+  url: https://talend.qlik.dev/apis/processing/2021-03/

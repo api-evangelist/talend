@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Talend Cloud Orchestration Artifacts Plans API
+  title: Talend Cloud Orchestration Plans API
   description: The Talend Cloud Orchestration API manages tasks, plans, schedules, workspaces, environments, artifacts, connections, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources.
   version: 2021-03
   contact:
@@ -123,27 +123,6 @@ components:
         type: string
       description: Plan identifier
   schemas:
-    PlanCreate:
-      type: object
-      required:
-      - name
-      - workspaceId
-      properties:
-        name:
-          type: string
-        workspaceId:
-          type: string
-        description:
-          type: string
-        steps:
-          type: array
-          items:
-            type: object
-            properties:
-              taskId:
-                type: string
-              order:
-                type: integer
     Plan:
       type: object
       description: An ordered sequence of tasks in Talend Cloud
@@ -171,6 +150,27 @@ components:
         updated:
           type: string
           format: date-time
+    PlanCreate:
+      type: object
+      required:
+      - name
+      - workspaceId
+      properties:
+        name:
+          type: string
+        workspaceId:
+          type: string
+        description:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              taskId:
+                type: string
+              order:
+                type: integer
   securitySchemes:
     BearerAuth:
       type: http
