@@ -120,16 +120,14 @@ paths:
         '204':
           description: Workspace deleted
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing bearer token
+    BadRequest:
+      description: Bad Request - invalid request body
+    NotFound:
+      description: Not Found - resource does not exist
   schemas:
-    WorkspaceCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
     Workspace:
       type: object
       description: A logical grouping of tasks, plans, and connections in Talend Cloud
@@ -152,6 +150,15 @@ components:
         updated:
           type: string
           format: date-time
+    WorkspaceCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
   parameters:
     Id:
       name: id
@@ -160,13 +167,6 @@ components:
       schema:
         type: string
       description: Resource identifier
-  responses:
-    BadRequest:
-      description: Bad Request - invalid request body
-    Unauthorized:
-      description: Unauthorized - invalid or missing bearer token
-    NotFound:
-      description: Not Found - resource does not exist
   securitySchemes:
     BearerAuth:
       type: http

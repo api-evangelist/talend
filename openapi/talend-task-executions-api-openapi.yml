@@ -144,18 +144,10 @@ paths:
           description: Search results
 components:
   responses:
-    BadRequest:
-      description: Bad Request - invalid request body
     Unauthorized:
       description: Unauthorized - invalid or missing bearer token
-  parameters:
-    ExecutionId:
-      name: executionId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Execution identifier
+    BadRequest:
+      description: Bad Request - invalid request body
   schemas:
     TaskExecution:
       type: object
@@ -207,6 +199,14 @@ components:
           - DEBUG
           - TRACE
           description: Log verbosity level
+  parameters:
+    ExecutionId:
+      name: executionId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Execution identifier
   securitySchemes:
     BearerAuth:
       type: http

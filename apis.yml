@@ -42,6 +42,7 @@ tags:
   - ETL
   - Orchestration
   - Pipelines
+  - Data Catalog
 created: '2026-03-16'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/apis.yml
@@ -75,7 +76,7 @@ apis:
   properties:
   - type: Documentation
     url: https://talend.qlik.dev/apis/audit-logs/2021-03/
-- aid: talend:talend-connections-api
+- aid: talend:talend-cloud-connections-api
   name: Talend Cloud Connections API
   description: Administers connections used by datasets and crawlers to retrieve data at scale.
   humanURL: https://talend.qlik.dev/apis/connections/2021-03/

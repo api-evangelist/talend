@@ -92,18 +92,6 @@ paths:
           description: Remote engine deleted
 components:
   schemas:
-    RemoteEngineCreate:
-      type: object
-      required:
-      - name
-      - workspaceId
-      properties:
-        name:
-          type: string
-        workspaceId:
-          type: string
-        description:
-          type: string
     RemoteEngine:
       type: object
       description: A self-hosted Talend remote engine instance
@@ -129,6 +117,18 @@ components:
         created:
           type: string
           format: date-time
+    RemoteEngineCreate:
+      type: object
+      required:
+      - name
+      - workspaceId
+      properties:
+        name:
+          type: string
+        workspaceId:
+          type: string
+        description:
+          type: string
   parameters:
     EngineId:
       name: id

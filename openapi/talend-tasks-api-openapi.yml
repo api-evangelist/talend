@@ -205,6 +205,9 @@ components:
         updated:
           type: string
           format: date-time
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing bearer token
   parameters:
     TaskId:
       name: taskId
@@ -213,9 +216,6 @@ components:
       schema:
         type: string
       description: Task identifier
-  responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing bearer token
   securitySchemes:
     BearerAuth:
       type: http
