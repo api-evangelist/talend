@@ -377,3 +377,14 @@ integrations:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-correction-request:
+  requested: '2026-09-28'
+  source:
+  - https://github.com/api-evangelist/talend/pull/1
+  request: 'PR #1 (arjxnt, a third party, 2026-06-29) is not merged: its specs were altered (injected licenses and
+    a security scheme, 44 operationIds changed). But the source it found is real: Talend publishes 20 OpenAPI documents
+    at https://talend.qlik.dev/apis/<slug>/2021-03/openapi30.json (316 operations; main has 43). Pull them DIRECTLY,
+    unmodified, and add the APIs main lacks: dynamic-engine, dynamic-engine-environments, service-accounts, crawler,
+    observability-metrics, execution-history-search, ip-allowlist, oauth, workspace-permissions, sso-role-mapping,
+    dataset, sharing, scim-v2, seats-and-subscription (slugs in the PR''s file list). Orchestration now has an archive
+    endpoint the PR lacks.'
