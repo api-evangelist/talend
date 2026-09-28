@@ -1,0 +1,25 @@
+generated: '2026-09-28'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/talend-tasks-api-openapi.yml
+skills:
+- file: skills/talend-list-and-get-task.md
+  name: talend-list-and-get-task
+  api: openapi/talend-tasks-api-openapi.yml
+  operations:
+  - listTasks
+  - getTask
+- file: skills/talend-execute-and-monitor-task.md
+  name: talend-execute-and-monitor-task
+  api: openapi/talend-task-executions-api-openapi.yml
+  operations:
+  - executeTask
+  - getTaskExecutionStatus
+  - listTaskExecutions
+- file: skills/talend-manage-plan-lifecycle.md
+  name: talend-manage-plan-lifecycle
+  api: openapi/talend-plans-api-openapi.yml
+  operations:
+  - createPlan
+  - getPlan
+  - deletePlan

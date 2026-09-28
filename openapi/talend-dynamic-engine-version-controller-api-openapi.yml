@@ -1,0 +1,186 @@
+openapi: 3.2.0
+info:
+  title: Talend Dynamic Engine Version Controller API
+  version: 2021-03
+  contact: {}
+  description: 'Operations tagged dynamic-engine-version-controller across 2 of this provider''s published API definitions: dynamic-engine-openapi.json, dynamic-engine-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.eu.cloud.talend.com
+  description: URL for the AWS Europe region
+  x-talend:
+    isPublished: true
+- url: https://api.ap.cloud.talend.com
+  description: URL for the AWS Asia Pacific region
+  x-talend:
+    isPublished: true
+- url: https://api.us.cloud.talend.com
+  description: URL for the AWS United States East region
+  x-talend:
+    isPublished: true
+- url: https://api.au.cloud.talend.com
+  description: URL for the AWS Australia region
+  x-talend:
+    isPublished: true
+- url: https://api.us-west.cloud.talend.com
+  description: URL for the Azure United States West region
+  x-talend:
+    isPublished: true
+security:
+- Public: []
+tags:
+- name: dynamic-engine-version-controller
+paths:
+  /processing/runtimes/dynamic-engine-versions:
+    get:
+      tags:
+      - dynamic-engine-version-controller
+      summary: Return all supported Dynamic Engine versions
+      description: A Dynamic Engine version is a consistent baseline of processing services that can be used to generate a deployment manifest.
+      operationId: findAll
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DynamicEngineVersion'
+        '400':
+          description: Your request is invalid
+        '401':
+          description: You must be authenticated to execute this operation
+        '403':
+          description: You do not have the permissions to execute this operation
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    servers:
+    - url: https://api.eu.cloud.talend.com
+      description: URL for the AWS Europe region
+      x-talend:
+        isPublished: true
+    - url: https://api.ap.cloud.talend.com
+      description: URL for the AWS Asia Pacific region
+      x-talend:
+        isPublished: true
+    - url: https://api.us.cloud.talend.com
+      description: URL for the AWS United States East region
+      x-talend:
+        isPublished: true
+    - url: https://api.au.cloud.talend.com
+      description: URL for the AWS Australia region
+      x-talend:
+        isPublished: true
+    - url: https://api.us-west.cloud.talend.com
+      description: URL for the Azure United States West region
+      x-talend:
+        isPublished: true
+components:
+  schemas:
+    DynamicEngineService:
+      type: object
+      description: Describe a dynamic engine version service
+      properties:
+        id:
+          type: string
+          description: The id
+          example: engine-operator
+        feature:
+          type: string
+          description: The feature
+          example: infra
+        version:
+          type: string
+          description: The version
+          example: 1.0.0
+        flag:
+          $ref: '#/components/schemas/Flag'
+    DynamicEngineReleaseNote:
+      type: object
+      description: Describe a dynamic engine version release note
+      properties:
+        releaseNotesLink:
+          type: string
+          description: The link to the release note
+        changelogLink:
+          type: string
+          description: The link to the changelog
+    DynamicEngineVersion:
+      type: object
+      description: Describe a dynamic engine version
+      properties:
+        id:
+          type: string
+          description: The id
+        name:
+          type: string
+          description: The name
+        publicationDate:
+          type: string
+          format: date-time
+          description: The publication date
+        kubeVersion:
+          type: string
+          description: The supported kubernetes version
+        releaseNotes:
+          $ref: '#/components/schemas/DynamicEngineReleaseNote'
+        services:
+          type: array
+          description: The list of services
+          items:
+            $ref: '#/components/schemas/DynamicEngineService'
+    Flag:
+      type: object
+      properties:
+        key:
+          type: string
+        deploymentType:
+          type: string
+          enum:
+          - helm
+          - kubectl
+          - unknown
+          - ALL
+    ApiError:
+      type: object
+      description: Describe an API error
+      properties:
+        status:
+          type: integer
+          format: int32
+          description: The http status's code
+          example: 400
+        title:
+          type: string
+          description: The error's title
+          example: Bad request
+        details:
+          type: string
+          description: The error's details
+          example: Invalid parameter
+        instance:
+          type: string
+          description: The error's instance
+          example: https://api.talend.com/errors/dynamic-engine-not-found
+        type:
+          type: string
+          description: The error's type
+          example: https://api.talend.com/errors/error-code
+        code:
+          type: string
+          description: The error's code
+          example: DP_ERR_001
+        data:
+          type: object
+  securitySchemes:
+    Public:
+      type: http
+      scheme: bearer
+      bearerFormat: Bearer <jwt>
+x-refined-from:
+- dynamic-engine-openapi.json
+- dynamic-engine-openapi.yml

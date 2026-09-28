@@ -1,0 +1,127 @@
+openapi: 3.2.0
+info:
+  title: SCIM v2 SCIM 2.0 Service Provider Config API
+  description: Manage your users and groups using SCIM 2.0.
+  contact:
+    name: Talend Support
+  license:
+    name: Apache License Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+  version: 2021-03
+servers:
+- url: https://api.eu.cloud.talend.com
+  description: URL for the AWS Europe region
+  x-talend:
+    isPublished: true
+- url: https://api.ap.cloud.talend.com
+  description: URL for the AWS Asia Pacific region
+  x-talend:
+    isPublished: true
+- url: https://api.us.cloud.talend.com
+  description: URL for the AWS United States East region
+  x-talend:
+    isPublished: true
+- url: https://api.au.cloud.talend.com
+  description: URL for the AWS Australia region
+  x-talend:
+    isPublished: true
+- url: https://api.us-west.cloud.talend.com
+  description: URL for the Azure United States West region
+  x-talend:
+    isPublished: true
+security:
+- Public: []
+tags:
+- name: SCIM 2.0 Service Provider Config
+paths:
+  /scim/v2/ServiceProviderConfig:
+    summary: Service Provider Configuration
+    description: Use to facilitate service provider feature discovery
+    x-talend:
+      section: Discovery
+    get:
+      tags:
+      - SCIM 2.0 Service Provider Config
+      summary: Get Talend configuration
+      description: Returns Talend's configuration details for our SCIM API, including which operations are supported.
+      operationId: get_3
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GenericScimResource'
+components:
+  schemas:
+    Meta:
+      type: object
+      properties:
+        resourceType:
+          type: string
+        created:
+          type: string
+          format: date-time
+        lastModified:
+          type: string
+          format: date-time
+        location:
+          type: string
+        version:
+          type: string
+      x-talend:
+        section: Common
+    GenericScimResource:
+      type: object
+      properties:
+        objectNode:
+          type: object
+        id:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        externalId:
+          type: string
+        schemaUrns:
+          type: array
+          items:
+            type: string
+      x-talend:
+        section: Common
+  securitySchemes:
+    Public:
+      type: http
+      scheme: bearer
+      bearerFormat: Bearer <TOKEN>
+x-talend:
+  sections:
+    Discovery: {}
+    Users:
+      description: "As you might expect, users map to the individuals of your account (domain). Each user contains properties called attributes. You can list users, filter by attribute, add new users, update a user's profile information, or remove a user entirely.\n\nAttributes are the details associated with a user's account. These are the details that someone would typically set in their profile. The following table maps SCIM attributes with Talend Cloud user attributes:\n\n| Talend user field | SCIM attribute | Attribute type |Required|\n| -------- | -------- | -------- | -------- |\n| login     | userName     | Singular     | **Required** |\n| firstName     | name.givenName     | Singular     | **Required** |\n| middleName     | name.middleName     | Singular     | |\n| lastName     | name.familyName     | Singular     | **Required** |\n| email     | \temails\\[primary=true\\].value     | Multi-Valued     | |\n| phone     | phoneNumbers\\[type='work'\\].value     | Multi-Valued     | |\n| active     | active     | Singular     | |\n| password     | password     | Singular     | |\n| title     | title     | Singular     | |\n| preferredLanguage     | preferredLanguage     | Singular   |   |\n| timezone     | timezone     | Singular     | |\n| groups     | groups     | Multi-Valued     | |\n| roles     | roles     | Multi-Valued     | |\n\nRequires the permission **Users - Manage** (**TMC_USER_MANAGEMENT**)."
+    Groups:
+      description: 'Groups map to Talend groups with the following attributes:
+
+        | Talend user field | SCIM attribute | Attribute type |Required|
+
+        | -------- | -------- | -------- | -------- |
+
+        | name     | displayName     | Singular     | **Required** |
+
+        | userIds     | members.value     | Multi-Valued     | |
+
+
+        Requires the permission **Groups - Manage** (**TMC_GROUP_MANAGEMENT**).'
+    Roles:
+      description: 'Roles map to Talend roles with the following attributes:
+
+        | Talend user field | SCIM attribute | Attribute type |Required|
+
+        | -------- | -------- | -------- | -------- |
+
+        | name     | name     | Singular     | **Required** |
+
+        | permissions     | entitlements     | Multi-Valued     | **Required**|
+
+
+        Requires the permission **Roles - Manage** (**TMC_ROLE_MANAGEMENT**).'
+    Common: {}

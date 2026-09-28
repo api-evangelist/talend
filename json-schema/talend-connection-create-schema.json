@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/talend/main/json-schema/talend-connection-create-schema.json",
+  "title": "ConnectionCreate",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/talend-connections-api-openapi.yml#/components/schemas/ConnectionCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "workspaceId",
+    "type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "workspaceId": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

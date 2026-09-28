@@ -1,0 +1,191 @@
+generated: '2026-09-28'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 15
+  own: 3
+  other_domain: 9
+  platform: 3
+  roles:
+  - api
+  - docs
+  - marketing
+  - other
+  - support
+  - website
+hosts:
+- host: api.apis.io
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: apis.io
+  role: api
+  relation: other-domain
+- host: api.qlik.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: qlik.com
+  role: api
+  relation: other-domain
+- host: api.qlik.dev
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: qlik.dev
+  role: api
+  relation: other-domain
+- host: api.talend.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: talend.com
+  role: api
+  relation: own
+- host: api.{region}.cloud.talend.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: talend.com
+  role: api
+  relation: own
+- host: apis.apis.io
+  found_by:
+  - probed
+  - site-links
+  - namespace-probe
+  - well-known
+  types: []
+  serves: []
+  title: APIs | APIs.io
+  status: 200
+  platform: githubusercontent.com
+  registrable_domain: apis.io
+  role: api
+  relation: other-domain
+- host: apis.io
+  found_by:
+  - pointer
+  - probed
+  - well-known
+  types:
+  - ParentCompany
+  serves: []
+  platform: githubusercontent.com
+  registrable_domain: apis.io
+  role: api
+  relation: other-domain
+- host: developer.apis.io
+  found_by:
+  - probed
+  - site-links
+  - namespace-probe
+  - well-known
+  types: []
+  serves: []
+  title: APIs.io Developers — API, MCP &amp; Skills
+  status: 200
+  registrable_domain: apis.io
+  role: api
+  relation: other-domain
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrg
+  serves: []
+  registrable_domain: github.com
+  role: other
+  relation: platform
+- host: help.qlik.com
+  found_by:
+  - pointer
+  - probed
+  - well-known
+  types:
+  - Support
+  - Help
+  serves: []
+  registrable_domain: qlik.com
+  role: support
+  relation: other-domain
+- host: raw.githubusercontent.com
+  found_by:
+  - pointer
+  types:
+  - JSONSchema
+  - Vocabulary
+  serves: []
+  registrable_domain: githubusercontent.com
+  role: other
+  relation: platform
+- host: talend.qlik.dev
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Portal
+  - Documentation
+  - APIs
+  - GettingStarted
+  serves:
+  - docs
+  - cdn
+  vendor: cloudfront
+  registrable_domain: qlik.dev
+  role: docs
+  relation: other-domain
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.qlik.com
+  found_by:
+  - pointer
+  - probed
+  - well-known
+  types:
+  - TrustCenter
+  - TermsOfService
+  - Leadership
+  - Blog
+  - Qlik Data Fabric
+  serves: []
+  registrable_domain: qlik.com
+  role: marketing
+  relation: other-domain
+- host: www.talend.com
+  found_by:
+  - pointer
+  - probed
+  - well-known
+  - vendor-detect
+  types:
+  - Security
+  - PrivacyPolicy
+  - Pricing
+  - Newsroom
+  - Website
+  - Integrations
+  serves:
+  - hosting
+  vendor: netlify
+  registrable_domain: talend.com
+  role: website
+  relation: own

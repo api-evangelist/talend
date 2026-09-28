@@ -1,0 +1,183 @@
+openapi: 3.2.0
+info:
+  title: Sharing Eligibles API
+  description: Manage how your users and groups can access your Talend Cloud entities.
+  contact:
+    name: Talend
+  version: 2021-03
+servers:
+- url: https://api.eu.cloud.talend.com
+  description: URL for the AWS Europe region
+  x-talend:
+    isPublished: true
+- url: https://api.ap.cloud.talend.com
+  description: URL for the AWS Asia Pacific region
+  x-talend:
+    isPublished: true
+- url: https://api.us.cloud.talend.com
+  description: URL for the AWS United States East region
+  x-talend:
+    isPublished: true
+- url: https://api.au.cloud.talend.com
+  description: URL for the AWS Australia region
+  x-talend:
+    isPublished: true
+- url: https://api.us-west.cloud.talend.com
+  description: URL for the Azure United States West region
+  x-talend:
+    isPublished: true
+security:
+- Public: []
+tags:
+- name: Eligibles
+paths:
+  /sharing/sharings/eligibles/{entityType}:
+    parameters:
+    - name: entityType
+      in: path
+      required: true
+      schema:
+        type: string
+      example: preparation
+    get:
+      tags:
+      - Eligibles
+      summary: Get eligible users/groups for sharing
+      description: 'Use this method to retrieve the list of users and groups with whom a specific entity type can be shared.
+
+        The list of available users and groups changes depending on which permissions they are assigned in Talend Management Console.'
+      operationId: getApiV1SharingsEligiblesEntitytype
+      parameters:
+      - name: X-CLIENT-VERSION
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Eligibles'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '502':
+          description: Bad gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+components:
+  schemas:
+    Group:
+      type: object
+      required:
+      - groupId
+      - groupName
+      description: Desription of group of users, with the group id and its name.
+      properties:
+        groupId:
+          type: string
+          description: UUID
+          example: 15de7eb2-6447-49a8-a404-a53ecd1f3473
+        groupName:
+          type: string
+          example: IT department
+    Eligibles:
+      type: object
+      description: Description of a list of users and groups of users who are eligibles for the sharing of an entit.
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+    User:
+      type: object
+      required:
+      - firstName
+      - lastName
+      - userId
+      description: Basic description of an user, with its id, first name and last name.
+      properties:
+        userId:
+          type: string
+          description: UUID
+          example: 15de7eb2-6447-49a8-a404-a53ecd1f3473
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Frusciante
+    ErrorMessageBody:
+      type: object
+      required:
+      - error
+      - path
+      - status
+      - timestamp
+      description: This object is returned in case of an error during an API call.
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          example: 1622618273418
+        status:
+          type: integer
+          format: int32
+          example: 400
+        error:
+          type: string
+          example: Bad Request
+        exception:
+          type: string
+        message:
+          type: string
+          example: The request is invalid
+        path:
+          type: string
+          example: /sharing/sharings/levels/dataset
+  securitySchemes:
+    Public:
+      type: http
+      scheme: bearer
+      description: "This Bearer authentication can be\nset in the Authorization header of your requests. \n\nAuthentication tokens and Personal Access Tokens are supported.\n\nPersonal Access Tokens can be generated in the Profile Preferences page of the Talend Cloud Portal."
+      bearerFormat: Bearer <token>

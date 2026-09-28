@@ -1,11 +1,14 @@
 aid: talend
+
 name: Talend
-description: >-
-  Talend (now part of Qlik) provides data integration, quality, and API management capabilities through cloud-native
-  APIs for ETL, data pipelines, and application integration. The Qlik Talend Cloud platform exposes REST APIs for
-  orchestrating tasks and plans, executing data integration jobs, managing remote engines, configuring connections,
-  monitoring execution history, and administering identities, workspaces, and environments.
+
+description: Talend (now part of Qlik) provides data integration, quality, and API management capabilities through cloud-native APIs for ETL,
+  data pipelines, and application integration. The Qlik Talend Cloud platform exposes REST APIs for orchestrating tasks and plans, executing data
+  integration jobs, managing remote engines, configuring connections, monitoring execution history, and administering identities, workspaces,
+  and environments.
+
 type: Index
+
 deliveryModel:
   model: unknown
   open_source: false
@@ -17,6 +20,7 @@ deliveryModel:
   - openapi
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: enterprise
   onboarding: unknown
@@ -29,24 +33,135 @@ accessModel:
   - plans
   - authentication
   - security
-  - {url: 'https://www.talend.com/', status: 301, note: 'declared website redirects to https://www.qlik.com/us/qlik-talend — a different registrable domain (talend.com -> qlik.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
+  - url: https://www.talend.com/
+    status: 301
+    note: declared website redirects to https://www.qlik.com/us/qlik-talend — a different registrable domain (talend.com -> qlik.com), possible
+      rename or acquisition (probed 2026-09-03, roadmap#169)
   generated: '2026-09-03'
   method: derived
+
 position: Consuming
+
 access: 3rd-Party
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/talend.png
+
 tags:
-  - API Management
-  - Data Integration
-  - Data Quality
-  - ETL
-  - Orchestration
-  - Pipelines
-  - Data Catalog
+- API Management
+- Data Integration
+- Data Quality
+- ETL
+- Orchestration
+- Pipelines
+- Data Catalog
+
 created: '2026-03-16'
+
 modified: '2026-05-19'
+
 url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/apis.yml
+
 specificationVersion: '0.23'
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
+common:
+- type: FinOps
+  url: finops/talend-finops.yml
+- type: RateLimits
+  url: rate-limits/talend-rate-limits.yml
+- type: Plans
+  url: plans/talend-plans-pricing.yml
+- type: Spectral
+  url: rules/talend-rules.yml
+- type: Spectral
+  url: rules/talend-jsonschema-spectral-rules.yml
+- type: Spectral
+  url: rules/talend-api-rules.yml
+- type: JSONLD
+  url: json-ld/talend-context.jsonld
+- type: Vocabulary
+  url: vocabulary/talend-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/talend-data-model.yml
+- type: ErrorCatalog
+  url: errors/talend-problem-types.yml
+- type: Conformance
+  url: conformance/talend-conformance.yml
+- type: LLMsTxt
+  url: llms/talend-llms.txt
+- type: AgentCard
+  url: a2a/talend-a2a.yml
+- type: SecurityTxt
+  url: well-known/talend-apis-security.txt
+- type: WellKnown
+  url: well-known/talend-well-known.yml
+- type: Hosts
+  url: hosts/talend-hosts.yml
+- type: Vendors
+  url: vendors/talend-vendors.yml
+- type: SDKs
+  url: packages/talend-packages.yml
+- type: Packages
+  url: packages/talend-packages.yml
+- type: TrustCenter
+  url: https://www.qlik.com/us/trust
+- type: TermsOfService
+  url: https://www.qlik.com/us/legal/terms-of-use
+- type: Support
+  url: https://help.qlik.com/
+- type: Security
+  url: https://www.talend.com/security/
+- type: PrivacyPolicy
+  url: https://www.talend.com/privacy/
+- type: Pricing
+  url: https://www.talend.com/pricing/
+- type: Newsroom
+  url: https://www.talend.com/about-us/news/
+- type: Leadership
+  url: https://www.qlik.com/us/company/leadership
+- type: Blog
+  url: https://www.qlik.com/us/blog
+- type: ParentCompany
+  url: https://apis.io/providers/qlik/
+  name: Qlik
+  x-relationship: acquired
+  x-evidence: description names Qlik and https://www.talend.com/ now redirects to qlik.com (roadmap#390, corroborate-dead.py)
+- type: AgenticAccess
+  url: agentic-access/talend-agentic-access.yml
+- type: DomainSecurity
+  url: security/talend-domain-security.yml
+- type: Authentication
+  url: authentication/talend-authentication.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/talend
+- type: Portal
+  url: https://talend.qlik.dev/
+- type: Documentation
+  url: https://talend.qlik.dev/
+- type: APIs
+  url: https://talend.qlik.dev/apis/
+- type: GettingStarted
+  url: https://talend.qlik.dev/getting-started/
+- type: Website
+  url: https://www.talend.com/
+- type: Qlik Data Fabric
+  url: https://www.qlik.com/us/products/talend-data-fabric
+- type: GitHubOrg
+  url: https://github.com/Talend
+- type: Help
+  url: https://help.qlik.com/en-US/cloud-services/Content/Sense_Helpsites/Home-talend-cloud.htm
+- type: JSONSchema
+  url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/json-schema/talend-task-schema.json
+- type: Vocabulary
+  url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/vocabulary/talend-vocabulary.yml
+- type: Integrations
+  url: https://www.talend.com/partners
+
 apis:
 - aid: talend:talend-identities-api
   name: Talend Cloud Identities Management API
@@ -115,6 +230,8 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
+  - type: JSONSchema
+    url: json-schema/talend-artifact-schema.json
 - aid: talend:talend-connections-api
   name: Talend Connections API
   description: The Connections API from Talend — 1 operation(s) for connections.
@@ -131,6 +248,10 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
+  - type: JSONSchema
+    url: json-schema/talend-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/talend-connection-create-schema.json
 - aid: talend:talend-environments-api
   name: Talend Environments API
   description: The Environments API from Talend — 1 operation(s) for environments.
@@ -149,6 +270,10 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
+  - type: JSONSchema
+    url: json-schema/talend-environment-schema.json
+  - type: JSONSchema
+    url: json-schema/talend-environment-create-schema.json
 - aid: talend:talend-plan-executions-api
   name: Talend Plan Executions API
   description: The Plan Executions API from Talend — 4 operation(s) for plan executions.
@@ -165,6 +290,10 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
+  - type: JSONSchema
+    url: json-schema/talend-plan-execution-schema.json
+  - type: JSONSchema
+    url: json-schema/talend-plan-execution-request-schema.json
 - aid: talend:talend-plans-api
   name: Talend Plans API
   description: The Plans API from Talend — 2 operation(s) for plans.
@@ -181,6 +310,10 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
+  - type: JSONSchema
+    url: json-schema/talend-plan-schema.json
+  - type: JSONSchema
+    url: json-schema/talend-plan-create-schema.json
 - aid: talend:talend-promotion-executions-api
   name: Talend Promotion Executions API
   description: The Promotion Executions API from Talend — 1 operation(s) for promotion executions.
@@ -245,6 +378,10 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
+  - type: JSONSchema
+    url: json-schema/talend-remote-engine-schema.json
+  - type: JSONSchema
+    url: json-schema/talend-remote-engine-create-schema.json
 - aid: talend:talend-run-profiles-api
   name: Talend Run Profiles API
   description: The Run Profiles API from Talend — 2 operation(s) for run profiles.
@@ -261,6 +398,8 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
+  - type: JSONSchema
+    url: json-schema/talend-run-profile-create-schema.json
 - aid: talend:talend-schedules-api
   name: Talend Schedules API
   description: The Schedules API from Talend — 1 operation(s) for schedules.
@@ -279,6 +418,10 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
+  - type: JSONSchema
+    url: json-schema/talend-schedule-schema.json
+  - type: JSONSchema
+    url: json-schema/talend-schedule-create-schema.json
 - aid: talend:talend-task-executions-api
   name: Talend Task Executions API
   description: The Task Executions API from Talend — 3 operation(s) for task executions.
@@ -295,6 +438,10 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
+  - type: JSONSchema
+    url: json-schema/talend-task-execution-schema.json
+  - type: JSONSchema
+    url: json-schema/talend-task-execution-request-schema.json
 - aid: talend:talend-tasks-api
   name: Talend Tasks API
   description: The Tasks API from Talend — 3 operation(s) for tasks.
@@ -313,6 +460,10 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
+  - type: JSONSchema
+    url: json-schema/talend-task-schema.json
+  - type: JSONSchema
+    url: json-schema/talend-task-create-schema.json
 - aid: talend:talend-workspaces-api
   name: Talend Workspaces API
   description: The Workspaces API from Talend — 2 operation(s) for workspaces.
@@ -331,60 +482,302 @@ apis:
     url: https://talend.qlik.dev/getting-started/
   - type: Documentation
     url: https://talend.qlik.dev/apis/processing/2021-03/
-common:
-  - type: ParentCompany
-    url: https://apis.io/providers/qlik/
-    name: Qlik
-    x-relationship: acquired
-    x-evidence: "description names Qlik and https://www.talend.com/ now redirects to qlik.com (roadmap#390, corroborate-dead.py)"
-  - type: AgenticAccess
-    url: agentic-access/talend-agentic-access.yml
-  - type: DomainSecurity
-    url: security/talend-domain-security.yml
-  - type: Authentication
-    url: authentication/talend-authentication.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/talend
-  - type: Portal
-    url: https://talend.qlik.dev/
-  - type: Documentation
-    url: https://talend.qlik.dev/
-  - type: APIs
-    url: https://talend.qlik.dev/apis/
-  - type: GettingStarted
-    url: https://talend.qlik.dev/getting-started/
-  - type: Website
-    url: https://www.talend.com/
-  - type: Qlik Data Fabric
-    url: https://www.qlik.com/us/products/talend-data-fabric
-  - type: GitHubOrg
-    url: https://github.com/Talend
-  - type: Help
-    url: https://help.qlik.com/en-US/cloud-services/Content/Sense_Helpsites/Home-talend-cloud.htm
   - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/json-schema/talend-task-schema.json
-  - type: Vocabulary
-    url: https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/vocabulary/talend-vocabulary.yml
-  - type: Integrations
-    url: https://www.talend.com/partners
+    url: json-schema/talend-workspace-schema.json
+  - type: JSONSchema
+    url: json-schema/talend-workspace-create-schema.json
+- aid: talend:talend-account-api
+  name: Talend Account API
+  description: The Account API from Talend — 4 operation(s) for account.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-account-api-openapi.yml
+- aid: talend:talend-account-subscription-api
+  name: 'Talend account :: subscription API'
+  description: >-
+    The account :: subscription API from Talend — 1 operation(s) for account :: subscription.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - 'account :: subscription'
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-account-subscription-api-openapi.yml
+- aid: talend:talend-attributes-api
+  name: Talend Attributes API
+  description: The attributes API from Talend — 2 operation(s) for attributes.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-attributes-api-openapi.yml
+- aid: talend:talend-connectionscan-api
+  name: Talend Connection Scan API
+  description: The ConnectionScan API from Talend — 1 operation(s) for connectionscan.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - ConnectionScan
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-connectionscan-api-openapi.yml
+- aid: talend:talend-crawler-api
+  name: Talend Crawler API
+  description: The Crawler API from Talend — 6 operation(s) for crawler.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Crawler
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-crawler-api-openapi.yml
+- aid: talend:talend-dataset-api
+  name: Talend Dataset API
+  description: The dataset API from Talend — 5 operation(s) for dataset.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - dataset
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-dataset-api-openapi.yml
+- aid: talend:talend-datasets-api
+  name: Talend Datasets API
+  description: The Datasets API from Talend — 2 operation(s) for datasets.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-datasets-api-openapi.yml
+- aid: talend:talend-dynamic-engine-controller-api
+  name: Talend Dynamic Engine Controller API
+  description: >-
+    The dynamic-engine-controller API from Talend — 5 operation(s) for dynamic-engine-controller.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - dynamic-engine-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-dynamic-engine-controller-api-openapi.yml
+- aid: talend:talend-dynamic-engine-version-controller-api
+  name: Talend Dynamic Engine Version Controller API
+  description: >-
+    The dynamic-engine-version-controller API from Talend — 1 operation(s) for dynamic-engine-version-controller.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - dynamic-engine-version-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-dynamic-engine-version-controller-api-openapi.yml
+- aid: talend:talend-eligibles-api
+  name: Talend Eligibles API
+  description: The Eligibles API from Talend — 1 operation(s) for eligibles.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Eligibles
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-eligibles-api-openapi.yml
+- aid: talend:talend-environment-controller-api
+  name: Talend Environment Controller API
+  description: The environment-controller API from Talend — 2 operation(s) for environment-controller.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - environment-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-environment-controller-api-openapi.yml
+- aid: talend:talend-ip-allowlist-management-api
+  name: Talend IP Allowlist Management API
+  description: >-
+    The IP Allowlist Management API from Talend — 3 operation(s) for ip allowlist management.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - IP Allowlist Management
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-ip-allowlist-management-api-openapi.yml
+- aid: talend:talend-levels-api
+  name: Talend Levels API
+  description: The Levels API from Talend — 1 operation(s) for levels.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Levels
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-levels-api-openapi.yml
+- aid: talend:talend-monitoring-api
+  name: Talend Monitoring API
+  description: The Monitoring API from Talend — 4 operation(s) for monitoring.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Monitoring
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-monitoring-api-openapi.yml
+- aid: talend:talend-orchestration-api
+  name: Talend Orchestration API
+  description: The Orchestration API from Talend — 4 operation(s) for orchestration.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Orchestration
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-orchestration-api-openapi.yml
+- aid: talend:talend-scim-2-0-group-management-api
+  name: Talend SCIM 2.0 Group Management API
+  description: >-
+    The SCIM 2.0 Group Management API from Talend — 3 operation(s) for scim 2.0 group management.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - SCIM 2.0 Group Management
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-scim-2-0-group-management-api-openapi.yml
+- aid: talend:talend-scim-2-0-resource-type-api
+  name: Talend SCIM 2.0 Resource Type API
+  description: The SCIM 2.0 Resource Type API from Talend — 2 operation(s) for scim 2.0 resource type.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - SCIM 2.0 Resource Type
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-scim-2-0-resource-type-api-openapi.yml
+- aid: talend:talend-scim-2-0-role-management-api
+  name: Talend SCIM 2.0 Role Management API
+  description: >-
+    The SCIM 2.0 Role Management API from Talend — 3 operation(s) for scim 2.0 role management.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - SCIM 2.0 Role Management
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-scim-2-0-role-management-api-openapi.yml
+- aid: talend:talend-scim-2-0-schema-api
+  name: Talend SCIM 2.0 Schema API
+  description: The SCIM 2.0 Schema API from Talend — 2 operation(s) for scim 2.0 schema.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - SCIM 2.0 Schema
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-scim-2-0-schema-api-openapi.yml
+- aid: talend:talend-scim-2-0-service-provider-config-api
+  name: Talend SCIM 2.0 Service Provider Config API
+  description: >-
+    The SCIM 2.0 Service Provider Config API from Talend — 1 operation(s) for scim 2.0 service provider
+    config.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - SCIM 2.0 Service Provider Config
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-scim-2-0-service-provider-config-api-openapi.yml
+- aid: talend:talend-scim-2-0-user-management-api
+  name: Talend SCIM 2.0 User Management API
+  description: >-
+    The SCIM 2.0 User Management API from Talend — 3 operation(s) for scim 2.0 user management.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - SCIM 2.0 User Management
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-scim-2-0-user-management-api-openapi.yml
+- aid: talend:talend-security-api
+  name: Talend Security API
+  description: The Security API from Talend — 3 operation(s) for security.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Security
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-security-api-openapi.yml
+- aid: talend:talend-service-accounts-workspaces-permissions-api
+  name: 'Talend service accounts :: workspaces :: permissions API'
+  description: >-
+    The service accounts :: workspaces :: permissions API from Talend — 3 operation(s) for service accounts
+    :: workspaces :: permissions.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - 'service accounts :: workspaces :: permissions'
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-service-accounts-workspaces-permissions-api-openapi.yml
+- aid: talend:talend-sharings-api
+  name: Talend Sharings API
+  description: The Sharings API from Talend — 3 operation(s) for sharings.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - Sharings
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-sharings-api-openapi.yml
+- aid: talend:talend-sharingset-api
+  name: Talend Sharing Set API
+  description: The SharingSet API from Talend — 2 operation(s) for sharingset.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - SharingSet
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-sharingset-api-openapi.yml
+- aid: talend:talend-workspaces-permissions-api
+  name: 'Talend workspaces :: permissions API'
+  description: >-
+    The workspaces :: permissions API from Talend — 3 operation(s) for workspaces :: permissions.
+  humanURL: https://talend.qlik.dev/apis/identities-management/2021-03/
+  baseURL: https://api.{region}.cloud.talend.com
+  tags:
+  - 'workspaces :: permissions'
+  properties:
+  - type: OpenAPI
+    url: openapi/talend-workspaces-permissions-api-openapi.yml
 integrations:
-  - name: Snowflake
-  - name: AWS
-  - name: Azure
-  - name: Databricks
-  - name: Google
-  - name: Cloudera
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Snowflake
+- name: AWS
+- name: Azure
+- name: Databricks
+- name: Google
+- name: Cloudera
+
 x-correction-request:
   requested: '2026-09-28'
   source:
   - https://github.com/api-evangelist/talend/pull/1
-  request: 'PR #1 (arjxnt, a third party, 2026-06-29) is not merged: its specs were altered (injected licenses and
-    a security scheme, 44 operationIds changed). But the source it found is real: Talend publishes 20 OpenAPI documents
-    at https://talend.qlik.dev/apis/<slug>/2021-03/openapi30.json (316 operations; main has 43). Pull them DIRECTLY,
-    unmodified, and add the APIs main lacks: dynamic-engine, dynamic-engine-environments, service-accounts, crawler,
-    observability-metrics, execution-history-search, ip-allowlist, oauth, workspace-permissions, sso-role-mapping,
-    dataset, sharing, scim-v2, seats-and-subscription (slugs in the PR''s file list). Orchestration now has an archive
-    endpoint the PR lacks.'
+  request: 'PR #1 (arjxnt, a third party, 2026-06-29) is not merged: its specs were altered (injected licenses and a security scheme, 44 operationIds
+    changed). But the source it found is real: Talend publishes 20 OpenAPI documents at https://talend.qlik.dev/apis/<slug>/2021-03/openapi30.json
+    (316 operations; main has 43). Pull them DIRECTLY, unmodified, and add the APIs main lacks: dynamic-engine, dynamic-engine-environments, service-accounts,
+    crawler, observability-metrics, execution-history-search, ip-allowlist, oauth, workspace-permissions, sso-role-mapping, dataset, sharing,
+    scim-v2, seats-and-subscription (slugs in the PR''s file list). Orchestration now has an archive endpoint the PR lacks.'
+x-enrichment:
+  date: '2026-09-28'
+  status: enriched
+  artifacts_added: 59
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

@@ -1,0 +1,346 @@
+openapi: 3.2.0
+info:
+  title: Talend Security API
+  version: 2021-03
+  contact: {}
+  description: 'Operations tagged Security across 2 of this provider''s published API definitions: oauth-openapi.json, sso-role-mapping-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.eu.cloud.talend.com
+  description: URL for the AWS Europe region
+  x-talend:
+    isPublished: true
+- url: https://api.ap.cloud.talend.com
+  description: URL for the AWS Asia Pacific region
+  x-talend:
+    isPublished: true
+- url: https://api.us.cloud.talend.com
+  description: URL for the AWS United States East region
+  x-talend:
+    isPublished: true
+- url: https://api.au.cloud.talend.com
+  description: URL for the AWS Australia region
+  x-talend:
+    isPublished: true
+- url: https://api.us-west.cloud.talend.com
+  description: URL for the Azure United States West region
+  x-talend:
+    isPublished: true
+security:
+- Public: []
+tags:
+- name: Security
+paths:
+  /security/oauth/token:
+    description: Used to generate access tokens for service accounts
+    post:
+      summary: Get JWT token
+      description: 'Use the service account credentials to get an OAuth2 JWT access token through the Client Credentials Grant flow.
+
+        Required permission to use this endpoint: **Service Account - Manage**. The ID of this permission is `TMC_SERVICE_ACCOUNT_MANAGEMENT`.'
+      parameters:
+      - $ref: '#/components/parameters/talendVersion'
+      - $ref: '#/components/parameters/talend-version'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: Token is generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: The ClientId or Secret is missing or invalid
+        '403':
+          description: The account provided does not have the required permissions
+        '500':
+          description: 500 - Internal Server Error
+      tags:
+      - Security
+      operationId: postSecurityOauthToken
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.eu.cloud.talend.com
+      description: URL for the AWS Europe region
+      x-talend:
+        isPublished: true
+    - url: https://api.ap.cloud.talend.com
+      description: URL for the AWS Asia Pacific region
+      x-talend:
+        isPublished: true
+    - url: https://api.us.cloud.talend.com
+      description: URL for the AWS United States East region
+      x-talend:
+        isPublished: true
+    - url: https://api.au.cloud.talend.com
+      description: URL for the AWS Australia region
+      x-talend:
+        isPublished: true
+    - url: https://api.us-west.cloud.talend.com
+      description: URL for the Azure United States West region
+      x-talend:
+        isPublished: true
+  /security/role-mappings:
+    summary: Operations on role mappings
+    description: "Role mappings are part of single sign-on (SSO). This feature allows you to describe which Talend roles to assign to your users based on their roles in you organization.\n\nThe feature is activated for your tenant if at least one role mapping is defined.\n\nThe Talend roles assigned to a user at SSO login using role mapping will replace those defined in TMC for *Just-in-time user provisioning*.\n\nA role mapping has the following format:\n```\n{\n  \"name\":\"role_1\",\n  \"roles\":[\n    \"talend_role_1\",\n    \"talend_role_2\",\n    \"talend_role_3\"\n  ]\n}\n```\n- The attribute `name` is the name of the role in you organization. It must be unique.\n- The attribute `roles` is an array of Talend roles name associated to the role in your organization."
+    get:
+      summary: Get all role mappings
+      description: Return the list of all role mappings for your tenant.
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoleMapping'
+              example: "[\n   {\n      \"name\":\"role_1\",\n      \"roles\":[\n         \"talend_role_1\",\n         \"talend_role_2\",\n         \"talend_role_3\"\n      ]\n   },\n   {\n      \"name\":\"role_2\",\n      \"roles\":[\n         \"talend_role_4\",\n         \"talend_role_5\"\n      ]\n   }\n]"
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+      tags:
+      - Security
+      operationId: getSecurityRoleMappings
+      x-operation-id-source: derived
+    post:
+      summary: Create or replace all the role mappings
+      description: Create or replace all the role mappings for your tenant.
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleMapping'
+              example: "[\n   {\n      \"name\":\"role_1\",\n      \"roles\":[\n         \"talend_role_1\",\n         \"talend_role_2\",\n         \"talend_role_3\"\n      ]\n   },\n   {\n      \"name\":\"role_2\",\n      \"roles\":[\n         \"talend_role_4\",\n         \"talend_role_5\"\n      ]\n   }\n]"
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+      tags:
+      - Security
+      operationId: postSecurityRoleMappings
+      x-operation-id-source: derived
+    delete:
+      summary: Delete all the role mappings
+      description: 'Delete all the role mappings for your tenant.
+
+
+        This action will disable the role mapping feature for your tenant.'
+      responses:
+        '204':
+          description: Status 204
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+      tags:
+      - Security
+      operationId: deleteSecurityRoleMappings
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.eu.cloud.talend.com
+      description: URL for the AWS Europe region
+      x-talend:
+        isPublished: true
+    - url: https://api.ap.cloud.talend.com
+      description: URL for the AWS Asia Pacific region
+      x-talend:
+        isPublished: true
+    - url: https://api.us.cloud.talend.com
+      description: URL for the AWS United States East region
+      x-talend:
+        isPublished: true
+    - url: https://api.au.cloud.talend.com
+      description: URL for the AWS Australia region
+      x-talend:
+        isPublished: true
+    - url: https://api.us-west.cloud.talend.com
+      description: URL for the Azure United States West region
+      x-talend:
+        isPublished: true
+  /security/role-mappings/{customerRoleName}:
+    summary: Operations on a specific role mapping
+    description: 'A role mapping can be targeted specifically using the customer role name to retrieve or delete it. '
+    parameters:
+    - name: customerRoleName
+      in: path
+      required: true
+      description: Customer role name
+      schema:
+        type: string
+        description: Customer role name
+      example: role_1
+    get:
+      summary: Get a specific role mapping
+      description: Get a specific role mapping for your tenant.
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleMapping'
+              example: "{\n  \"name\":\"role_1\",\n  \"roles\":[\n    \"talend_role_1\",\n    \"talend_role_2\",\n    \"talend_role_3\"\n  ]\n}"
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+      tags:
+      - Security
+      operationId: getSecurityRoleMappingsByCustomerRoleName
+      x-operation-id-source: derived
+    delete:
+      summary: Delete a specific role mapping
+      description: Delete a specific role mappings for your tenant.
+      responses:
+        '204':
+          description: Status 204
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+      tags:
+      - Security
+      operationId: deleteSecurityRoleMappingsByCustomerRoleName
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.eu.cloud.talend.com
+      description: URL for the AWS Europe region
+      x-talend:
+        isPublished: true
+    - url: https://api.ap.cloud.talend.com
+      description: URL for the AWS Asia Pacific region
+      x-talend:
+        isPublished: true
+    - url: https://api.us.cloud.talend.com
+      description: URL for the AWS United States East region
+      x-talend:
+        isPublished: true
+    - url: https://api.au.cloud.talend.com
+      description: URL for the AWS Australia region
+      x-talend:
+        isPublished: true
+    - url: https://api.us-west.cloud.talend.com
+      description: URL for the Azure United States West region
+      x-talend:
+        isPublished: true
+components:
+  schemas:
+    TokenRequest:
+      type: object
+      required:
+      - audience
+      - grant_type
+      description: A token request is an object used to obtain an access token through the OAuth 2 Client Credentials Grant flow.
+      properties:
+        grant_type:
+          type: string
+          description: The OAuth 2 flow that must be used to obtain an access token. The value must be set to "client_credentials".
+          example: client_credentials
+        audience:
+          type: string
+          description: The unique identifier of the target API to access
+          example: https://api.eu.cloud.talend.com/
+    TokenResponse:
+      type: object
+      required:
+      - access_token
+      - token_type
+      description: Access token is returned in this response.
+      properties:
+        access_token:
+          type: string
+          description: The access token obtained in JWT format.
+          example: your_personal_token
+        token_type:
+          type: string
+          description: The type of the token issued as described in the OAuth 2 specification. The value is usually "Bearer".
+          example: Bearer
+        expires_in:
+          type: string
+          description: The lifetime in seconds of the access token. For example, the value 3600 denotes that the access token expires at the end of one hour from the time the response is generated.
+          example: '3600'
+    RoleMapping:
+      type: object
+      required:
+      - name
+      - roles
+      properties:
+        name:
+          type: string
+          description: Customer role name
+        roles:
+          type: array
+          description: Talend roles name
+          items:
+            type: string
+      example: "{\n  \"name\":\"role_1\",\n  \"roles\":[\n    \"talend_role_1\",\n    \"talend_role_2\",\n    \"talend_role_3\"\n  ]\n}"
+  parameters:
+    talendVersion:
+      name: talendVersion
+      in: query
+      required: false
+      description: API version
+      schema:
+        type: string
+        description: API version
+    talend-version:
+      name: talend-version
+      in: header
+      required: false
+      description: API version
+      schema:
+        type: string
+        description: API version
+  responses:
+    429TooManyRequests:
+      description: Too many requests were sent. Check the X-RateLimit-Limit, X-RateLimit-Remaining and X-RateLimit-Reset headers.
+    500InternalServerError:
+      description: The server encountered an unexpected condition that prevented it from fulfilling the request.
+    404NotFound:
+      description: Resource not found.
+    400BadRequest:
+      description: Invalid request body. The message varies depending on the cause of the bad request. For example, the cause could be a malformed body or parameter.
+    401Unauthorized:
+      description: The system failed to authenticate the user. Either the Authorization header was missing or the provided token was incorrect.
+    403Forbidden:
+      description: The system failed to authorize the user. The provided token was recognized but did not have the rights to perform the action. Contact your security administrator to get the appropriate rights.
+  securitySchemes:
+    Public:
+      type: http
+      scheme: basic
+x-refined-from:
+- oauth-openapi.json
+- sso-role-mapping-openapi.json

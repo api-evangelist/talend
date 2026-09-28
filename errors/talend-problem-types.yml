@@ -1,0 +1,103 @@
+generated: '2026-09-28'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/crawler-openapi.json
+- openapi/dataset-openapi.json
+- openapi/dynamic-engine-environments-openapi.json
+- openapi/dynamic-engine-openapi.json
+- openapi/dynamic-engine-openapi.yml
+- openapi/execution-history-search-openapi.json
+- openapi/ip-allowlist-openapi.json
+- openapi/oauth-openapi.json
+- openapi/observability-metrics-openapi.json
+- openapi/scim-v2-openapi.json
+- openapi/seats-and-subscription-openapi.json
+- openapi/service-accounts-openapi.json
+format: custom
+envelope:
+  media_type: application/json
+  schema: ErrorMessageBody
+coverage:
+  operations: 179
+  statuses_declared: 11
+problems:
+- status: 400
+  title: Bad Request
+  description: Your request is invalid
+  operations: 101
+  media_types:
+  - application/json
+  schema: ErrorMessageBody
+- status: 401
+  title: Unauthorized
+  description: The system failed to authenticate the user. Either the Authorization header was missing or the provided
+    token was incorrect.
+  operations: 135
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 402
+  title: Payment Required
+  description: Action cannot be performed because it would bring your account above the limit allowed by your plan.
+  operations: 4
+  media_types: []
+  schema: null
+- status: 403
+  title: Forbidden
+  description: The system failed to authorize the user. The provided token was recognized but did not have the rights
+    to perform the action. Contact your s
+  operations: 130
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 404
+  title: Not Found
+  description: Not found
+  operations: 81
+  media_types:
+  - application/json
+  - application/zip
+  schema: ErrorResponse
+- status: 409
+  title: Conflict
+  description: The crawler is running, action not available
+  operations: 18
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 429
+  title: Too Many Requests
+  description: Too many requests were sent. Check the X-RateLimit-Limit, X-RateLimit-Remaining and X-RateLimit-Reset
+    headers.
+  operations: 35
+  media_types: []
+  schema: null
+- status: 500
+  title: Internal Server Error
+  description: The server encountered an unexpected condition that prevented it from fulfilling the request.
+  operations: 116
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 502
+  title: Bad Gateway
+  description: Bad gateway
+  operations: 19
+  media_types:
+  - application/json
+  schema: ErrorMessageBody
+- status: 503
+  title: Service Unavailable
+  description: Service unavailable
+  operations: 23
+  media_types:
+  - application/json
+  schema: ErrorMessageBody
+- status: 5XX
+  title: null
+  description: Unexpected error
+  operations: 4
+  media_types:
+  - application/json
+  schema: ErrorMessageBody

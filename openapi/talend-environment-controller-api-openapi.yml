@@ -1,0 +1,332 @@
+openapi: 3.2.0
+info:
+  title: Talend Environment Controller API
+  version: 2021-03
+  contact: {}
+  description: 'Operations tagged environment-controller across 2 of this provider''s published API definitions: dynamic-engine-openapi.json, dynamic-engine-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.eu.cloud.talend.com
+  description: URL for the AWS Europe region
+  x-talend:
+    isPublished: true
+- url: https://api.ap.cloud.talend.com
+  description: URL for the AWS Asia Pacific region
+  x-talend:
+    isPublished: true
+- url: https://api.us.cloud.talend.com
+  description: URL for the AWS United States East region
+  x-talend:
+    isPublished: true
+- url: https://api.au.cloud.talend.com
+  description: URL for the AWS Australia region
+  x-talend:
+    isPublished: true
+- url: https://api.us-west.cloud.talend.com
+  description: URL for the Azure United States West region
+  x-talend:
+    isPublished: true
+security:
+- Public: []
+tags:
+- name: environment-controller
+paths:
+  /processing/runtimes/dynamic-engines/{dynamicEngineId}/environments/{environmentId}/status:
+    parameters:
+    - name: dynamicEngineId
+      in: path
+      required: true
+      description: The dynamic engine's id
+      schema:
+        type: string
+        description: The dynamic engine's id
+      example: c-c97f8
+    - name: environmentId
+      in: path
+      required: true
+      description: The environment's id
+      schema:
+        type: string
+        description: The environment's id
+      example: 664b0bbd6c6f5522732e055d
+    get:
+      tags:
+      - environment-controller
+      summary: Fetch the Dynamic Engine environment status
+      description: The status is the runtime state of processing services belonging to an environment assigned to the given Dynamic Engine instance.
+      operationId: getStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '400':
+          description: Your request is invalid
+        '401':
+          description: You must be authenticated to execute this operation
+        '403':
+          description: You do not have the permissions to execute this operation
+        '404':
+          description: Environment does not exist or is not associated to a dynamic engine
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    servers:
+    - url: https://api.eu.cloud.talend.com
+      description: URL for the AWS Europe region
+      x-talend:
+        isPublished: true
+    - url: https://api.ap.cloud.talend.com
+      description: URL for the AWS Asia Pacific region
+      x-talend:
+        isPublished: true
+    - url: https://api.us.cloud.talend.com
+      description: URL for the AWS United States East region
+      x-talend:
+        isPublished: true
+    - url: https://api.au.cloud.talend.com
+      description: URL for the AWS Australia region
+      x-talend:
+        isPublished: true
+    - url: https://api.us-west.cloud.talend.com
+      description: URL for the Azure United States West region
+      x-talend:
+        isPublished: true
+  /processing/runtimes/dynamic-engines/{dynamicEngineId}/environments/{environmentId}:
+    parameters:
+    - name: dynamicEngineId
+      in: path
+      required: true
+      description: The dynamic engine's id
+      schema:
+        type: string
+        description: The dynamic engine's id
+      example: c-c97f8
+    - name: environmentId
+      in: path
+      required: true
+      description: The environment's id
+      schema:
+        type: string
+        description: The environment's id
+      example: 664b0bbd6c6f5522732e055d
+    delete:
+      tags:
+      - environment-controller
+      summary: Delete an environment assignment
+      description: This removes the association between the given environment and the given Dynamic Engine instance.
+      operationId: delete
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Your request is invalid
+        '401':
+          description: You must be authenticated to execute this operation
+        '403':
+          description: You do not have the permissions to execute this operation
+        '404':
+          description: Environment does not exist or is not associated to a dynamic engine
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: There is already an ongoing operation for this environment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    servers:
+    - url: https://api.eu.cloud.talend.com
+      description: URL for the AWS Europe region
+      x-talend:
+        isPublished: true
+    - url: https://api.ap.cloud.talend.com
+      description: URL for the AWS Asia Pacific region
+      x-talend:
+        isPublished: true
+    - url: https://api.us.cloud.talend.com
+      description: URL for the AWS United States East region
+      x-talend:
+        isPublished: true
+    - url: https://api.au.cloud.talend.com
+      description: URL for the AWS Australia region
+      x-talend:
+        isPublished: true
+    - url: https://api.us-west.cloud.talend.com
+      description: URL for the Azure United States West region
+      x-talend:
+        isPublished: true
+components:
+  schemas:
+    KubernetesEvent:
+      type: object
+      description: Describe an engine event
+      properties:
+        message:
+          type: string
+          description: The event's message
+          minLength: 1
+        source:
+          type: string
+          description: The event's source
+          minLength: 1
+        creationDate:
+          type: string
+          description: The event's creation date with timezone
+          minLength: 1
+    ServiceDetails:
+      type: object
+      required:
+      - status
+      description: Details of the installed service
+      properties:
+        name:
+          type: string
+          description: The service's name
+          minLength: 1
+          example: remote-engine-agent
+        status:
+          type: string
+          description: The service's status
+          enum:
+          - RUNNING
+          - UPDATING
+          - STARTING
+          - NOT_DEPLOYED
+          - IN_ERROR
+        chartVersion:
+          type: string
+          description: The service's version
+        creationDate:
+          type: string
+          description: The service's creation date with timezone
+        lastUpdateDate:
+          type: string
+          description: The service's last update date with timezone
+        appsVersion:
+          type: object
+          description: All application's version running in this service
+        podsErrors:
+          type: object
+          description: The error messages of all the non-running pods of the service
+        resourcesErrors:
+          type: object
+          description: The error messages of all the non-deployment resources of the service that are not ready
+        jobStatus:
+          type: string
+          description: The status of the job that installed the service
+          enum:
+          - SUCCEEDED
+          - FAILED
+          - RUNNING
+        jobErrorMessage:
+          type: string
+          description: The error message of the job that installed the service
+    StatusResponse:
+      type: object
+      required:
+      - status
+      description: Describe the status
+      properties:
+        status:
+          type: string
+          description: The global status
+          enum:
+          - STARTING
+          - RUNNING
+          - UPDATING
+          - STOPPING
+          - NOT_FOUND
+          - NOT_DEPLOYED
+          - IN_ERROR
+          example: RUNNING
+        dynamicEngineVersion:
+          type: string
+          description: The version of the dynamic engine
+          example: 1.0.0
+        deploymentType:
+          type: string
+          description: The type of deployment used to install the dynamic engine
+          enum:
+          - helm
+          - kubectl
+          - unknown
+          - ALL
+          example: helm
+        jobDeleteStatus:
+          type: string
+          description: The status of the delete job
+          enum:
+          - SUCCEEDED
+          - FAILED
+          - RUNNING
+          example: failed
+        services:
+          type: array
+          description: The services details
+          items:
+            $ref: '#/components/schemas/ServiceDetails'
+          minItems: 0
+          maxItems: 50
+        failureEvents:
+          type: array
+          description: The failure events
+          items:
+            $ref: '#/components/schemas/KubernetesEvent'
+          minItems: 0
+          maxItems: 100
+    ApiError:
+      type: object
+      description: Describe an API error
+      properties:
+        status:
+          type: integer
+          format: int32
+          description: The http status's code
+          example: 400
+        title:
+          type: string
+          description: The error's title
+          example: Bad request
+        details:
+          type: string
+          description: The error's details
+          example: Invalid parameter
+        instance:
+          type: string
+          description: The error's instance
+          example: https://api.talend.com/errors/dynamic-engine-not-found
+        type:
+          type: string
+          description: The error's type
+          example: https://api.talend.com/errors/error-code
+        code:
+          type: string
+          description: The error's code
+          example: DP_ERR_001
+        data:
+          type: object
+  securitySchemes:
+    Public:
+      type: http
+      scheme: bearer
+      bearerFormat: Bearer <jwt>
+x-refined-from:
+- dynamic-engine-openapi.json
+- dynamic-engine-openapi.yml

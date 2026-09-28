@@ -61,6 +61,17 @@ paths:
           description: Schedule created
 components:
   schemas:
+    ScheduleCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        timezone:
+          type: string
     Schedule:
       type: object
       description: A time-based trigger for task or plan execution
@@ -77,17 +88,6 @@ components:
         created:
           type: string
           format: date-time
-    ScheduleCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        timezone:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

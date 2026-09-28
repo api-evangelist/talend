@@ -1,0 +1,239 @@
+openapi: 3.2.0
+info:
+  title: Crawler Connection Scan API
+  description: A crawler allows you to retrieve a full list of assets contained in a connection, in a single operation. Manage crawlers to retrieve data at a large scale and enrich your inventory more efficiently.
+  contact: {}
+  version: 2021-03
+servers:
+- url: https://api.eu.cloud.talend.com
+  description: URL for the AWS Europe region
+  x-talend:
+    isPublished: true
+- url: https://api.ap.cloud.talend.com
+  description: URL for the AWS Asia Pacific region
+  x-talend:
+    isPublished: true
+- url: https://api.us.cloud.talend.com
+  description: URL for the AWS United States East region
+  x-talend:
+    isPublished: true
+- url: https://api.au.cloud.talend.com
+  description: URL for the AWS Australia region
+  x-talend:
+    isPublished: true
+- url: https://api.us-west.cloud.talend.com
+  description: URL for the Azure United States West region
+  x-talend:
+    isPublished: true
+security:
+- BearerAuthentication: []
+tags:
+- name: ConnectionScan
+paths:
+  /connections/scan/{connectionId}:
+    parameters:
+    - name: connectionId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - ConnectionScan
+      summary: Retrieve the result of the last scan
+      description: This endpoint allows you to retrieve the tables and views held by a connection based on the last connection scan. It can only be done if you have previously scanned the JDBC connection by calling this endpoint with the POST method. Once the scan is done, you can call the GET endpoint in order to get the result. If the connection has changed (for example new tables/views have been added), then you must call a POST scan in order to refresh the state.
+      operationId: getApiV1ScanConnectionid
+      parameters:
+      - name: talendVersion
+        in: query
+        schema:
+          type: string
+          enum:
+          - 2021-03
+      - name: talend-version
+        in: header
+        schema:
+          type: string
+          enum:
+          - 2021-03
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionScan'
+              example: "{\n  \"id\": \"ac6e2117-fbb5-442a-bb02-cefabbf04516\",\n  \"lastScan\": \"2021-01-08T15:41:29.263Z\",\n  \"results\": [\n    {\n      \"displayName\": \"view1\",\n      \"technicalName\": \"view1\",\n      \"metadata\": {\n        \"type\": \"VIEW\"\n      }\n    },\n    {\n      \"displayName\": \"table1\",\n      \"technicalName\": \"table1\",\n      \"metadata\": {\n        \"type\": \"TABLE\"\n      }\n    }\n  ]\n}"
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotAuthenticated'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotAuthorized'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+    post:
+      tags:
+      - ConnectionScan
+      summary: Scan a JDBC connection
+      description: This endpoint allows you to scan the content of a JDBC connection. The scan will search for all the tables and views that are held by this connection. However, the tables and views found by this scan are not returned in the response payload. In order to get them, you need to call this endpoint with the GET method.
+      operationId: postApiV1ScanConnectionid
+      parameters:
+      - name: talendVersion
+        in: query
+        schema:
+          type: string
+          enum:
+          - 2021-03
+      - name: talend-version
+        in: header
+        schema:
+          type: string
+          enum:
+          - 2021-03
+      responses:
+        '204':
+          description: Status 204
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotAuthenticated'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotAuthorized'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+components:
+  schemas:
+    NotFound:
+      type: object
+      required:
+      - entityId
+      - entityType
+      description: Generic response payload when an object hasn't been found. The entityType gives more information about the object.
+      properties:
+        entityId:
+          type: string
+          description: The technical talend ID of the entity
+        entityType:
+          $ref: '#/components/schemas/EntityType'
+        i18nMsg:
+          type: string
+    EntityType:
+      type: string
+      description: Entity type used for the NotFound data type in order to indicate the type of the object that hasn't been found.
+      enum:
+      - Connection
+      - ConnectionScan
+      - CrawledDataset
+      - Crawler
+      - Dataset
+      - Datastore
+      - MassSampling
+      - Tenant
+    NotAuthorized:
+      type: object
+      required:
+      - message
+      description: The user has been authenticated but doesn't have the entitlement for this service.
+      properties:
+        message:
+          type: string
+        cause:
+          type: string
+    Metadata_infos:
+      type: object
+      description: 'This objects contains the metadata of an entity according to the context of the call.
+
+        Exemple : indicate if an object is a table or a view.'
+    NotAuthenticated:
+      type: object
+      required:
+      - message
+      description: The user has not been authenticated.
+      properties:
+        message:
+          type: string
+        cause:
+          type: string
+    ServerError:
+      type: object
+      required:
+      - message
+      description: The server encountered an error during the processing of the request.
+      properties:
+        message:
+          type: string
+        cause:
+          type: string
+    ConnectionScan:
+      type: object
+      required:
+      - id
+      - lastScan
+      description: This object contains the information about the last scan of the connection. It allows the user to retrieve the objects found by the last scan.
+      properties:
+        id:
+          type: string
+          description: The technical talend ID of the connection
+        lastScan:
+          type: string
+          format: date-time
+          description: Date of the last time this connection has been scanned
+        results:
+          type: array
+          description: Objects of the connection retrieved by the last scan
+          items:
+            $ref: '#/components/schemas/ScannedDataset'
+    ScannedDataset:
+      type: object
+      required:
+      - displayName
+      - metadata
+      - technicalName
+      description: This object contains the objects founded by the scan.
+      properties:
+        displayName:
+          type: string
+          description: Names of the tables and views that we want to retrieve with the crawler
+        technicalName:
+          type: string
+          description: Technical names of the tables and views that we want to retrieve with the crawler
+        metadata:
+          $ref: '#/components/schemas/Metadata_infos'
+  securitySchemes:
+    BearerAuthentication:
+      type: http
+      scheme: bearer
+      bearerFormat: Bearer <TOKEN>

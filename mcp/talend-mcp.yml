@@ -1,0 +1,24 @@
+generated: '2026-09-28'
+method: derived
+source:
+  - https://talend.qlik.dev/apis/dynamic-engine/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/dynamic-engine-environments/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/service-accounts/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/crawler/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/observability-metrics/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/execution-history-search/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/ip-allowlist/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/oauth/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/workspace-permissions/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/sso-role-mapping/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/dataset/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/sharing/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/scim-v2/2021-03/openapi30.json
+  - https://talend.qlik.dev/apis/seats-and-subscription/2021-03/openapi30.json
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived

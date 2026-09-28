@@ -1,0 +1,239 @@
+openapi: 3.2.0
+info:
+  title: Datasets API
+  description: Manage the datasources referenced in Talend Cloud applications and the configuration and metadata associated to these datasources (attributes, data types, data quality).
+  contact:
+    name: Talend
+  version: 2021-03
+servers:
+- url: https://api.eu.cloud.talend.com
+  description: URL for the AWS Europe region
+  x-talend:
+    isPublished: true
+- url: https://api.ap.cloud.talend.com
+  description: URL for the AWS Asia Pacific region
+  x-talend:
+    isPublished: true
+- url: https://api.us.cloud.talend.com
+  description: URL for the AWS United States East region
+  x-talend:
+    isPublished: true
+- url: https://api.au.cloud.talend.com
+  description: URL for the AWS Australia region
+  x-talend:
+    isPublished: true
+- url: https://api.us-west.cloud.talend.com
+  description: URL for the Azure United States West region
+  x-talend:
+    isPublished: true
+security:
+- Public: []
+tags:
+- name: Datasets
+paths:
+  /datasets/{datasetId}/columns:
+    parameters:
+    - name: datasetId
+      in: path
+      required: true
+      description: Id of the dataset
+      schema:
+        type: string
+        description: Id of the dataset
+    get:
+      summary: List metadata of all fields for a dataset
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ColumnDescription'
+        '401':
+          description: User not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: User not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        5XX:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+      tags:
+      - Datasets
+      operationId: getDatasetsByDatasetIdColumns
+      x-operation-id-source: derived
+    post:
+      summary: Create or update metadata for multiple fields of a dataset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ColumnDescription'
+      responses:
+        '204':
+          description: The metadata has been successfully updated
+        '400':
+          description: Path and description are mandatory
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: User is not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: User is not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '404':
+          description: Dataset was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        5XX:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+      tags:
+      - Datasets
+      operationId: postDatasetsByDatasetIdColumns
+      x-operation-id-source: derived
+  /datasets/{datasetId}/columns/{path}:
+    parameters:
+    - name: datasetId
+      in: path
+      required: true
+      description: Id of the dataset
+      schema:
+        type: string
+        description: Id of the dataset
+    - name: path
+      in: path
+      required: true
+      description: Path of the field to update the description
+      schema:
+        type: string
+        description: Path of the field to update the description
+    put:
+      summary: Create or update metadata for a specific field of the dataset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ColumnDescriptionUpdateRequest'
+      responses:
+        '204':
+          description: The metadata has been successfully updated
+        '400':
+          description: Description is mandatory
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: User is not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: User is not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        5XX:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+      tags:
+      - Datasets
+      operationId: putDatasetsByDatasetIdColumnsByPath
+      x-operation-id-source: derived
+components:
+  schemas:
+    ColumnDescriptionUpdateRequest:
+      type: object
+      required:
+      - description
+      properties:
+        description:
+          type: string
+          description: Description of the field
+      example: This is the full address of the person
+    ColumnDescription:
+      type: object
+      required:
+      - description
+      - path
+      properties:
+        path:
+          type: string
+          description: The path of the field, as returned in the dataset schema
+          example: address
+        description:
+          type: string
+          description: The description to set for the related path
+          example: This is the full address of the person
+    ErrorMessageBody:
+      type: object
+      required:
+      - error
+      - status
+      - timestamp
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          example: 1622618273418
+        status:
+          type: integer
+          format: int32
+          description: HTTP status
+          example: 400
+        error:
+          type: string
+          example: Bad Request
+        exception:
+          type: string
+        message:
+          type: string
+          description: The request is invalid
+        path:
+          type: string
+          description: /datasets
+  securitySchemes:
+    Public:
+      type: http
+      scheme: bearer
+      description: 'This Bearer authentication can be set in the Authorization header of your requests.
+
+
+        Authentication tokens and Personal Access Tokens are supported.
+
+
+        Personal Access Tokens can be generated in the Profile Preferences page of the Talend Cloud Portal.'
+      bearerFormat: Bearer <token>

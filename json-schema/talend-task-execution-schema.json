@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/talend/main/json-schema/talend-task-execution-schema.json",
+  "title": "TaskExecution",
+  "description": "A task execution instance",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/talend-task-executions-api-openapi.yml#/components/schemas/TaskExecution",
+  "type": "object",
+  "properties": {
+    "executionId": {
+      "type": "string",
+      "description": "Unique execution identifier"
+    },
+    "taskId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "RUNNING",
+        "SUCCESS",
+        "FAILURE",
+        "CANCELLED"
+      ]
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Execution duration in milliseconds"
+    },
+    "engineId": {
+      "type": "string",
+      "description": "Remote engine that ran the task"
+    },
+    "logUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to access execution logs"
+    }
+  }
+}

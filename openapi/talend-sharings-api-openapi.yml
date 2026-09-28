@@ -1,0 +1,426 @@
+openapi: 3.2.0
+info:
+  title: Sharings API
+  description: Manage how your users and groups can access your Talend Cloud entities.
+  contact:
+    name: Talend
+  version: 2021-03
+servers:
+- url: https://api.eu.cloud.talend.com
+  description: URL for the AWS Europe region
+  x-talend:
+    isPublished: true
+- url: https://api.ap.cloud.talend.com
+  description: URL for the AWS Asia Pacific region
+  x-talend:
+    isPublished: true
+- url: https://api.us.cloud.talend.com
+  description: URL for the AWS United States East region
+  x-talend:
+    isPublished: true
+- url: https://api.au.cloud.talend.com
+  description: URL for the AWS Australia region
+  x-talend:
+    isPublished: true
+- url: https://api.us-west.cloud.talend.com
+  description: URL for the Azure United States West region
+  x-talend:
+    isPublished: true
+security:
+- Public: []
+tags:
+- name: Sharings
+paths:
+  /sharing/sharings/{entityType}:
+    parameters:
+    - name: entityType
+      in: path
+      required: true
+      schema:
+        type: string
+      example: preparation
+    get:
+      tags:
+      - Sharings
+      summary: Get the entities that the current user has access to
+      description: 'Use this method to retrieve the list of all entities of a given type that the current user has access to.
+
+        This list of access also includes the access level and the UUID of the entity.'
+      operationId: getApiV1SharingsEntitytype
+      parameters:
+      - name: includeMetadata
+        in: query
+        schema:
+          type: boolean
+      - name: X-CLIENT-VERSION
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SharingResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '502':
+          description: Bad gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+  /sharing/sharings/{entityType}/{entityId}:
+    parameters:
+    - name: entityType
+      in: path
+      required: true
+      schema:
+        type: string
+      example: preparation
+    - name: entityId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Sharings
+      summary: Get users/groups' access information to an entity
+      description: Use this method to get the list of computed accesses by users or groups to a given entity.
+      operationId: getApiV1SharingsEntitytypeEntityid
+      parameters:
+      - name: includeMetadata
+        in: query
+        schema:
+          type: boolean
+      - name: X-CLIENT-VERSION
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharingResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '502':
+          description: Bad gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+  /sharing/sharings/{entityType}/{entityId}/entitlements:
+    parameters:
+    - name: entityType
+      in: path
+      required: true
+      schema:
+        type: string
+      example: preparation
+    - name: entityId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Sharings
+      summary: Get the list of permissions for an entity
+      description: Use this method to rerieve a list of available permissions for a given entity.
+      operationId: getApiV1SharingsEntitytypeEntityidEntitlements
+      parameters:
+      - name: X-CLIENT-VERSION
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '502':
+          description: Bad gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+components:
+  schemas:
+    ErrorMessageBody:
+      type: object
+      required:
+      - error
+      - path
+      - status
+      - timestamp
+      description: This object is returned in case of an error during an API call.
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          example: 1622618273418
+        status:
+          type: integer
+          format: int32
+          example: 400
+        error:
+          type: string
+          example: Bad Request
+        exception:
+          type: string
+        message:
+          type: string
+          example: The request is invalid
+        path:
+          type: string
+          example: /sharing/sharings/levels/dataset
+    ForeignEntity:
+      type: object
+      required:
+      - entityId
+      - entityType
+      properties:
+        entityId:
+          type: string
+          description: UUID
+          example: 15de7eb2-6447-49a8-a404-a53ecd1f3473
+        entityType:
+          type: string
+          example: dataset
+    LevelResponse:
+      type: object
+      required:
+      - code
+      - label
+      - order
+      description: Description of a level access for an entity.
+      properties:
+        code:
+          type: string
+          example: WRITER
+        label:
+          type: string
+          example: Editor
+        order:
+          type: integer
+          format: int32
+          example: 2
+    UserSharingResponse:
+      type: object
+      required:
+      - foreignEntity
+      - level
+      - userId
+      properties:
+        userId:
+          type: string
+          description: UUID
+          example: 15de7eb2-6447-49a8-a404-a53ecd1f3473
+        level:
+          $ref: '#/components/schemas/LevelResponse'
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Frusciante
+        foreignEntity:
+          $ref: '#/components/schemas/ForeignEntity'
+        deletedAt:
+          type: string
+          format: date-time
+    EntitlementsResponse:
+      type: object
+      required:
+      - entityId
+      properties:
+        entityId:
+          type: string
+          description: UUID
+          example: 15de7eb2-6447-49a8-a404-a53ecd1f3473
+        entitlements:
+          type: array
+          items:
+            type: string
+            example: DATASET_READ
+    SharingResponse:
+      type: object
+      required:
+      - entityId
+      - entityType
+      - levelCode
+      - userId
+      properties:
+        entityType:
+          type: string
+          example: dataset
+        entityId:
+          type: string
+          description: UUID
+          example: 15de7eb2-6447-49a8-a404-a53ecd1f3473
+        userId:
+          type: string
+          description: UUID
+          example: 15de7eb2-6447-49a8-a404-a53ecd1f3473
+        levelCode:
+          type: string
+          example: '1'
+        entitlements:
+          type: array
+          items:
+            type: string
+            example: DATASET_READ
+        userOwners:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserSharingResponse'
+        groupOwners:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupSharingResponse'
+        sharingSetCount:
+          type: integer
+          format: int32
+          example: 123
+        isSharedWithOthers:
+          type: boolean
+    GroupSharingResponse:
+      type: object
+      required:
+      - foreignEntity
+      - groupId
+      - level
+      properties:
+        groupId:
+          type: string
+          description: UUID
+          example: 15de7eb2-6447-49a8-a404-a53ecd1f3473
+        level:
+          $ref: '#/components/schemas/LevelResponse'
+        groupName:
+          type: string
+          example: IT department
+        foreignEntity:
+          $ref: '#/components/schemas/ForeignEntity'
+        deletedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    Public:
+      type: http
+      scheme: bearer
+      description: "This Bearer authentication can be\nset in the Authorization header of your requests. \n\nAuthentication tokens and Personal Access Tokens are supported.\n\nPersonal Access Tokens can be generated in the Profile Preferences page of the Talend Cloud Portal."
+      bearerFormat: Bearer <token>

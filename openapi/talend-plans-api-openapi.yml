@@ -114,36 +114,7 @@ paths:
         '204':
           description: Plan deleted
 components:
-  parameters:
-    PlanId:
-      name: planId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Plan identifier
   schemas:
-    PlanCreate:
-      type: object
-      required:
-      - name
-      - workspaceId
-      properties:
-        name:
-          type: string
-        workspaceId:
-          type: string
-        description:
-          type: string
-        steps:
-          type: array
-          items:
-            type: object
-            properties:
-              taskId:
-                type: string
-              order:
-                type: integer
     Plan:
       type: object
       description: An ordered sequence of tasks in Talend Cloud
@@ -171,6 +142,35 @@ components:
         updated:
           type: string
           format: date-time
+    PlanCreate:
+      type: object
+      required:
+      - name
+      - workspaceId
+      properties:
+        name:
+          type: string
+        workspaceId:
+          type: string
+        description:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              taskId:
+                type: string
+              order:
+                type: integer
+  parameters:
+    PlanId:
+      name: planId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Plan identifier
   securitySchemes:
     BearerAuth:
       type: http

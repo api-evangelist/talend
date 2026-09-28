@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/talend/main/json-schema/talend-run-profile-create-schema.json",
+  "title": "RunProfileCreate",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/talend-run-profiles-api-openapi.yml#/components/schemas/RunProfileCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "engineId"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "engineId": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "parallelExecutions": {
+      "type": "integer",
+      "description": "Maximum concurrent executions"
+    }
+  }
+}

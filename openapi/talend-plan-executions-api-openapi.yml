@@ -108,19 +108,6 @@ paths:
           description: List of plan executions
 components:
   schemas:
-    PlanExecutionRequest:
-      type: object
-      required:
-      - planId
-      properties:
-        planId:
-          type: string
-          description: Plan identifier to execute
-        environmentId:
-          type: string
-        resumeFromStep:
-          type: integer
-          description: Step number to resume from (for re-runs after failure)
     PlanExecution:
       type: object
       description: A plan execution instance
@@ -160,6 +147,19 @@ components:
               endTime:
                 type: string
                 format: date-time
+    PlanExecutionRequest:
+      type: object
+      required:
+      - planId
+      properties:
+        planId:
+          type: string
+          description: Plan identifier to execute
+        environmentId:
+          type: string
+        resumeFromStep:
+          type: integer
+          description: Step number to resume from (for re-runs after failure)
   securitySchemes:
     BearerAuth:
       type: http

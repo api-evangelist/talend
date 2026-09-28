@@ -160,6 +160,14 @@ paths:
                     items:
                       $ref: '#/components/schemas/Task'
 components:
+  parameters:
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Task identifier
   schemas:
     TaskCreate:
       type: object
@@ -208,14 +216,6 @@ components:
   responses:
     Unauthorized:
       description: Unauthorized - invalid or missing bearer token
-  parameters:
-    TaskId:
-      name: taskId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Task identifier
   securitySchemes:
     BearerAuth:
       type: http

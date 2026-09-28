@@ -61,6 +61,15 @@ paths:
           description: Environment created
 components:
   schemas:
+    EnvironmentCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
     Environment:
       type: object
       description: An execution environment in Talend Cloud
@@ -76,15 +85,6 @@ components:
         created:
           type: string
           format: date-time
-    EnvironmentCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

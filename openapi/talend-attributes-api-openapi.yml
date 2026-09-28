@@ -1,0 +1,523 @@
+openapi: 3.2.0
+info:
+  title: Dataset Attributes API
+  description: Manage the datasources referenced in Talend Cloud applications and the configuration and metadata associated to these datasources (attributes, data types, data quality).
+  contact:
+    name: Talend
+  version: 2021-03
+servers:
+- url: https://api.eu.cloud.talend.com
+  description: URL for the AWS Europe region
+  x-talend:
+    isPublished: true
+- url: https://api.ap.cloud.talend.com
+  description: URL for the AWS Asia Pacific region
+  x-talend:
+    isPublished: true
+- url: https://api.us.cloud.talend.com
+  description: URL for the AWS United States East region
+  x-talend:
+    isPublished: true
+- url: https://api.au.cloud.talend.com
+  description: URL for the AWS Australia region
+  x-talend:
+    isPublished: true
+- url: https://api.us-west.cloud.talend.com
+  description: URL for the Azure United States West region
+  x-talend:
+    isPublished: true
+security:
+- Public: []
+tags:
+- name: Attributes
+paths:
+  /datasets/attributes:
+    get:
+      tags:
+      - Attributes
+      summary: List custom attributes definitions
+      description: Custom attributes allow you to create a tagging system for your datasets using free text or predefined values for a given category. Use this method to list all the custom attributes definitions created on the account.
+      operationId: list
+      parameters:
+      - name: limit
+        in: query
+        description: Limit the number of elements returned
+        schema:
+          type: integer
+          format: int32
+          description: Limit the number of elements returned
+          default: 100
+      - name: category
+        in: query
+        schema:
+          type: string
+          default: custom
+          enum:
+          - custom
+          - built-in
+      - name: includeMetadata
+        in: query
+        description: Add metadata to the response, as the creator full name
+        schema:
+          type: boolean
+          description: Add metadata to the response, as the creator full name
+          default: true
+      - name: offset
+        in: query
+        description: The number of rows to ignore before the beginning of the result set
+        schema:
+          type: integer
+          format: int32
+          description: The number of rows to ignore before the beginning of the result set
+          default: 0
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAttributeDefinition'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '502':
+          description: Bad gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+    post:
+      tags:
+      - Attributes
+      summary: Create a custom attribute definition
+      description: Custom attributes allow you to create a tagging system for your datasets using free text or predefined values for a given category. Use this method to create a new custom attribute definition. The two types of attributes definitions are `List of values` and `Text`.
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomAttributeCreateRequest'
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAttributeCreateResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '502':
+          description: Bad gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+  /datasets/attributes/{definitionId}:
+    parameters:
+    - name: definitionId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Attributes
+      summary: Get a custom attribute definition
+      description: Custom attributes allow you to create a tagging system for your datasets using free text or predefined values for a given category. Use this method to retrieve the information on a given custom attribute definition based on its id.
+      operationId: get
+      parameters:
+      - name: includeMetadata
+        in: query
+        description: Add metadata to the response, such as the creator full name
+        schema:
+          type: boolean
+          description: Add metadata to the response, such as the creator full name
+          default: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAttributeDefinition'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '404':
+          description: Attribute Definition not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '502':
+          description: Bad gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+    delete:
+      tags:
+      - Attributes
+      summary: Delete a custom attribute definition
+      description: Custom attributes allow you to create a tagging system for your datasets using free text or predefined values for a given category. Use this method to delete a given custom attribute definition based on its id.
+      operationId: delete
+      responses:
+        '204':
+          description: successful operation
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '404':
+          description: Attribute Definition not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '502':
+          description: Bad gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+    patch:
+      tags:
+      - Attributes
+      summary: Update a custom attribute definition
+      description: Custom attributes allow you to create a tagging system for your datasets using free text or predefined values for a given category. Use this method to update the configuration of a given custom attribute definition based on its id.The PATCH operation allows you to apply specific changes to the attribute configuration without replacing it entirely.
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomAttributeUpdateRequest'
+      responses:
+        '204':
+          description: successful operation
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '403':
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '404':
+          description: Attribute Definition not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '502':
+          description: Bad gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageBody'
+components:
+  schemas:
+    CustomAttributeDefinition:
+      type: object
+      required:
+      - createdBy
+      - label
+      - mandatory
+      - type
+      - updatedAt
+      - updatedBy
+      properties:
+        id:
+          type: string
+          description: UUID
+          example: 766ba1b6-0500-40fd-a492-c72de568592c
+        label:
+          type: string
+          description: Label of the attribute
+          example: Business domain
+        description:
+          type: string
+          description: Detailed description
+          example: Attribute to configure the business domain of a dataset
+        type:
+          type: string
+          description: Type of the attribute
+          enum:
+          - text
+          - enum
+        defaults:
+          type: array
+          description: Default value for the attribute
+          items:
+            type: string
+            example: IT
+        mandatory:
+          type: boolean
+          description: Indicates if this attribute is mandatory
+        createdAt:
+          type: integer
+          format: int32
+          description: Creation timestamp of the attribute
+          example: 1621408387341
+        updatedAt:
+          type: integer
+          format: int64
+          description: Last update timestamp of the attribute
+          example: 1621408387341
+        createdBy:
+          $ref: '#/components/schemas/Author'
+        updatedBy:
+          $ref: '#/components/schemas/Author'
+    ErrorMessageBody:
+      type: object
+      required:
+      - error
+      - status
+      - timestamp
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          example: 1622618273418
+        status:
+          type: integer
+          format: int32
+          description: HTTP status
+          example: 400
+        error:
+          type: string
+          example: Bad Request
+        exception:
+          type: string
+        message:
+          type: string
+          description: The request is invalid
+        path:
+          type: string
+          description: /datasets
+    CustomAttributeCreateRequest:
+      type: object
+      required:
+      - label
+      - mandatory
+      - type
+      properties:
+        label:
+          type: string
+          description: Label of the attribute
+          example: Business domain
+        description:
+          type: string
+          description: Detailed description of the attribute
+          example: Attribute for our business domains
+        mandatory:
+          type: boolean
+          description: Indicates if this attribute is mandatory
+        type:
+          type: string
+          description: Type of the attribute
+          enum:
+          - enum
+          - text
+        values:
+          type: array
+          description: Values for the attribute
+          items:
+            type: string
+            example: IT
+        defaults:
+          type: array
+          description: Default values for the attribute
+          items:
+            type: string
+            example: IT
+    CustomAttributeUpdateRequest:
+      type: object
+      required:
+      - label
+      - mandatory
+      properties:
+        label:
+          type: string
+          description: Label of the attribute
+          example: Business domain
+        description:
+          type: string
+          description: Description of the attribute
+          example: Business domains of our organization
+        mandatory:
+          type: boolean
+          description: Indicates if this attribute is mandatory
+        defaults:
+          type: array
+          description: Default values for this attribute/ For the attributes of type 'text', only the first element of the array is stored.
+          items:
+            type: string
+            example: IT
+        values:
+          type: array
+          description: Values of the attribute, this field is only available for attributes of type 'enum'
+          items:
+            type: string
+            example: IT
+    Author:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User identifier
+          example: 766ba1b6-0500-40fd-a492-c72de568592c
+        userName:
+          type: string
+          description: Full name of the user
+          example: Chad Smith
+    CustomAttributeCreateResponse:
+      type: object
+      required:
+      - definitionId
+      properties:
+        definitionId:
+          type: string
+          description: The id of the created attribute
+          example: 766ba1b6-0500-40fd-a492-c72de568592c
+  securitySchemes:
+    Public:
+      type: http
+      scheme: bearer
+      description: 'This Bearer authentication can be set in the Authorization header of your requests.
+
+
+        Authentication tokens and Personal Access Tokens are supported.
+
+
+        Personal Access Tokens can be generated in the Profile Preferences page of the Talend Cloud Portal.'
+      bearerFormat: Bearer <token>

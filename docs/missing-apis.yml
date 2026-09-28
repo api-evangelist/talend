@@ -1,0 +1,18 @@
+generated: '2026-09-28'
+method: searched
+source: https://talend.qlik.dev/apis
+apis:
+  - dynamic-engine
+  - dynamic-engine-environments
+  - service-accounts
+  - crawler
+  - observability-metrics
+  - execution-history-search
+  - ip-allowlist
+  - oauth
+  - workspace-permissions
+  - sso-role-mapping
+  - dataset
+  - sharing
+  - scim-v2
+  - seats-and-subscription
