@@ -1,4 +1,4 @@
-# Talend (talend)
+# Talend
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,179 +66,245 @@
 
 Talend (now part of Qlik) provides data integration, quality, and API management capabilities through cloud-native APIs for ETL, data pipelines, and application integration. The Qlik Talend Cloud platform exposes REST APIs for orchestrating tasks and plans, executing data integration jobs, managing remote engines, configuring connections, monitoring execution history, and administering identities, workspaces, and environments.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/apis.yml)
+**Areas:** API Management · Data Integration · Data Quality · ETL · Orchestration · Pipelines · Data Catalog
 
-## Scope
+## Talend on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Talend is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/talend/](https://apis.io/providers/talend/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (44)
 
-- API Management
-- Data Integration
-- Data Quality
-- ETL
-- Orchestration
-- Pipelines
+- [Talend Cloud Identities Management API](https://apis.io/apis/talend/talend-identities-api/) — Manages user, group, and role identity information for Talend Cloud accounts. Supports SCIM v2 for automated provisioning from enterprise identity providers.
+- [Talend Cloud Audit Logs API](https://apis.io/apis/talend/talend-audit-logs-api/) — Load account audit logs for monitoring activities on Talend Cloud applications, ensuring data security and regulatory compliance.
+- [Talend Cloud Connections API](https://apis.io/apis/talend/talend-cloud-connections-api/) — Administers connections used by datasets and crawlers to retrieve data at scale.
+- [Talend Cloud Execution Logs API](https://apis.io/apis/talend/talend-execution-logs-api/) — Retrieve logs about task runs for debugging and monitoring data integration pipeline executions.
+- [Talend Artifacts API](https://apis.io/apis/talend/talend-artifacts-api/) — The Artifacts API from Talend — 1 operation(s) for artifacts.
+- [Talend Connections API](https://apis.io/apis/talend/talend-connections-api/) — The Connections API from Talend — 1 operation(s) for connections.
+- [Talend Environments API](https://apis.io/apis/talend/talend-environments-api/) — The Environments API from Talend — 1 operation(s) for environments.
+- [Talend Plan Executions API](https://apis.io/apis/talend/talend-plan-executions-api/) — The Plan Executions API from Talend — 4 operation(s) for plan executions.
+- [Talend Plans API](https://apis.io/apis/talend/talend-plans-api/) — The Plans API from Talend — 2 operation(s) for plans.
+- [Talend Promotion Executions API](https://apis.io/apis/talend/talend-promotion-executions-api/) — The Promotion Executions API from Talend — 1 operation(s) for promotion executions.
+- [Talend Promotions API](https://apis.io/apis/talend/talend-promotions-api/) — The Promotions API from Talend — 1 operation(s) for promotions.
+- [Talend Remote Engine Clusters API](https://apis.io/apis/talend/talend-remote-engine-clusters-api/) — The Remote Engine Clusters API from Talend — 1 operation(s) for remote engine clusters.
+- [Talend Remote Engines API](https://apis.io/apis/talend/talend-remote-engines-api/) — The Remote Engines API from Talend — 2 operation(s) for remote engines.
+- [Talend Run Profiles API](https://apis.io/apis/talend/talend-run-profiles-api/) — The Run Profiles API from Talend — 2 operation(s) for run profiles.
+- [Talend Schedules API](https://apis.io/apis/talend/talend-schedules-api/) — The Schedules API from Talend — 1 operation(s) for schedules.
+- [Talend Task Executions API](https://apis.io/apis/talend/talend-task-executions-api/) — The Task Executions API from Talend — 3 operation(s) for task executions.
+- [Talend Tasks API](https://apis.io/apis/talend/talend-tasks-api/) — The Tasks API from Talend — 3 operation(s) for tasks.
+- [Talend Workspaces API](https://apis.io/apis/talend/talend-workspaces-api/) — The Workspaces API from Talend — 2 operation(s) for workspaces.
+- [Talend Account API](https://apis.io/apis/talend/talend-account-api/) — The Account API from Talend — 4 operation(s) for account.
+- [Talend account :: subscription API](https://apis.io/apis/talend/talend-account-subscription-api/) — The account :: subscription API from Talend — 1 operation(s) for account :: subscription.
+- [Talend Attributes API](https://apis.io/apis/talend/talend-attributes-api/) — The attributes API from Talend — 2 operation(s) for attributes.
+- [Talend Connection Scan API](https://apis.io/apis/talend/talend-connectionscan-api/) — The ConnectionScan API from Talend — 1 operation(s) for connectionscan.
+- [Talend Crawler API](https://apis.io/apis/talend/talend-crawler-api/) — The Crawler API from Talend — 6 operation(s) for crawler.
+- [Talend Dataset API](https://apis.io/apis/talend/talend-dataset-api/) — The dataset API from Talend — 5 operation(s) for dataset.
+- [Talend Datasets API](https://apis.io/apis/talend/talend-datasets-api/) — The Datasets API from Talend — 2 operation(s) for datasets.
+- [Talend Dynamic Engine Controller API](https://apis.io/apis/talend/talend-dynamic-engine-controller-api/) — The dynamic-engine-controller API from Talend — 5 operation(s) for dynamic-engine-controller.
+- [Talend Dynamic Engine Version Controller API](https://apis.io/apis/talend/talend-dynamic-engine-version-controller-api/) — The dynamic-engine-version-controller API from Talend — 1 operation(s) for dynamic-engine-version-controller.
+- [Talend Eligibles API](https://apis.io/apis/talend/talend-eligibles-api/) — The Eligibles API from Talend — 1 operation(s) for eligibles.
+- [Talend Environment Controller API](https://apis.io/apis/talend/talend-environment-controller-api/) — The environment-controller API from Talend — 2 operation(s) for environment-controller.
+- [Talend IP Allowlist Management API](https://apis.io/apis/talend/talend-ip-allowlist-management-api/) — The IP Allowlist Management API from Talend — 3 operation(s) for ip allowlist management.
+- [Talend Levels API](https://apis.io/apis/talend/talend-levels-api/) — The Levels API from Talend — 1 operation(s) for levels.
+- [Talend Monitoring API](https://apis.io/apis/talend/talend-monitoring-api/) — The Monitoring API from Talend — 4 operation(s) for monitoring.
+- [Talend Orchestration API](https://apis.io/apis/talend/talend-orchestration-api/) — The Orchestration API from Talend — 4 operation(s) for orchestration.
+- [Talend SCIM 2.0 Group Management API](https://apis.io/apis/talend/talend-scim-2-0-group-management-api/) — The SCIM 2.0 Group Management API from Talend — 3 operation(s) for scim 2.0 group management.
+- [Talend SCIM 2.0 Resource Type API](https://apis.io/apis/talend/talend-scim-2-0-resource-type-api/) — The SCIM 2.0 Resource Type API from Talend — 2 operation(s) for scim 2.0 resource type.
+- [Talend SCIM 2.0 Role Management API](https://apis.io/apis/talend/talend-scim-2-0-role-management-api/) — The SCIM 2.0 Role Management API from Talend — 3 operation(s) for scim 2.0 role management.
+- [Talend SCIM 2.0 Schema API](https://apis.io/apis/talend/talend-scim-2-0-schema-api/) — The SCIM 2.0 Schema API from Talend — 2 operation(s) for scim 2.0 schema.
+- [Talend SCIM 2.0 Service Provider Config API](https://apis.io/apis/talend/talend-scim-2-0-service-provider-config-api/) — The SCIM 2.0 Service Provider Config API from Talend — 1 operation(s) for scim 2.0 service provider config.
+- [Talend SCIM 2.0 User Management API](https://apis.io/apis/talend/talend-scim-2-0-user-management-api/) — The SCIM 2.0 User Management API from Talend — 3 operation(s) for scim 2.0 user management.
+- [Talend Security API](https://apis.io/apis/talend/talend-security-api/) — The Security API from Talend — 3 operation(s) for security.
+- [Talend service accounts :: workspaces :: permissions API](https://apis.io/apis/talend/talend-service-accounts-workspaces-permissions-api/) — The service accounts :: workspaces :: permissions API from Talend — 3 operation(s) for service accounts :: workspaces :: permissions.
+- [Talend Sharings API](https://apis.io/apis/talend/talend-sharings-api/) — The Sharings API from Talend — 3 operation(s) for sharings.
+- [Talend Sharing Set API](https://apis.io/apis/talend/talend-sharingset-api/) — The SharingSet API from Talend — 2 operation(s) for sharingset.
+- [Talend workspaces :: permissions API](https://apis.io/apis/talend/talend-workspaces-permissions-api/) — The workspaces :: permissions API from Talend — 3 operation(s) for workspaces :: permissions.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Talend Cloud Orchestration API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Manages tasks, plans, schedules, workspaces, environments, connections, artifacts, promotions, and resources in Qlik Talend Cloud. Use this API to automate data integration pipeline management, configure execution schedules, and manage workspace resources via Bearer token authentication.
+- [Talend Agentic Access](https://apis.io/agentic-access/talend/talend-agentic-access/)
 
-- **Human URL:** [https://talend.qlik.dev/apis/orchestration/2021-03/](https://talend.qlik.dev/apis/orchestration/2021-03/)
-- **Base URL:** `https://api.{region}.cloud.talend.com`
+#### JSON Schema (34)
 
-#### Tags
+The data models the API reads and writes.
 
-- Artifacts
-- Connections
-- ETL
-- Orchestration
-- Plans
-- Tasks
-- Workspaces
+- [Artifact](https://apis.io/schemas/talend/talend-artifact/)
+- [Connection](https://apis.io/schemas/talend/talend-connection/)
+- [ConnectionCreate](https://apis.io/schemas/talend/talend-connection-create/)
+- [ConnectionCreate](https://apis.io/schemas/talend/talend-connectioncreate/)
+- [Environment](https://apis.io/schemas/talend/talend-environment/)
+- [EnvironmentCreate](https://apis.io/schemas/talend/talend-environment-create/)
+- [EnvironmentCreate](https://apis.io/schemas/talend/talend-environmentcreate/)
+- [Task Execution](https://apis.io/schemas/talend/talend-execution/)
+- [Plan](https://apis.io/schemas/talend/talend-plan/)
+- [PlanCreate](https://apis.io/schemas/talend/talend-plan-create/)
+- [PlanExecution](https://apis.io/schemas/talend/talend-plan-execution/)
+- [PlanExecutionRequest](https://apis.io/schemas/talend/talend-plan-execution-request/)
+- [PlanCreate](https://apis.io/schemas/talend/talend-plancreate/)
+- [PlanExecution](https://apis.io/schemas/talend/talend-planexecution/)
+- [PlanExecutionRequest](https://apis.io/schemas/talend/talend-planexecutionrequest/)
+- [RemoteEngine](https://apis.io/schemas/talend/talend-remote-engine/)
+- [RemoteEngineCreate](https://apis.io/schemas/talend/talend-remote-engine-create/)
+- [RemoteEngine](https://apis.io/schemas/talend/talend-remoteengine/)
+- [RemoteEngineCreate](https://apis.io/schemas/talend/talend-remoteenginecreate/)
+- [RunProfileCreate](https://apis.io/schemas/talend/talend-run-profile-create/)
+- [RunProfileCreate](https://apis.io/schemas/talend/talend-runprofilecreate/)
+- [Schedule](https://apis.io/schemas/talend/talend-schedule/)
+- [ScheduleCreate](https://apis.io/schemas/talend/talend-schedule-create/)
+- [ScheduleCreate](https://apis.io/schemas/talend/talend-schedulecreate/)
+- [Talend Task](https://apis.io/schemas/talend/talend-task/)
+- …and 9 more published on APIs.io
 
-#### Properties
+#### JSON Structure (2)
 
-- [Documentation](https://talend.qlik.dev/apis/orchestration/2021-03/)
-- [Getting Started](https://talend.qlik.dev/getting-started/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-orchestration-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/talend-orchestration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-orchestration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/talend-processing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-processing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### Talend Cloud Processing API
+- [Talend Structure](https://apis.io/json-structure/talend/talend-structure/)
+- [Talend Task Structure](https://apis.io/json-structure/talend/talend-task-structure/)
 
-Manages task and plan executions, remote engines and clusters, and run profiles in Qlik Talend Cloud. Use this API to trigger and monitor data integration job runs, manage remote engine lifecycles, and configure execution profiles.
+#### JSON-LD (1)
 
-- **Human URL:** [https://talend.qlik.dev/apis/processing/2021-03/](https://talend.qlik.dev/apis/processing/2021-03/)
-- **Base URL:** `https://api.{region}.cloud.talend.com`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Talend Context](https://apis.io/jsonld/talend/talend-context/)
 
-- ETL
-- Execution
-- Monitoring
-- Remote Engine
-- Run Profiles
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://talend.qlik.dev/apis/processing/2021-03/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/openapi/talend-processing-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/talend-orchestration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-orchestration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/talend-processing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-processing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Talend Cloud Vocabulary](https://apis.io/vocabularies/talend/talend-vocabulary/)
 
-### Talend Cloud Identities Management API
+#### Examples (1)
 
-Manages user, group, and role identity information for Talend Cloud accounts. Supports SCIM v2 for automated provisioning from enterprise identity providers.
+Example requests and responses.
 
-- **Human URL:** [https://talend.qlik.dev/apis/identities-management/2021-03/](https://talend.qlik.dev/apis/identities-management/2021-03/)
-- **Base URL:** `https://api.{region}.cloud.talend.com`
+- [Talend Execute Task Example](https://apis.io/examples/talend/talend-execute-task-example/)
 
-#### Tags
+#### Collections (16)
 
-- Identity Management
-- SCIM
-- User Provisioning
+Postman and Open Collection request collections.
 
-#### Properties
+- [Talend Cloud Orchestration Artifacts API](https://apis.io/collections/talend/open-talend-artifacts-api/)
+- [Talend Cloud Orchestration Artifacts Connections API](https://apis.io/collections/talend/open-talend-connections-api/)
+- [Talend Cloud Orchestration Artifacts Environments API](https://apis.io/collections/talend/open-talend-environments-api/)
+- [Talend Cloud Orchestration API](https://apis.io/collections/talend/open-talend-orchestration/)
+- [Talend Cloud Orchestration Artifacts Plan Executions API](https://apis.io/collections/talend/open-talend-plan-executions-api/)
+- [Talend Cloud Orchestration Artifacts Plans API](https://apis.io/collections/talend/open-talend-plans-api/)
+- [Talend Cloud Processing API](https://apis.io/collections/talend/open-talend-processing/)
+- [Talend Cloud Orchestration Artifacts Promotion Executions API](https://apis.io/collections/talend/open-talend-promotion-executions-api/)
+- [Talend Cloud Orchestration Artifacts Promotions API](https://apis.io/collections/talend/open-talend-promotions-api/)
+- [Talend Cloud Orchestration Artifacts Remote Engine Clusters API](https://apis.io/collections/talend/open-talend-remote-engine-clusters-api/)
+- [Talend Cloud Orchestration Artifacts Remote Engines API](https://apis.io/collections/talend/open-talend-remote-engines-api/)
+- [Talend Cloud Orchestration Artifacts Run Profiles API](https://apis.io/collections/talend/open-talend-run-profiles-api/)
+- [Talend Cloud Orchestration Artifacts Schedules API](https://apis.io/collections/talend/open-talend-schedules-api/)
+- [Talend Cloud Orchestration Artifacts Task Executions API](https://apis.io/collections/talend/open-talend-task-executions-api/)
+- [Talend Cloud Orchestration Artifacts Tasks API](https://apis.io/collections/talend/open-talend-tasks-api/)
+- [Talend Cloud Orchestration Artifacts Workspaces API](https://apis.io/collections/talend/open-talend-workspaces-api/)
 
-- [Documentation](https://talend.qlik.dev/apis/identities-management/2021-03/)
-- [Postman Collection](collections/talend-orchestration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-orchestration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/talend-processing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-processing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (3)
 
-### Talend Cloud Audit Logs API
+Spectral rulesets for the provider's contracts.
 
-Load account audit logs for monitoring activities on Talend Cloud applications, ensuring data security and regulatory compliance.
+- [Talend — api rules](https://apis.io/rules/talend/talend-api-rules/)
+- [Talend — jsonschema rules](https://apis.io/rules/talend/talend-jsonschema-spectral-rules/)
+- [Talend API Rules](https://apis.io/rules/talend/talend-rules/)
 
-- **Human URL:** [https://talend.qlik.dev/apis/audit-logs/2021-03/](https://talend.qlik.dev/apis/audit-logs/2021-03/)
-- **Base URL:** `https://api.{region}.cloud.talend.com`
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Audit
-- Compliance
-- Monitoring
+- [Talend Authentication](https://apis.io/security/talend/talend-authentication/)
+- [Talend Domain Security](https://apis.io/security/talend/talend-domain-security/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://talend.qlik.dev/apis/audit-logs/2021-03/)
-- [Postman Collection](collections/talend-orchestration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-orchestration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/talend-processing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-processing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### Talend Cloud Connections API
+- [Talend Plans Pricing](https://apis.io/plans/talend/talend-plans-pricing/)
 
-Administers connections used by datasets and crawlers to retrieve data at scale.
+#### Rate limits (1)
 
-- **Human URL:** [https://talend.qlik.dev/apis/connections/2021-03/](https://talend.qlik.dev/apis/connections/2021-03/)
-- **Base URL:** `https://api.{region}.cloud.talend.com`
+Published request limits.
 
-#### Tags
+- [Talend Rate Limits](https://apis.io/rate-limits/talend/talend-rate-limits/)
 
-- Connections
-- Data Sources
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://talend.qlik.dev/apis/connections/2021-03/)
-- [Postman Collection](collections/talend-orchestration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-orchestration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/talend-processing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-processing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Talend Finops](https://apis.io/finops/talend/talend-finops/)
 
-### Talend Cloud Execution Logs API
+## Where to find this API
 
-Retrieve logs about task runs for debugging and monitoring data integration pipeline executions.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://talend.qlik.dev/apis/execution-logs/2021-03/](https://talend.qlik.dev/apis/execution-logs/2021-03/)
-- **Base URL:** `https://api.{region}.cloud.talend.com`
-
-#### Tags
-
-- Execution Logs
-- Monitoring
-
-#### Properties
-
-- [Documentation](https://talend.qlik.dev/apis/execution-logs/2021-03/)
-- [Postman Collection](collections/talend-orchestration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-orchestration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/talend-processing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/talend-processing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/talend)
-- [Portal](https://talend.qlik.dev/)
-- [Documentation](https://talend.qlik.dev/)
-- [A P Is](https://talend.qlik.dev/apis/)
-- [Getting Started](https://talend.qlik.dev/getting-started/)
 - [Website](https://www.talend.com/)
-- [Qlik  Data  Fabric](https://www.qlik.com/us/products/talend-data-fabric)
-- [Git Hub  Org](https://github.com/Talend)
-- [Help](https://help.qlik.com/en-US/cloud-services/Content/Sense_Helpsites/Home-talend-cloud.htm)
-- [J S O N  Schema](https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/json-schema/talend-task-schema.json)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/talend/refs/heads/main/vocabulary/talend-vocabulary.yml)
-- [Integrations](https://www.talend.com/partners)
+- [Documentation](https://talend.qlik.dev/)
+- [Getting started](https://talend.qlik.dev/getting-started/)
+- [Pricing](https://www.talend.com/pricing/)
+- [Support](https://help.qlik.com/)
+- [Blog](https://www.qlik.com/us/blog)
+- [Security](https://www.talend.com/security/)
+- [Trust centre](https://www.qlik.com/us/trust)
+- [Terms of service](https://www.qlik.com/us/legal/terms-of-use)
+- [Privacy policy](https://www.talend.com/privacy/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 57.2** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 82.1 |
+| Contract quality | 65.8 |
+| Contract governance | 22.0 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 44.7 |
+
+**Agent readiness 51.1** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | conformant |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/talend/](https://apis.io/providers/talend/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Talend: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/talend/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
